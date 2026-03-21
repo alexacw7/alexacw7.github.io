@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexa Cavazos — Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:  #F0EAD6;
+    --dark:   #2C1A0E;
+    --coral:  #E04E2A;
+    --teal:   #2A9BAA;
+    --olive:  #6B7A1E;
+    --gold:   #D4980A;
+    --sand:   #C4AE88;
+    --warm:   #F7F2E8;
+    --mid:    #6B5040;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    border: 6px solid var(--coral);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    border-bottom: 3px solid var(--dark);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s;
+  }
+  .nav-links a:hover { text-decoration-color: var(--coral); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 67px);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    opacity: 0.11;
+  }
+  .blob-1 {
+    width: 500px; height: 500px;
+    background: var(--coral);
+    top: -120px; right: -80px;
+    animation: morph 10s ease-in-out infinite alternate;
+  }
+  .blob-2 {
+    width: 260px; height: 260px;
+    background: var(--teal);
+    bottom: 80px; left: -60px;
+    animation: morph 13s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes morph {
+    0%  { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+    50% { border-radius: 30% 70% 40% 60% / 60% 30% 70% 40%; }
+    100%{ border-radius: 50% 50% 30% 70% / 40% 60% 50% 50%; }
+  }
+
+  .flower {
+    position: absolute;
+    width: 110px; height: 110px;
+    right: 64px; bottom: 96px;
+    animation: spin 22s linear infinite;
+    opacity: 0.8;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--mid);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(72px, 11vw, 158px);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.35s forwards;
+  }
+  .hero-name .outline {
+    -webkit-text-stroke: 3px var(--dark);
+    color: transparent;
+    display: block;
+  }
+
+  .hero-tagline {
+    margin-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+    max-width: 540px;
+  }
+  .hero-tagline p {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 2.2vw, 25px);
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .hero-tagline p strong {
+    color: var(--coral);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 36px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.65s forwards;
+  }
+  .hero-location {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .scroll-line {
+    width: 1px; height: 44px;
+    background: var(--sand);
+    animation: pulse 2s ease-in-out infinite;
+    transform-origin: top;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scaleY(1); }
+    50%      { opacity: 0.3; transform: scaleY(0.5); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+    background: var(--coral);
+    padding: 12px 0;
+    overflow: hidden;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 40px;
+    white-space: nowrap;
+    animation: tick 20s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--cream);
+  }
+  .ticker-inner .dot { color: rgba(255,255,255,0.45); }
+  @keyframes tick {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── SHARED ── */
+  .section { padding: 88px 48px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 12px;
+  }
+  .section-heading {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 56px;
+  }
+  .section-heading .accent { color: var(--coral); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  #about::before {
+    content: 'ME';
+    position: absolute;
+    right: -10px; top: -60px;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 340px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+  }
+  #about .section-label { color: var(--teal); }
+  #about .section-heading { color: var(--cream); }
+  #about .section-heading .accent { color: var(--coral); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(240,234,214,0.72);
+    margin-bottom: 18px;
+  }
+  .about-text p strong { color: var(--cream); font-weight: 500; }
+  .about-text p em     { color: var(--teal); font-style: italic; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  .stat-box {
+    padding: 28px 22px;
+    background: rgba(240,234,214,0.04);
+    border: 1px solid rgba(240,234,214,0.07);
+    border-top: 4px solid transparent;
+  }
+  .stat-box:nth-child(1) { border-top-color: var(--coral); }
+  .stat-box:nth-child(2) { border-top-color: var(--teal); }
+  .stat-box:nth-child(3) { border-top-color: var(--olive); }
+  .stat-box:nth-child(4) { border-top-color: var(--gold); }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(240,234,214,0.35);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--warm); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+
+  .project-card {
+    background: var(--cream);
+    border: 2.5px solid var(--dark);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    position: relative;
+  }
+  .project-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 var(--dark);
+  }
+  .project-card.featured { grid-column: span 7; }
+  .project-card.small    { grid-column: span 5; }
+  .project-card.medium   { grid-column: span 6; }
+
+  .project-thumb {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-bottom: 2.5px solid var(--dark);
+  }
+  .project-card.featured .project-thumb { aspect-ratio: 4/3; }
+
+  .project-thumb-bg {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 72px;
+    color: rgba(255,255,255,0.12);
+    letter-spacing: -0.02em;
+  }
+
+  .project-info {
+    padding: 22px 24px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .ptag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: 1.5px solid rgba(44,26,14,0.18);
+    color: var(--mid);
+    border-radius: 100px;
+  }
+  .ptag.hot {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: var(--cream);
+  }
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .project-card.featured .project-title { font-size: 32px; }
+  .project-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--mid);
+    flex: 1;
+  }
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--dark);
+  }
+  .cta-arrow {
+    width: 28px; height: 2px;
+    background: var(--coral);
+    position: relative;
+    transition: width 0.22s ease;
+  }
+  .cta-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -4px;
+    width: 8px; height: 8px;
+    border-right: 2px solid var(--coral);
+    border-top: 2px solid var(--coral);
+    transform: rotate(45deg);
+  }
+  .project-card:hover .cta-arrow { width: 44px; }
+
+  .project-card.placeholder {
+    border: 2.5px dashed rgba(44,26,14,0.18);
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  .placeholder-inner { text-align: center; padding: 40px; }
+  .placeholder-inner span {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    opacity: 0.2;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .placeholder-inner p {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--cream); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .skills-col h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--coral);
+    display: inline-block;
+  }
+  .skills-col.soft h3 { border-color: var(--teal); }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(44,26,14,0.08);
+  }
+  .skill-name { font-size: 14px; color: var(--dark); }
+  .skill-dots { display: flex; gap: 5px; }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    border: 2px solid var(--sand);
+  }
+  .dot.filled { background: var(--coral); border-color: var(--coral); }
+  .skills-col.soft .dot.filled { background: var(--teal); border-color: var(--teal); }
+
+  .skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .badge {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 2px solid var(--dark);
+    color: var(--dark);
+    border-radius: 100px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .badge:hover { background: var(--dark); color: var(--cream); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--dark);
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: 'hello';
+    position: absolute;
+    left: -20px; bottom: -40px;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 220px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+
+  .contact-left h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .contact-left h2 span { color: var(--coral); display: block; }
+  .contact-left p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(240,234,214,0.55);
+    max-width: 360px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border: 2px solid rgba(240,234,214,0.1);
+    text-decoration: none;
+    color: var(--cream);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover {
+    border-color: var(--coral);
+    background: rgba(224,78,42,0.06);
+  }
+  .contact-link-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'Fraunces', serif;
+  }
+  .contact-link:nth-child(1) .contact-link-icon { background: var(--coral); }
+  .contact-link:nth-child(2) .contact-link-icon { background: var(--teal); }
+  .contact-link:nth-child(3) .contact-link-icon { background: var(--olive); }
+  .contact-link-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(240,234,214,0.35);
+    margin-bottom: 2px;
+  }
+  .contact-link-value { font-size: 14px; color: var(--cream); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #180F08;
+    padding: 22px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 3px solid var(--coral);
+  }
+  footer p { font-size: 11px; letter-spacing: 0.08em; color: rgba(240,234,214,0.22); }
+  footer span { color: var(--coral); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 980px) {
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .project-card.featured, .project-card.small, .project-card.medium { grid-column: span 1; }
+    .about-grid, #contact, .skills-layout { grid-template-columns: 1fr; }
+    #contact { gap: 48px; }
+  }
+  @media (max-width: 640px) {
+    body { border-width: 4px; }
+    nav, .hero, .section, #contact { padding-left: 20px; padding-right: 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 6px; text-align: center; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Alexa Cavazos</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <svg class="flower" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <g fill="var(--gold)" opacity="0.75">
+      <ellipse cx="60" cy="22" rx="14" ry="22"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(45 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(90 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(135 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(180 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(225 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(270 60 60)"/>
+      <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(315 60 60)"/>
+    </g>
+    <circle cx="60" cy="60" r="20" fill="var(--gold)"/>
+    <text x="60" y="65" text-anchor="middle" font-size="11" fill="var(--dark)" font-family="sans-serif" font-weight="700">make</text>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Mechanical Engineering · Stanford University · Class of 2027</p>
+    <h1 class="hero-name">
+      Alexa
+      <span class="outline">Cavazos</span>
+    </h1>
+    <div class="hero-tagline">
+      <p>Obsessed with <strong>making things</strong> and nailing down every last detail.</p>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <p class="hero-location">Stanford, California</p>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>CAD</span><span class="dot">✦</span>
+    <span>Laser Cutting</span><span class="dot">✦</span>
+    <span>Tolerance Analysis</span><span class="dot">✦</span>
+    <span>DFM</span><span class="dot">✦</span>
+    <span>Prototyping</span><span class="dot">✦</span>
+    <span>Mechanical Design</span><span class="dot">✦</span>
+    <span>Stanford ME</span><span class="dot">✦</span>
+    <span>CAD</span><span class="dot">✦</span>
+    <span>Laser Cutting</span><span class="dot">✦</span>
+    <span>Tolerance Analysis</span><span class="dot">✦</span>
+    <span>DFM</span><span class="dot">✦</span>
+    <span>Prototyping</span><span class="dot">✦</span>
+    <span>Mechanical Design</span><span class="dot">✦</span>
+    <span>Stanford ME</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <p class="section-label reveal">Who I am</p>
+  <h2 class="section-heading reveal">About <span class="accent">Me</span></h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a <strong>Mechanical Engineering student at Stanford University</strong> with a deep obsession for making — not just designing, but actually building things and understanding exactly why they work (or don't).</p>
+      <p>I'm drawn to the details that most people skip: the tolerance stack that makes a joint feel just right, the kerf width that sits between too loose and too tight, the prototype that proves your sketch was wrong in the best possible way.</p>
+      <p>My projects live at the intersection of <em>engineering rigor</em> and <em>aesthetic intention</em> — things that are well-made and feel that way.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">ME</div>
+        <div class="stat-label">Major at Stanford</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">0.001"</div>
+        <div class="stat-label">Tolerance that matters</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Prototypes before final</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">Details</div>
+        <div class="stat-label">Always the point</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section class="section" id="projects">
+  <p class="section-label reveal">Selected work</p>
+  <h2 class="section-heading reveal">Projects</h2>
+  <div class="projects-grid reveal">
+    <a href="clock-container-portfolio.html" class="project-card featured">
+      <div class="project-thumb">
+        <div class="project-thumb-bg" style="background: var(--olive);">
+          <!-- swap for: <img src="your-photo.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+          Clock
+        </div>
+      </div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="ptag hot">Featured</span>
+          <span class="ptag">ME102</span>
+          <span class="ptag">Laser Cutting</span>
+          <span class="ptag">CAD</span>
+        </div>
+        <div class="project-title">Clock Container</div>
+        <p class="project-desc">A laser-cut birch plywood container shaped like a mid-century alarm clock — designed to hold my daily bracelets. Assembled entirely through friction-fit interlocking joints. No glue, no fasteners.</p>
+        <div class="project-cta">View project <div class="cta-arrow"></div></div>
+      </div>
+    </a>
+    <div class="project-card small placeholder">
+      <div class="placeholder-inner"><span>＋</span><p>Next project</p></div>
+    </div>
+    <div class="project-card medium placeholder">
+      <div class="placeholder-inner"><span>＋</span><p>Next project</p></div>
+    </div>
+    <div class="project-card medium placeholder">
+      <div class="placeholder-inner"><span>＋</span><p>Next project</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section class="section" id="skills">
+  <p class="section-label reveal">What I work with</p>
+  <h2 class="section-heading reveal">Skills &amp; <span class="accent">Tools</span></h2>
+  <div class="skills-layout reveal">
+    <div class="skills-col engineering">
+      <h3>Engineering</h3>
+      <div class="skill-item"><span class="skill-name">CAD (Fusion 360 / SolidWorks)</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Laser Cutting &amp; DFM</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Tolerance Analysis</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Prototyping &amp; Iteration</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Mechanical Design</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">GD&amp;T</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Python / MATLAB</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="skills-badges">
+        <span class="badge">Fusion 360</span><span class="badge">SolidWorks</span><span class="badge">Laser Cutter</span><span class="badge">3D Printing</span><span class="badge">MATLAB</span><span class="badge">Python</span><span class="badge">GD&amp;T</span>
+      </div>
+    </div>
+    <div class="skills-col soft">
+      <h3>Soft Skills</h3>
+      <div class="skill-item"><span class="skill-name">Attention to detail</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Problem-solving</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Iterative thinking</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Visual communication</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Cross-disciplinary curiosity</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Written communication</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Project ownership</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skills-badges">
+        <span class="badge">Adobe Suite</span><span class="badge">Figma</span><span class="badge">Notion</span><span class="badge">Framer</span><span class="badge">Photography</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="reveal">
+  <div class="contact-left">
+    <h2>Let's <span>Connect</span></h2>
+    <p>Whether it's a project, an opportunity, or just a shared obsession with getting the details right — I'd love to hear from you.</p>
+  </div>
+  <div class="contact-links">
+    <a href="mailto:your@email.com" class="contact-link">
+      <div class="contact-link-icon">✉</div>
+      <div>
+        <div class="contact-link-label">Email</div>
+        <div class="contact-link-value">your@stanford.edu</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+      <div class="contact-link-icon">in</div>
+      <div>
+        <div class="contact-link-label">LinkedIn</div>
+        <div class="contact-link-value">linkedin.com/in/alexacavazos</div>
+      </div>
+    </a>
+    <a href="https://github.com/yourprofile" target="_blank" class="contact-link">
+      <div class="contact-link-icon">⌥</div>
+      <div>
+        <div class="contact-link-label">GitHub</div>
+        <div class="contact-link-value">github.com/alexacavazos</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Alexa Cavazos · Stanford University</p>
+  <p>Built with <span>♥</span> and obsessive attention to detail</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
