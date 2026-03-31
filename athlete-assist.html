@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Athlete Assist — Alexa Cavazos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #F0EAD6;
+    --dark:      #1A1612;
+    --coral:     #E04E2A;
+    --teal:      #2A9BAA;
+    --olive:     #6B7A1E;
+    --gold:      #D4980A;
+    --sand:      #C4AE88;
+    --off-white: #F7F2E8;
+    --mid:       #6B5040;
+    --silver:    #C8D4D8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    border: 6px solid var(--coral);
+  }
+
+  /* ── BACK LINK ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 40px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(42,37,34,0.1);
+    width: 100%;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--coral); }
+  .back-link::before {
+    content: '←';
+    font-size: 14px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 90vh;
+    position: relative;
+  }
+
+  .hero-photo {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .hero-photo:hover img { transform: scale(1.03); }
+
+  .hero-center {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  .hero-center::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: var(--coral);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: 0.92;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .hero-title .accent { color: var(--coral); display: block; }
+
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(240,234,214,0.65);
+    line-height: 1.75;
+    margin-top: 20px;
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+    max-width: 300px;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(240,234,214,0.2);
+    color: var(--cream);
+  }
+  .tag.accent-tag { background: var(--coral); border-color: var(--coral); color: var(--cream); }
+  .tag.teal-tag   { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
+
+  .hero-partner {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(240,234,214,0.1);
+    font-size: 11px;
+    color: rgba(240,234,214,0.4);
+    letter-spacing: 0.08em;
+  }
+  .hero-partner span { color: var(--sand); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+    background: var(--coral);
+    padding: 11px 0;
+    overflow: hidden;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 44px;
+    white-space: nowrap;
+    animation: tick 22s linear infinite;
+    font-family: 'Chango', system-ui;
+    font-size: 16px;
+    color: var(--cream);
+  }
+  .ticker-inner .dot { color: rgba(255,255,255,0.4); }
+  @keyframes tick {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── PAGE BODY ── */
+  .page-body {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding-top: 80px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-family: 'Chango', system-ui;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--sand);
+    opacity: 0.35;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(32px, 4.5vw, 58px);
+    line-height: 1;
+    color: var(--dark);
+  }
+  .section-title .hl { color: var(--coral); }
+
+  /* ── MECHANISM SECTION ── */
+  .mechanism-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .mechanism-left .big-q {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(20px, 2.5vw, 30px);
+    color: var(--dark);
+    line-height: 1.3;
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 28px;
+  }
+
+  .mechanism-left .big-q::before {
+    content: '"';
+    position: absolute;
+    left: -12px; top: -16px;
+    font-size: 100px;
+    line-height: 1;
+    color: var(--teal);
+    opacity: 0.25;
+    font-family: 'Chango', system-ui;
+  }
+
+  .mechanism-left p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--mid);
+  }
+
+  .mechanism-left p + p { margin-top: 14px; }
+
+  .mechanism-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .fact-card {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .fact-num {
+    font-family: 'Chango', system-ui;
+    font-size: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .fact-card:nth-child(1) .fact-num { color: var(--coral); }
+  .fact-card:nth-child(2) .fact-num { color: var(--teal); }
+  .fact-card:nth-child(3) .fact-num { color: var(--gold); }
+
+  .fact-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 4px;
+  }
+  .fact-body { font-size: 13px; color: rgba(240,234,214,0.75); line-height: 1.65; }
+
+  /* ── PROCESS ── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .process-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--off-white);
+    border: 1px solid rgba(42,37,34,0.1);
+    transition: transform 0.22s ease;
+  }
+  .process-card:hover { transform: translateY(-4px); }
+
+  .process-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(42,37,34,0.08);
+  }
+  .process-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .process-info { padding: 24px 22px 26px; }
+
+  .process-step-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .process-card:nth-child(1) .process-step-label { color: var(--coral); }
+  .process-card:nth-child(2) .process-step-label { color: var(--teal); }
+  .process-card:nth-child(3) .process-step-label { color: var(--olive); }
+
+  .process-card-title {
+    font-family: 'Chango', system-ui;
+    font-size: 22px;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+
+  .process-card-body {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+
+  .process-bullets {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .process-bullet {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  .process-bullet::before {
+    content: '→';
+    flex-shrink: 0;
+    color: var(--coral);
+    font-size: 11px;
+    margin-top: 1px;
+  }
+
+  /* ── PROBLEM SOLVING ── */
+  .problems-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .problem-card {
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: var(--off-white);
+    transition: transform 0.22s ease;
+  }
+  .problem-card:hover { transform: translateY(-3px); }
+
+  .problem-img {
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+  .problem-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  .problem-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .problem-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .badge-fail { background: var(--coral); color: var(--cream); }
+  .badge-fix  { background: var(--teal);  color: var(--dark);  }
+  .badge-iter { background: var(--gold);  color: var(--dark);  }
+
+  .problem-title {
+    font-family: 'Chango', system-ui;
+    font-size: 17px;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .problem-body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+
+  /* ── FINAL BUILD — photo grid ── */
+  .final-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .final-photo {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    position: relative;
+  }
+  .final-photo.wide {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .final-photo.tall {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  .final-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.4s ease;
+  }
+  .final-photo:hover img { transform: scale(1.04); }
+
+  .final-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.65));
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,234,214,0.85);
+  }
+
+  /* ── MATERIALS SECTION ── */
+  .materials-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .mat-card {
+    background: var(--off-white);
+    border-radius: 16px;
+    padding: 24px 20px;
+    border: 1px solid rgba(42,37,34,0.1);
+    border-top: 4px solid transparent;
+  }
+  .mat-card:nth-child(1) { border-top-color: var(--teal); }
+  .mat-card:nth-child(2) { border-top-color: var(--coral); }
+  .mat-card:nth-child(3) { border-top-color: var(--olive); }
+  .mat-card:nth-child(4) { border-top-color: var(--gold); }
+
+  .mat-part {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 4px;
+  }
+  .mat-name {
+    font-family: 'Chango', system-ui;
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .mat-reason {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  /* ── VIDEO SECTION ── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .video-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--dark);
+    position: relative;
+  }
+
+  .video-wrap video {
+    width: 100%;
+    display: block;
+  }
+
+  .video-label {
+    padding: 12px 16px;
+    background: var(--dark);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .video-label-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 2px;
+  }
+
+  .video-label-title {
+    font-family: 'Chango', system-ui;
+    font-size: 16px;
+    color: var(--cream);
+  }
+
+  /* ── REFLECTION ── */
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 80px;
+  }
+
+  .reflection-card {
+    padding: 32px 28px;
+    border-radius: 20px;
+  }
+
+  .reflection-card:nth-child(1) { background: var(--dark); }
+  .reflection-card:nth-child(2) { background: var(--coral); }
+  .reflection-card:nth-child(3) { background: var(--cream); border: 2px solid rgba(42,37,34,0.1); }
+
+  .reflection-card h4 {
+    font-family: 'Chango', system-ui;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  .reflection-card:nth-child(1) h4 { color: var(--teal); }
+  .reflection-card:nth-child(2) h4 { color: var(--cream); }
+  .reflection-card:nth-child(3) h4 { color: var(--dark); }
+
+  .reflection-card p { font-size: 13.5px; line-height: 1.8; }
+  .reflection-card:nth-child(1) p { color: rgba(240,234,214,0.72); }
+  .reflection-card:nth-child(2) p { color: rgba(240,234,214,0.92); }
+  .reflection-card:nth-child(3) p { color: var(--mid); }
+
+  /* ── FOOTER ── */
+  .footer-banner {
+    background: var(--dark);
+    border-top: 3px solid var(--coral);
+    padding: 52px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-banner h2 {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(28px, 4vw, 52px);
+    color: var(--cream);
+    line-height: 1;
+  }
+  .footer-banner h2 span { color: var(--coral); }
+
+  .footer-meta { text-align: right; }
+  .footer-meta p { font-size: 13px; color: var(--sand); line-height: 1.8; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    cursor: default;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px; right: 28px;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    background: none;
+    border: none;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-photo { min-height: 260px; }
+    .hero-photo:first-child, .hero-photo:last-child { display: none; }
+    .mechanism-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .final-grid { grid-template-columns: 1fr 1fr; }
+    .final-photo.wide { grid-column: span 1; aspect-ratio: 1; }
+    .materials-row { grid-template-columns: 1fr 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .reflection-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    body { border-width: 4px; }
+    .page-body { padding: 0 20px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .problem-card { grid-template-columns: 1fr; }
+    .footer-banner { flex-direction: column; text-align: center; }
+    .footer-meta { text-align: center; }
+    .back-link { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">Back to portfolio</a>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-photo">
+    <img src="images2/hero_front.png" alt="Athlete Assist front view">
+  </div>
+  <div class="hero-center">
+    <p class="hero-eyebrow">ME102 · Foundations of Product Realization · Winter 2026</p>
+    <h1 class="hero-title">
+      The Athlete
+      <span class="accent">Assist</span>
+    </h1>
+    <p class="hero-sub">
+      A quick-return mechanism that converts rotational input into vertical linear motion — built to lift a 2.5lb weight 6" off a tabletop. No motors. No electronics. No adhesives.
+    </p>
+    <div class="hero-tags">
+      <span class="tag accent-tag">Quick-Return Mechanism</span>
+      <span class="tag teal-tag">Laser Cutting</span>
+      <span class="tag">3D Printing</span>
+      <span class="tag">CAD / Fusion 360</span>
+      <span class="tag">Hardware Integration</span>
+      <span class="tag">Material Analysis</span>
+    </div>
+    <div class="hero-partner">with partner <span>Daria Hajimiri</span></div>
+  </div>
+  <div class="hero-photo">
+    <img src="images2/hero_isometric.png" alt="Athlete Assist isometric view">
+  </div>
+</section>
+
+<!-- ticker -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Quick-Return Mechanism</span><span class="dot">✦</span>
+    <span>Rotational → Linear</span><span class="dot">✦</span>
+    <span>Laser-Cut Acrylic</span><span class="dot">✦</span>
+    <span>3D-Printed PLA</span><span class="dot">✦</span>
+    <span>2.5 lb Lift</span><span class="dot">✦</span>
+    <span>6" Displacement</span><span class="dot">✦</span>
+    <span>No Adhesives</span><span class="dot">✦</span>
+    <span>Winter Olympics 2026</span><span class="dot">✦</span>
+    <span>Quick-Return Mechanism</span><span class="dot">✦</span>
+    <span>Rotational → Linear</span><span class="dot">✦</span>
+    <span>Laser-Cut Acrylic</span><span class="dot">✦</span>
+    <span>3D-Printed PLA</span><span class="dot">✦</span>
+    <span>2.5 lb Lift</span><span class="dot">✦</span>
+    <span>6" Displacement</span><span class="dot">✦</span>
+    <span>No Adhesives</span><span class="dot">✦</span>
+    <span>Winter Olympics 2026</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- ═══════════════ 01 THE MECHANISM ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">The <span class="hl">Mechanism</span></h2>
+  </div>
+
+  <div class="mechanism-grid reveal">
+    <div class="mechanism-left">
+      <div class="big-q">
+        How do you convert a continuous spin into a controlled, asymmetric lift?
+      </div>
+      <p>The prompt: design a system for the 2026 Winter Olympics that could lift a tired athlete onto the podium. The constraint: it had to live inside a 12×12×12" cube, take a rotational input, and output pure vertical linear motion — with no motors, no electronics, and no adhesives.</p>
+      <p>We chose the <strong>quick-return mechanism</strong> — a pin-in-slot system where a rotating wheel drives a lever through a slotted track, converting circular motion into vertical displacement. The asymmetry of the geometry means the platform rises slowly (controlled lift) and returns quickly — exactly what an athlete-assist needs.</p>
+      <p>The acrylic transparency wasn't just an aesthetic choice. It let us see every joint, every pin, every point of friction in real time — which turned out to be essential for debugging.</p>
+    </div>
+    <div class="mechanism-right">
+      <div class="fact-card">
+        <div class="fact-num">6"</div>
+        <div>
+          <div class="fact-label">Vertical displacement</div>
+          <div class="fact-body">The platform lifts a 2.5lb weight a full 6 inches off the table in a straight vertical line.</div>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">2×</div>
+        <div>
+          <div class="fact-label">Dual mechanism</div>
+          <div class="fact-body">Two mirrored quick-return arms share a single shaft — doubling stability and distributing load evenly.</div>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-num">0</div>
+        <div>
+          <div class="fact-label">Adhesives used</div>
+          <div class="fact-body">Every joint is mechanical — shoulder screws, hex nuts, friction fits, and heat inserts throughout.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 02 PROCESS ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">The <span class="hl">Process</span></h2>
+  </div>
+
+  <div class="process-steps reveal">
+    <div class="process-card">
+      <div class="process-img">
+        <img src="images2/cardboard_prototype.png" alt="Cardboard prototype">
+      </div>
+      <div class="process-info">
+        <div class="process-step-label">Prototype 1</div>
+        <div class="process-card-title">Concept Validation</div>
+        <p class="process-card-body">A cardboard mock-up built to prove the quick-return concept before committing to any real material. Toothpicks for pins, paper for the sliding track.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Proved the pin-in-slot geometry works</div>
+          <div class="process-bullet">Revealed alignment sensitivity immediately</div>
+          <div class="process-bullet">Showed we'd need a proper base for stability</div>
+        </div>
+      </div>
+    </div>
+    <div class="process-card">
+      <div class="process-img">
+        <img src="images2/critical_part_prototype.png" alt="Critical part PLA prototype">
+      </div>
+      <div class="process-info">
+        <div class="process-step-label">Prototype 2</div>
+        <div class="process-card-title">Alignment Refinement</div>
+        <p class="process-card-body">First high-fidelity prototype in 3D-printed PLA. Single mechanism, single side. Used to validate scale, slot dimensions, and shoulder screw fit.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Scaling issues identified and fixed</div>
+          <div class="process-bullet">Friction at joints — needed hardware</div>
+          <div class="process-bullet">Lever bent under load → needed thicker acrylic</div>
+        </div>
+      </div>
+    </div>
+    <div class="process-card">
+      <div class="process-img">
+        <img src="images2/second_critical_prototype.jpg" alt="Integrated system prototype">
+      </div>
+      <div class="process-info">
+        <div class="process-step-label">Prototype 3</div>
+        <div class="process-card-title">Integrated System</div>
+        <p class="process-card-body">First version with both mechanisms on a shared shaft, acrylic frame, and hardware. This is where the real engineering work began.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Double mechanism — much more stable</div>
+          <div class="process-bullet">Acrylic base cracked under stress → switched to PLA</div>
+          <div class="process-bullet">Needed new sliding track to reduce friction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 03 PROBLEM SOLVING ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Problems <span class="hl">&amp; Fixes</span></h2>
+  </div>
+
+  <div class="problems-grid reveal">
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/original_thin_lever_bending_under_pressure.jpg" alt="Thin lever bending">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-fail">Problem</span>
+        <div class="problem-title">Lever Bending Under Load</div>
+        <p class="problem-body">The original acrylic lever was too thin and visibly bent when lifting the 2.5lb weight, causing misalignment mid-cycle.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/filing_down_PLA.jpg" alt="Filing down PLA">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-iter">Iteration</span>
+        <div class="problem-title">Manual Tolerance Correction</div>
+        <p class="problem-body">Some printed PLA parts came out tight. Rather than reprint, we filed them down — a reminder that manufacturing tolerances always need hands-on adjustment.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/bushing_tolerance_fail.jpg" alt="Bushing tolerance fail">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-fail">Problem</span>
+        <div class="problem-title">Bushing Tolerance Failure</div>
+        <p class="problem-body">Early bushing fit was too tight — caused binding at the shaft joint and prevented smooth rotation. Required iterative testing to find the right clearance.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/first_track_design.jpg" alt="First track design">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-fail">Problem</span>
+        <div class="problem-title">High Friction Track</div>
+        <p class="problem-body">The original PLA sliding track generated too much friction against the lever pin, making the mechanism stiff and inconsistent under load.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/new_pin_slot_track.png" alt="New acrylic pin slot track">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-fix">Fix</span>
+        <div class="problem-title">New Acrylic Sliding Track</div>
+        <p class="problem-body">Switched to laser-cut acrylic for the track. Smoother surface finish dramatically reduced friction at the pin-slot interface and improved repeatability.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-img">
+        <img src="images2/new_base_design_to_hold_walls_more_stable.jpg" alt="New base design">
+      </div>
+      <div class="problem-info">
+        <span class="problem-badge badge-fix">Fix</span>
+        <div class="problem-title">PLA Base Redesign</div>
+        <p class="problem-body">The acrylic base cracked under localized stress at bolt holes. Redesigned in PLA — its slight ductility absorbs stress at interfaces without cracking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 04 FINAL BUILD ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Final <span class="hl">Build</span></h2>
+  </div>
+
+  <!-- Materials -->
+  <div class="materials-row reveal">
+    <div class="mat-card">
+      <div class="mat-part">Frame + Lever</div>
+      <div class="mat-name">Acrylic</div>
+      <p class="mat-reason">E ≈ 3 GPa gives sufficient stiffness. Higher surface hardness reduces wear at sliding interfaces. Dimensionally stable for alignment between dual arms.</p>
+    </div>
+    <div class="mat-card">
+      <div class="mat-part">Base + Wheels</div>
+      <div class="mat-name">PLA</div>
+      <p class="mat-reason">Slight ductility absorbs stress at bolt interfaces without cracking. Ergonomic geometry for the handles. Better than acrylic for localized stress concentrations.</p>
+    </div>
+    <div class="mat-card">
+      <div class="mat-part">Joints</div>
+      <div class="mat-name">Shoulder Screws</div>
+      <p class="mat-reason">Shoulder screws provide a precise, smooth cylindrical bearing surface — allowing rotation with controlled clearance at every pin joint.</p>
+    </div>
+    <div class="mat-card">
+      <div class="mat-part">Detail</div>
+      <div class="mat-name">Olympic Rings</div>
+      <p class="mat-reason">The brief was the 2026 Winter Olympics — so we laser-engraved the Olympic rings onto the base. Because details matter and it looks pretty.</p>
+    </div>
+  </div>
+
+  <!-- Final photos -->
+  <div class="final-grid reveal">
+    <div class="final-photo tall">
+      <img src="images2/hero_side.png" alt="Side view showing mechanism">
+      <div class="final-caption">Side view — pin-slot mechanism visible</div>
+    </div>
+    <div class="final-photo">
+      <img src="images2/second_critical_prototype_2.jpg" alt="Detail of mechanism">
+      <div class="final-caption">Hardware detail</div>
+    </div>
+    <div class="final-photo">
+      <img src="images2/new_ergonomic_handles.jpg" alt="Ergonomic handles">
+      <div class="final-caption">Ergonomic PLA handles</div>
+    </div>
+    <div class="final-photo wide">
+      <img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Alexa and Daria with final product">
+      <div class="final-caption">Alexa + Daria with the finished Athlete Assist</div>
+    </div>
+    <div class="final-photo">
+      <img src="images2/aesthetic_olympic_logo_detail_finishingtouches.jpg" alt="Olympic rings detail">
+      <div class="final-caption">Laser-engraved Olympic rings</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 05 IN ACTION ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">In <span class="hl">Action</span></h2>
+  </div>
+
+  <div class="video-grid reveal">
+    <div class="video-wrap">
+      <video controls preload="metadata" poster="">
+        <source src="images2/video_finalproject_with_weight.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">
+        <div class="video-label-eyebrow">Final prototype</div>
+        <div class="video-label-title">Lifting the 2.5lb weight</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="images2/second_critical_prototype_video_unstable_shaky.mp4" type="video/mp4">
+        </video>
+        <div class="video-label">
+          <div class="video-label-eyebrow">Prototype 3 — before fixes</div>
+          <div class="video-label-title">Still shaky. Still learning.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ 06 REFLECTIONS ═══════════════ -->
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Key <span class="hl">Learnings</span></h2>
+  </div>
+
+</div><!-- end page-body -->
+
+<div style="max-width:1160px; margin: 0 auto; padding: 0 48px;">
+  <div class="reflection-grid reveal">
+    <div class="reflection-card">
+      <h4>Transparency is a Feature</h4>
+      <p>Using acrylic wasn't just aesthetic — being able to see every joint and pin in motion made debugging dramatically faster. When something was binding, we could see exactly where and why. Visibility is underrated in mechanical design.</p>
+    </div>
+    <div class="reflection-card">
+      <h4>Material Choices Are Engineering Decisions</h4>
+      <p>Switching the base from acrylic to PLA after the cracking incident was a real lesson. Same geometry, completely different failure mode. Understanding why materials behave differently under localized stress changed how I think about part function.</p>
+    </div>
+    <div class="reflection-card">
+      <h4>Next Steps</h4>
+      <p>A more ergonomic continuous handle design that extends the side panel. A longer travel path for >12" displacement. And honestly — I'd love to see this scaled up with a motor. The mechanism works. The rest is engineering.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer-banner">
+  <div>
+    <h2>Alexa <span>Cavazos</span></h2>
+    <p style="color: var(--sand); font-size: 13px; margin-top: 8px;">Stanford University · Mechanical Engineering</p>
+  </div>
+  <div class="footer-meta">
+    <p>ME102: Foundations of Product Realization</p>
+    <p>Winter 2026 · Project 2: Athlete Assist</p>
+    <p style="color: var(--teal); margin-top: 8px;">with Daria Hajimiri</p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('img[cursor="zoom-in"], .process-img img, .problem-img img, .final-photo img, .hero-photo img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  // also catch all imgs
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('click', () => {
+      if (img.id === 'lightbox-img') return;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
