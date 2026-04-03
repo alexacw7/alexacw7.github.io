@@ -906,7 +906,7 @@
         <div class="problem-info">
           <span class="problem-badge badge-fail">Problem</span>
           <div class="problem-title">High Friction Track</div>
-          <p class="problem-body">The original PLA sliding track generated too much friction against the lever pin, making the mechanism stiff and inconsistent under load.</p>
+          <p class="problem-body">The original PLA sliding track generated too much friction against the lever pin, due to the trapezoidal shape of the track and the material properties of PLA, making the mechanism stiff and inconsistent under load.</p>
         </div>
       </div>
       <div class="pair-arrow">→</div>
@@ -917,18 +917,31 @@
         <div class="problem-info">
           <span class="problem-badge badge-fix">Fix</span>
           <div class="problem-title">New Acrylic Sliding Track</div>
-          <p class="problem-body">Switched to laser-cut acrylic for the track. Smoother surface finish dramatically reduced friction at the pin-slot interface and improved repeatability.</p>
+          <p class="problem-body">Switched to a pin & slot track using laser-cut acrylic. This dramatically reduced friction and improved alignment between both mechanisms.</p>
         </div>
       </div>
     </div>
-    <div class="problem-card">
-      <div class="problem-img">
-        <img src="images2/new_base_design_to_hold_walls_more_stable.jpg" alt="New base design">
+    <div class="problem-card problem-fix-pair">
+      <div class="pair-side">
+        <div class="problem-img">
+          <img src="images2/previous_friction_fit_base.png" alt="Previous friction fit base">
+        </div>
+        <div class="problem-info">
+          <span class="problem-badge badge-fail">Problem</span>
+          <div class="problem-title">Cracking Friction-Fit Base</div>
+          <p class="problem-body">The original acrylic base used a tight friction fit to hold the walls in place. It was slightly too tight and with acrylic being brittle, it cracking under pressure during assembly.</p>
+        </div>
       </div>
-      <div class="problem-info">
-        <span class="problem-badge badge-fix">Fix</span>
-        <div class="problem-title">PLA Base Redesign</div>
-        <p class="problem-body">The acrylic base cracked under localized stress at bolt holes. Redesigned in PLA — its slight ductility absorbs stress at interfaces without cracking.</p>
+      <div class="pair-arrow">→</div>
+      <div class="pair-side">
+        <div class="problem-img">
+          <img src="images2/new_base_design_to_hold_walls_more_stable.jpg" alt="Redesigned PLA base">
+        </div>
+        <div class="problem-info">
+          <span class="problem-badge badge-fix">Fix</span>
+          <div class="problem-title">PLA Base Redesign</div>
+          <p class="problem-body">Redesigned in PLA with a friction fit at the bottom, built-in supports running along each wall, and screw holes through the supports and walls, to have it triple secure.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -963,25 +976,25 @@
     </div>
   </div>
 
-  <!-- CAD video -->
-  <div class="video-wrap reveal" style="max-width: 720px; margin: 0 auto 40px;">
-    <video autoplay loop muted playsinline>
-      <source src="images2/3d_cad_lift_assist_project2_me102_video.mp4" type="video/mp4">
-    </video>
-    <div class="video-label">
-      <div class="video-label-eyebrow">Fusion 360</div>
-      <div class="video-label-title">Finished CAD Assembly</div>
+  <!-- Final build videos -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;" class="reveal">
+    <div class="video-wrap">
+      <video autoplay loop muted playsinline>
+        <source src="images2/3d_cad_lift_assist_project2_me102_video.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">
+        <div class="video-label-eyebrow">Fusion 360</div>
+        <div class="video-label-title">Finished CAD Assembly</div>
+      </div>
     </div>
-  </div>
-
-  <!-- Final product video -->
-  <div class="video-wrap reveal" style="max-width: 720px; margin: 0 auto 40px;">
-    <video controls preload="metadata">
-      <source src="images2/video_finalproject_with_weight.mp4" type="video/mp4">
-    </video>
-    <div class="video-label">
-      <div class="video-label-eyebrow">Final prototype</div>
-      <div class="video-label-title">Lifting the 2.5lb weight</div>
+    <div class="video-wrap">
+      <video controls preload="metadata">
+        <source src="images2/video_finalproject_with_weight.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">
+        <div class="video-label-eyebrow">Final prototype</div>
+        <div class="video-label-title">Lifting the 2.5lb weight</div>
+      </div>
     </div>
   </div>
 
@@ -1001,7 +1014,7 @@
     </div>
     <div class="final-photo wide">
       <img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Alexa and Daria with final product">
-      <div class="final-caption">Alexa + Daria with the finished Athlete Assist</div>
+      <div class="final-caption">Daria and me with the finished Athlete Assist</div>
     </div>
     <div class="final-photo">
       <img src="images2/aesthetic_olympic_logo_detail_finishingtouches.jpg" alt="Olympic rings detail">
