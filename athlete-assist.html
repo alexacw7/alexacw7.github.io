@@ -429,6 +429,34 @@
     color: var(--mid);
   }
 
+  /* ── PROBLEM-FIX PAIR CARD ── */
+  .problem-fix-pair {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+  }
+  .pair-side {
+    display: flex;
+    flex-direction: column;
+  }
+  .pair-side .problem-img {
+    aspect-ratio: 4/3;
+    flex-shrink: 0;
+  }
+  .pair-side .problem-info {
+    flex: 1;
+  }
+  .pair-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    font-size: 20px;
+    color: var(--mid);
+    background: rgba(42,37,34,0.04);
+    border-left: 1px solid rgba(42,37,34,0.1);
+    border-right: 1px solid rgba(42,37,34,0.1);
+  }
+
   /* ── FINAL BUILD — photo grid ── */
   .final-grid {
     display: grid;
@@ -740,11 +768,12 @@
   <div class="mechanism-grid reveal">
     <div class="mechanism-left">
       <div class="big-q">
-        How do you convert a continuous spin into a controlled lift?
+        Converting a one-directional rotational input into linear output.
       </div>
       <p><strong style="font-weight: 700; color: var(--dark);">Prompt:</strong> design a system for the 2026 Winter Olympics that could lift a tired athlete onto the podium. <strong style="font-weight: 700; color: var(--dark);">Constraint:</strong> it has to fit inside a 12×12×12" cube, take a rotational input, and output pure vertical linear motion, lifting a 2.5 lb weight with no motors, no electronics, and no adhesives.</p>
       <p>We chose the <strong style="font-weight: 700; color: var(--dark);">quick-return mechanism</strong>: a pin-in-slot system where a rotating wheel drives a lever through a slotted track, converting circular motion into vertical displacement. After researching and analyzing different mechanisms, we chose this one because the asymmetry of the geometry means the platform rises slowly (controlled lift) and returns quickly, which is exactly what an athlete-assist needs.</p>
       <p>We opted to have two of these quick-return mechanisms mirroring one another, joined by a rotating handle and the raising platform. This was to provide the stability and support necessary to lift the 2.5 lb weight.</p>
+      <p>We also took on the <strong style="font-weight: 700; color: var(--dark);">extra optional challenge</strong>: achieving the full cycle (platform up and back down) from rotational input in a single direction. No reversing required.</p>
     </div>
     <div class="mechanism-right">
       <div class="fact-card">
@@ -803,7 +832,7 @@
         <p class="process-card-body">First high-fidelity (more like medium-fidelity) prototype in 3D-printed PLA. Single mechanism, single side. Used to validate scale, slot dimensions, and shoulder screw fit.</p>
         <div class="process-bullets">
           <div class="process-bullet">Scaling issues identified and fixed</div>
-          <div class="process-bullet">Friction at joints — needed hardware</div>
+          <div class="process-bullet">Friction at joints —> needed hardware</div>
           <div class="process-bullet">Was clear that one single meachanism wouldn't suffice, a parallel one was needed.</div>
         </div>
       </div>
@@ -851,29 +880,32 @@
         <img src="images2/bushing_tolerance_fail.jpg" alt="Bushing tolerance fail">
       </div>
       <div class="problem-info">
-        <span class="problem-badge badge-fail">Problem</span>
-        <div class="problem-title">Bushing Tolerance Failure</div>
-        <p class="problem-body">Early bushing fit was too tight — caused binding at the shaft joint and prevented smooth rotation. Required iterative testing to find the right clearance.</p>
+        <span class="problem-badge badge-fail">Iterations</span>
+        <div class="problem-title">Tolerance Iterations </div>
+        <p class="problem-body">Being allowed no adhesives meant that iterative testing of tolerances was required to find the right clearance. In this specific example, different sized holes are being tested to fit a bushing snuggly with no glue and account for any discrepancies caused by the laser cutter. Similar iterations had to be made for the d-shaft hole, shoulder screws hole, base-wall fit, etc.</p>
       </div>
     </div>
-    <div class="problem-card">
-      <div class="problem-img">
-        <img src="images2/first_track_design.jpg" alt="First track design">
+    <div class="problem-card problem-fix-pair">
+      <div class="pair-side">
+        <div class="problem-img">
+          <img src="images2/first_track_design.jpg" alt="First track design">
+        </div>
+        <div class="problem-info">
+          <span class="problem-badge badge-fail">Problem</span>
+          <div class="problem-title">High Friction Track</div>
+          <p class="problem-body">The original PLA sliding track generated too much friction against the lever pin, making the mechanism stiff and inconsistent under load.</p>
+        </div>
       </div>
-      <div class="problem-info">
-        <span class="problem-badge badge-fail">Problem</span>
-        <div class="problem-title">High Friction Track</div>
-        <p class="problem-body">The original PLA sliding track generated too much friction against the lever pin, making the mechanism stiff and inconsistent under load.</p>
-      </div>
-    </div>
-    <div class="problem-card">
-      <div class="problem-img">
-        <img src="images2/new_pin_slot_track.png" alt="New acrylic pin slot track">
-      </div>
-      <div class="problem-info">
-        <span class="problem-badge badge-fix">Fix</span>
-        <div class="problem-title">New Acrylic Sliding Track</div>
-        <p class="problem-body">Switched to laser-cut acrylic for the track. Smoother surface finish dramatically reduced friction at the pin-slot interface and improved repeatability.</p>
+      <div class="pair-arrow">→</div>
+      <div class="pair-side">
+        <div class="problem-img">
+          <img src="images2/new_pin_slot_track.png" alt="New acrylic pin slot track">
+        </div>
+        <div class="problem-info">
+          <span class="problem-badge badge-fix">Fix</span>
+          <div class="problem-title">New Acrylic Sliding Track</div>
+          <p class="problem-body">Switched to laser-cut acrylic for the track. Smoother surface finish dramatically reduced friction at the pin-slot interface and improved repeatability.</p>
+        </div>
       </div>
     </div>
     <div class="problem-card">
