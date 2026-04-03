@@ -289,7 +289,7 @@
   /* ── PROCESS ── */
   .process-steps {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 
@@ -327,6 +327,7 @@
   .process-card:nth-child(1) .process-step-label { color: var(--coral); }
   .process-card:nth-child(2) .process-step-label { color: var(--teal); }
   .process-card:nth-child(3) .process-step-label { color: var(--olive); }
+  .process-card:nth-child(4) .process-step-label { color: var(--olive); }
 
   .process-card-title {
     font-family: 'Chango', system-ui;
@@ -681,7 +682,7 @@
     .hero-photo { min-height: 260px; }
     .hero-photo:first-child, .hero-photo:last-child { display: none; }
     .mechanism-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
     .problems-grid { grid-template-columns: 1fr; }
     .final-grid { grid-template-columns: 1fr 1fr; }
     .final-photo.wide { grid-column: span 1; aspect-ratio: 1; }
@@ -853,6 +854,18 @@
         </div>
       </div>
     </div>
+    <div class="process-card">
+      <div class="process-img" style="aspect-ratio: auto;">
+        <video controls preload="metadata" style="width: 100%; display: block; cursor: default;">
+          <source src="images2/second_critical_prototype_video_unstable_shaky.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="process-info">
+        <div class="process-step-label">Prototype 3 Video</div>
+        <div class="process-card-title">Shaaaaky!!!</div>
+        <p class="process-card-body">The integrated system in action before fixes. You can see the platform very unstable base of the system that contributed to overall misalignment.</p>
+      </div>
+    </div>
   </div>
 
   <!-- ═══════════════ 03 PROBLEM SOLVING ═══════════════ -->
@@ -950,6 +963,28 @@
     </div>
   </div>
 
+  <!-- CAD video -->
+  <div class="video-wrap reveal" style="max-width: 720px; margin: 0 auto 40px;">
+    <video autoplay loop muted playsinline>
+      <source src="images2/3d_cad_lift_assist_project2_me102_video.mp4" type="video/mp4">
+    </video>
+    <div class="video-label">
+      <div class="video-label-eyebrow">Fusion 360</div>
+      <div class="video-label-title">Finished CAD Assembly</div>
+    </div>
+  </div>
+
+  <!-- Final product video -->
+  <div class="video-wrap reveal" style="max-width: 720px; margin: 0 auto 40px;">
+    <video controls preload="metadata">
+      <source src="images2/video_finalproject_with_weight.mp4" type="video/mp4">
+    </video>
+    <div class="video-label">
+      <div class="video-label-eyebrow">Final prototype</div>
+      <div class="video-label-title">Lifting the 2.5lb weight</div>
+    </div>
+  </div>
+
   <!-- Final photos -->
   <div class="final-grid reveal">
     <div class="final-photo tall">
@@ -974,38 +1009,9 @@
     </div>
   </div>
 
-  <!-- ═══════════════ 05 IN ACTION ═══════════════ -->
+  <!-- ═══════════════ 05 REFLECTIONS ═══════════════ -->
   <div class="section-header reveal">
     <span class="section-num">05</span>
-    <h2 class="section-title">In <span class="hl">Action</span></h2>
-  </div>
-
-  <div class="video-grid reveal">
-    <div class="video-wrap">
-      <video controls preload="metadata" poster="">
-        <source src="images2/video_finalproject_with_weight.mp4" type="video/mp4">
-      </video>
-      <div class="video-label">
-        <div class="video-label-eyebrow">Final prototype</div>
-        <div class="video-label-title">Lifting the 2.5lb weight</div>
-      </div>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      <div class="video-wrap">
-        <video controls preload="metadata">
-          <source src="images2/second_critical_prototype_video_unstable_shaky.mp4" type="video/mp4">
-        </video>
-        <div class="video-label">
-          <div class="video-label-eyebrow">Prototype 3 — before fixes</div>
-          <div class="video-label-title">Still shaky. Still learning.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════ 06 REFLECTIONS ═══════════════ -->
-  <div class="section-header reveal">
-    <span class="section-num">06</span>
     <h2 class="section-title">Key <span class="hl">Learnings</span></h2>
   </div>
 
