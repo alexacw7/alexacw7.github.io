@@ -582,10 +582,11 @@
   /* ── REFLECTION ── */
   .reflection-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     margin-bottom: 80px;
   }
+  .reflection-card:nth-child(3) { grid-column: 1 / -1; }
 
   .reflection-card {
     padding: 32px 28px;
@@ -952,7 +953,7 @@
     <h2 class="section-title">Final <span class="hl">Build</span></h2>
   </div>
 
-  <!-- Materials -->
+  <!-- Materials (temporarily hidden)
   <div class="materials-row reveal">
     <div class="mat-card">
       <div class="mat-part">Frame + Lever</div>
@@ -974,7 +975,7 @@
       <div class="mat-name">Olympic Rings</div>
       <p class="mat-reason">The brief was the 2026 Winter Olympics — so we laser-engraved the Olympic rings onto the base. Because details matter and it looks pretty.</p>
     </div>
-  </div>
+  </div> -->
 
   <!-- Final build videos -->
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 40px;" class="reveal">
@@ -1040,7 +1041,7 @@
     </div>
     <div class="final-photo">
       <img src="images2/aesthetic_olympic_logo_detail_finishingtouches.jpg" alt="Olympic rings detail">
-      <div class="final-caption">Laser-engraved Olympic rings</div>
+      <div class="final-caption">Laser-engraved & handpainted Olympic rings... to make it PRETTY!</div>
     </div>
   </div>
 
@@ -1055,16 +1056,16 @@
 <div style="max-width:1160px; margin: 0 auto; padding: 0 48px;">
   <div class="reflection-grid reveal">
     <div class="reflection-card">
-      <h4>Transparency is a Feature</h4>
-      <p>Using acrylic wasn't just aesthetic — being able to see every joint and pin in motion made debugging dramatically faster. When something was binding, we could see exactly where and why. Visibility is underrated in mechanical design.</p>
+      <h4>The importance of Prototyping</h4>
+      <p>Through this whole process, I quickly found how easy it was for things to not play out exactly as expected. For example, the original track was designed specifically with that trapezoidal-sliding geometry as I thought it would provide extra support in keeping the platform in place, it wasn't until I actually tested it that I found that it over-constrained the movement of the platform, caused misalignment issues, and therefore would cause the platform to get stuck pretty easily. This is just one of the many components we had to iterate time and time again. We had to test out different shoulder screws, different tolerances to account for laser-cutting and 3d printing discrepancies, print out so many platforms that all look almost the same from afar but have minor adjustments between each iteration. Coming into this project, I knew in theory that prototyping is essential, but I didn't really expect just how much iterations we would need to go through. All while keeping the whole project under budget and finishing under time constraints. This project shifted my perception of product realization as a process, it made me appreciate the finer details and get a better sense of understanding of just how much time and effort goes into every single deliberate choice. </p>
     </div>
     <div class="reflection-card">
-      <h4>Material Choices Are Engineering Decisions</h4>
-      <p>Switching the base from acrylic to PLA after the cracking incident was a real lesson. Same geometry, completely different failure mode. Understanding why materials behave differently under localized stress changed how I think about part function.</p>
+      <h4>Working as a team</h4>
+      <p>Throughout the whole process, clear communication played a crucial role in making sure things ran smoothly. Working with a partner on a project where so many design and assembly decisions had to be made, it was very important to explain the directions we wanted to take and more importantly why, to be able to weigh out different options and if necessary, compromise. A challenge was to that Fusion 360 would not allow us to both work on the file at the same time, therefore we had to be very communicative and strategic as to who was working on what specific aspect at what time and what changes were being made. We also had to set guidelines as to how we would CAD, keeping sketches and parameters as organized and clear as possible, to ensure we could understand build off of each other's work. Similarly, because of our different availability times, we could not be in the lab at the same time all the time, therefore it was crucial that we were communicative about what changes were being done to ensure we were in agreement and to be able to continue each other's work. We often delegated the designing/making of specific parts, however, communication was still essential as all these parts needed to be compatible with one another.</p>
     </div>
     <div class="reflection-card">
       <h4>Next Steps</h4>
-      <p>A more ergonomic continuous handle design that extends the side panel. A longer travel path for >12" displacement. And honestly — I'd love to see this scaled up with a motor. The mechanism works. The rest is engineering.</p>
+      <p>We improved the side handles to be more ergonomic, however, the middle handle (the d-shaft) could be more ergonomic. And I'd love to see this scaled up with a motor. </p>
     </div>
   </div>
 </div>
