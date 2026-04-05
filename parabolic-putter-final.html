@@ -1802,10 +1802,9 @@
         Design a ping-pong shooter that hits a target hole 5 feet away. Minimize weight used to keep it steady. Has to be purely mechanical.
       </div>
       <p>This project asked us to design and build a purely mechanical launcher that could launch ping pong balls through a target board placed 5 feet away, while fitting inside a 12"×12"×24" space (at all times), with enough storage for at least 5 balls, and minimizing counterweight. No use of motors or electronics allowed. A 2-minute window on launch day to score as many points as possible.</p>
-      <p>After research and analysis, we chose a <strong style="color:var(--dark);font-weight:500;">pendulum kicker</strong> over a spring-powered launcher. A spring in the launch path introduces variability — each release differs slightly. The kicker gives consistent trajectories. We pushed the spring into the ball dispenser's return mechanism instead, where variability doesn't affect the shot.</p>
       <div class="decision-card">
-        <h4>The Key Design Decision - Which Mechanism to Use</h4>
-        <p>Most teams used a spring-loaded launcher. We didn't. <strong>Precision over power.</strong> The kicker is deterministic — release height and kicker geometry fully define the trajectory. That repeatability is what let us hit 60 balls through the target in 2 minutes.</p>
+        <h4>Why we chose the pendelum kicker mechanism</h4>
+        <p>Part of the prompt was to include at least one spring somewhere on the system. After research and analysis of different mechanisms, we narrowed down our selection to either a spring-powered launcher, or a pendelum kicker. The spring powered-launcher would allow us to shoot the balls with more power, however, we were worried about the variability that the spring introduces, having each release slightly different. Another concern was that we would need to increase the amount of counterweight used to keep the system steady to account for the recoil that a spring-powered launcher has. Therefore, we decided to take what we considered a more elegant approach, a kicker pendelum mechanism where the kicker would be pulled back to a pre-determined position, let go, and would hit and launch the ball consistently to a specific location. Most teams used a spring-loaded launcher. We prioritized <strong>precision over power.</strong> That repeatability is what let us hit 60 balls through the target in 2 minutes.</p>
       </div>
     </div>
 
@@ -1814,21 +1813,21 @@
         <div class="fact-num">60</div>
         <div>
           <div class="fact-label">Balls in 2 minutes</div>
-          <div class="fact-body">Launch day result. One ball approximately every 2 seconds — the dispenser cycle held its rhythm throughout.</div>
+          <div class="fact-body">Launch day result: one ball approximately every 2 seconds</div>
         </div>
       </div>
       <div class="fact-card">
-        <div class="fact-num">7'</div>
+        <div class="fact-num">5'</div>
         <div>
           <div class="fact-label">Target distance</div>
-          <div class="fact-body">Exceeds expectations tier. Modeled in MATLAB across angles 30°–50° before a single part was printed.</div>
+          <div class="fact-body">Modeled in MATLAB across angles 30°–50° to find optimal angle to hit our specific target before a single part was printed. Was very useful as a starting point, rapid prototyped from there.</div>
         </div>
       </div>
       <div class="fact-card">
-        <div class="fact-num">19</div>
+        <div class="fact-num">11</div>
         <div>
-          <div class="fact-label">Unique components</div>
-          <div class="fact-body">PLA, acrylic, steel, brass, bronze, nylon. Full assembly modeled in Fusion 360 before anything was cut or printed.</div>
+          <div class="fact-label">Unique self-designed components</div>
+          <div class="fact-body">11 different parts that were all modeled in Fusion 360 and manufactured in-house (laser-cut or 3D-printed). All components had to be compatible with one another. Each one had to be iterated through many many times.</div>
         </div>
       </div>
     </div>
