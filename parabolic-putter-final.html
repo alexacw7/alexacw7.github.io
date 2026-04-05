@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Parabolic Putter — Alexa Cavazos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #F2EDE3;
+    --dark:      #2A2522;
+    --coral:     #E04E2A;
+    --teal:      #3AAEBD;
+    --olive:     #7A8C2E;
+    --gold:      #D4A017;
+    --sand:      #C8B89A;
+    --off-white: #FAF7F2;
+    --mid:       #5a4f45;
+    --border:    6px solid var(--coral);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    border: 6px solid var(--coral);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    border-bottom: 2px solid var(--dark);
+  }
+
+  .nav-logo {
+    font-family: 'Onest', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .nav-back {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--coral); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--coral);
+    border-top: 2px solid var(--dark);
+    border-bottom: 2px solid var(--dark);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-inner span {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    margin: 0 48px;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+  }
+
+  .hero-left {
+    background: var(--dark);
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    background: var(--coral);
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: 80px; left: -40px;
+    width: 180px; height: 180px;
+    background: var(--teal);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: clamp(58px, 7.5vw, 108px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title .accent {
+    color: var(--coral);
+    display: block;
+  }
+
+  .hero-meta {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hero-meta-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sand);
+    min-width: 72px;
+    padding-top: 2px;
+  }
+
+  .hero-meta-value {
+    font-size: 13px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+
+  .hero-meta-value a {
+    color: var(--teal);
+    text-decoration: none;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-right-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(42,37,34,0.85) 0%, transparent 60%);
+    padding: 40px 36px;
+  }
+
+  .hero-stat {
+    display: inline-flex;
+    flex-direction: column;
+    margin-right: 32px;
+  }
+
+  .hero-stat-number {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--cream);
+    letter-spacing: -0.03em;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 96px 64px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 48px;
+    height: 1px;
+    background: var(--coral);
+  }
+
+  .section-title {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+
+  .section-title em {
+    color: var(--coral);
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--mid);
+    max-width: 620px;
+  }
+
+  .body-text + .body-text {
+    margin-top: 16px;
+  }
+
+  /* ── CHALLENGE SECTION ── */
+  .challenge {
+    background: var(--off-white);
+    border-top: 2px solid var(--dark);
+    border-bottom: 2px solid var(--dark);
+  }
+
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .constraint-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .constraint-card {
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--cream);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .constraint-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0 var(--dark);
+  }
+
+  .constraint-num {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--coral);
+    min-width: 36px;
+  }
+
+  .constraint-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--mid);
+  }
+
+  .constraint-text strong {
+    color: var(--dark);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 14px;
+  }
+
+  /* big decision callout */
+  .decision-box {
+    margin-top: 48px;
+    background: var(--dark);
+    border-radius: 24px;
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .decision-box::before {
+    content: '"';
+    font-family: 'Chango', system-ui;
+    font-size: 200px;
+    line-height: 0.8;
+    color: var(--coral);
+    opacity: 0.12;
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    pointer-events: none;
+  }
+
+  .decision-box p {
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.6;
+    color: var(--cream);
+    position: relative;
+    z-index: 1;
+  }
+
+  .decision-box p strong {
+    color: var(--coral);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .decision-attribution {
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── PROTOTYPE ARC ── */
+  .prototypes {
+    background: var(--cream);
+  }
+
+  .proto-timeline {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .proto-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    gap: 0 48px;
+    align-items: stretch;
+    padding: 48px 0;
+    border-top: 1px solid rgba(42,37,34,0.15);
+  }
+
+  .proto-item:last-child {
+    border-bottom: 1px solid rgba(42,37,34,0.15);
+  }
+
+  .proto-number-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 4px;
+  }
+
+  .proto-num {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 72px;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+    opacity: 0.25;
+  }
+
+  .proto-tag {
+    margin-top: 12px;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid var(--sand);
+    border-radius: 100px;
+    padding: 4px 10px;
+    display: inline-block;
+  }
+
+  .proto-content {
+    padding-top: 4px;
+  }
+
+  .proto-title {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .proto-q {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  .proto-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  .proto-learnings {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .proto-learning {
+    font-size: 13px;
+    color: var(--mid);
+    padding-left: 16px;
+    border-left: 2px solid var(--coral);
+    line-height: 1.5;
+  }
+
+  .proto-img-col {
+    position: relative;
+  }
+
+  .proto-img-blob {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 2px solid rgba(42,37,34,0.1);
+  }
+
+  .proto-img-blob img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .proto-img-blob:hover img {
+    transform: scale(1.04);
+  }
+
+  /* ── MATH / ANALYSIS ── */
+  .analysis {
+    background: var(--dark);
+    border-top: 2px solid var(--dark);
+  }
+
+  .analysis .section-eyebrow {
+    color: var(--teal);
+  }
+
+  .analysis .section-eyebrow::after {
+    background: var(--teal);
+  }
+
+  .analysis .section-title {
+    color: var(--cream);
+  }
+
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 56px;
+    align-items: start;
+  }
+
+  .analysis-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 36px;
+  }
+
+  .analysis-card-title {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .analysis-card p {
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(200,184,154,0.85);
+  }
+
+  .analysis-card .result {
+    margin-top: 20px;
+    background: rgba(224,78,42,0.15);
+    border: 1px solid rgba(224,78,42,0.3);
+    border-radius: 14px;
+    padding: 14px 18px;
+  }
+
+  .analysis-card .result-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 6px;
+  }
+
+  .analysis-card .result-value {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+
+  .theory-reality {
+    grid-column: 1 / -1;
+    background: var(--coral);
+    border-radius: 24px;
+    padding: 40px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .theory-reality h3 {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+
+  .theory-reality p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(242,237,227,0.88);
+  }
+
+  .tr-divider {
+    width: 2px;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .analysis-img {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+    margin-top: 40px;
+  }
+
+  .analysis-img img {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── MY PART ── */
+  .my-part {
+    background: var(--off-white);
+    border-top: 2px solid var(--dark);
+    border-bottom: 2px solid var(--dark);
+  }
+
+  .my-part-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .my-part-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .my-part-img {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(42,37,34,0.12);
+  }
+
+  .my-part-img.tall {
+    grid-row: span 2;
+    border-radius: 24px;
+  }
+
+  .my-part-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .my-part-img:hover img {
+    transform: scale(1.04);
+  }
+
+  .candy-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--coral);
+    color: var(--cream);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .mechanism-steps {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 2px solid var(--dark);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .mech-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(42,37,34,0.12);
+    transition: background 0.2s;
+  }
+
+  .mech-step:last-child { border-bottom: none; }
+  .mech-step:hover { background: rgba(42,37,34,0.04); }
+
+  .mech-step-num {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--coral);
+    min-width: 28px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .mech-step-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--mid);
+  }
+
+  .mech-step-text strong {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  /* ── CAD ── */
+  .cad-section {
+    background: var(--cream);
+  }
+
+  .cad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 56px;
+  }
+
+  .cad-card {
+    border: 2px solid var(--dark);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cad-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 var(--dark);
+  }
+
+  .cad-card.wide {
+    grid-column: span 2;
+  }
+
+  .cad-card img {
+    width: 100%;
+    display: block;
+    background: #f0eeea;
+  }
+
+  .cad-card-label {
+    padding: 16px 20px;
+    background: var(--cream);
+    border-top: 1px solid rgba(42,37,34,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cad-card-name {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+  }
+
+  .cad-card-tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    border: 1px solid var(--sand);
+    border-radius: 100px;
+    padding: 3px 10px;
+  }
+
+  .parts-count {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .part-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--sand);
+    border-radius: 100px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--mid);
+  }
+
+  .part-pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+    flex-shrink: 0;
+  }
+
+  .part-pill-dot.pla { background: var(--teal); }
+  .part-pill-dot.steel { background: var(--mid); }
+  .part-pill-dot.brass { background: var(--gold); }
+  .part-pill-dot.nylon { background: var(--olive); }
+  .part-pill-dot.bronze { background: #b87333; }
+
+  /* ── FINAL RESULT ── */
+  .final-result {
+    background: var(--dark);
+    border-top: 2px solid var(--dark);
+    padding: 0;
+  }
+
+  .result-hero-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+
+  .result-text-col {
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .result-text-col .section-eyebrow {
+    color: var(--teal);
+  }
+
+  .result-text-col .section-eyebrow::after {
+    background: var(--teal);
+  }
+
+  .result-text-col .section-title {
+    color: var(--cream);
+  }
+
+  .result-text-col .body-text {
+    color: rgba(200,184,154,0.85);
+  }
+
+  .big-stat {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .big-stat-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px;
+  }
+
+  .big-stat-num {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 52px;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--coral);
+  }
+
+  .big-stat-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--sand);
+    margin-top: 8px;
+  }
+
+  .result-img-col {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .result-img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-left: 2px solid rgba(255,255,255,0.06);
+  }
+
+  .result-img-col img:first-child {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ── GALLERY ── */
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .gallery-strip-img {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .gallery-strip-img:last-child { border-right: none; }
+
+  .gallery-strip-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.8);
+  }
+
+  .gallery-strip-img:hover img {
+    transform: scale(1.06);
+    filter: brightness(1);
+  }
+
+  /* ── REFLECTIONS ── */
+  .reflections {
+    background: var(--cream);
+    border-top: 2px solid var(--dark);
+  }
+
+  .reflections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .reflection-card {
+    border: 2px solid var(--dark);
+    border-radius: 24px;
+    padding: 32px 28px;
+    background: var(--off-white);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .reflection-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0 var(--dark);
+  }
+
+  .reflection-card-tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--coral);
+    border: 1px solid var(--coral);
+    border-radius: 100px;
+    padding: 4px 12px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .reflection-card-title {
+    font-family: 'Chango', system-ui;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--dark);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .reflection-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 2px solid var(--dark);
+    padding: 40px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Chango', system-ui;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--coral); }
+
+  /* ── UTIL ── */
+  .divider {
+    height: 2px;
+    background: var(--dark);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .hero, .challenge-grid, .analysis-grid, .my-part-grid,
+    .cad-grid, .result-hero-row, .reflections-grid,
+    .theory-reality { grid-template-columns: 1fr; }
+    .cad-card.wide { grid-column: span 1; }
+    .proto-item { grid-template-columns: 80px 1fr; }
+    .proto-img-col { grid-column: 2; }
+    .gallery-strip { grid-template-columns: 1fr 1fr; }
+    section { padding: 64px 28px; }
+    nav { padding: 16px 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 24px; }
+    .big-stat { grid-template-columns: 1fr 1fr; }
+    .result-text-col { padding: 48px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Alexa Cavazos</a>
+  <a href="index.html" class="nav-back">← Back to work</a>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>ME102 · Stanford University</span>
+    <span>Pendulum Kicker</span>
+    <span>Ball Dispenser</span>
+    <span>60 Balls · 2 Minutes</span>
+    <span>PLA + Acrylic</span>
+    <span>Precision Over Power</span>
+    <span>MATLAB Optimization</span>
+    <span>CAD · Laser Cut · 3D Print</span>
+    <span>Winter 2026</span>
+    <span>ME102 · Stanford University</span>
+    <span>Pendulum Kicker</span>
+    <span>Ball Dispenser</span>
+    <span>60 Balls · 2 Minutes</span>
+    <span>PLA + Acrylic</span>
+    <span>Precision Over Power</span>
+    <span>MATLAB Optimization</span>
+    <span>CAD · Laser Cut · 3D Print</span>
+    <span>Winter 2026</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">ME102 · Foundations of Product Realization · Winter 2026</div>
+    <h1 class="hero-title">
+      The<br>
+      <span class="accent">Parabolic</span>
+      Putter
+    </h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Team</span>
+        <span class="hero-meta-value">Alexa Cavazos, Daria Hajimiri,<br>Luke Stratakos &amp; Will</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Course</span>
+        <span class="hero-meta-value">ME102 — Stanford University</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Presented</span>
+        <span class="hero-meta-value">March 17, 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Tools</span>
+        <span class="hero-meta-value">Fusion 360 · MATLAB · Bambu Lab · Laser Cutter</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="hero_side.png" alt="Parabolic Putter — side view final product">
+    <div class="hero-right-overlay">
+      <div class="hero-stat">
+        <span class="hero-stat-number">60</span>
+        <span class="hero-stat-label">balls in 2 min</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">7'</span>
+        <span class="hero-stat-label">target distance</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">19</span>
+        <span class="hero-stat-label">unique parts</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<section class="challenge">
+  <div class="challenge-grid">
+    <div>
+      <div class="section-eyebrow">The Brief</div>
+      <h2 class="section-title">Design a machine that <em>plays ping pong</em> for you.</h2>
+      <p class="body-text">
+        ME102's Project 3 asked us to build a fully mechanical launcher capable of hitting ping pong balls through a target board placed 5 to 7 feet away — while fitting inside a 12"×12"×24" envelope, storing at least 5 balls at a time, and using as little counterweight as possible.
+      </p>
+      <p class="body-text" style="margin-top:14px;">
+        No motors. No electronics. Two minutes on launch day to score as many points as possible.
+      </p>
+      <div class="decision-box">
+        <p>
+          Most teams reached for a spring-loaded launcher. We didn't.
+          A spring in the launch path introduces variability — each release is slightly different.
+          Instead, we built a <strong>pendulum kicker</strong> for consistency,
+          and put the spring where it belongs: in the ball dispenser's return mechanism.
+          <strong>Precision over power.</strong>
+        </p>
+        <div class="decision-attribution">The core design decision ↑</div>
+      </div>
+    </div>
+    <div>
+      <div class="constraint-cards">
+        <div class="constraint-card">
+          <div class="constraint-num">01</div>
+          <div class="constraint-text">
+            <strong>12" × 12" × 24" envelope</strong>
+            The entire system — in all states of motion — must remain within this volume at all times.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-num">02</div>
+          <div class="constraint-text">
+            <strong>Minimum 5 balls stored</strong>
+            A second operator may reload only once all stored balls have been launched.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-num">03</div>
+          <div class="constraint-text">
+            <strong>Minimize counterweight</strong>
+            The system may use up to 15 lbs to stay grounded — but less is more. Optimization scored separately.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-num">04</div>
+          <div class="constraint-text">
+            <strong>Purely mechanical</strong>
+            No motors, no electronics, no rubber bands. Springs and hardware only.
+          </div>
+        </div>
+        <div class="constraint-card">
+          <div class="constraint-num">05</div>
+          <div class="constraint-text">
+            <strong>$35 per student budget</strong>
+            Materials sourced from AMPS only. Springs provided by the teaching team.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOTYPE ARC -->
+<section class="prototypes">
+  <div class="section-eyebrow">From Sketch to Machine</div>
+  <h2 class="section-title">Four prototypes.<br><em>One clean machine.</em></h2>
+  <p class="body-text">Every version answered a question. Every question got us closer.</p>
+
+  <div class="proto-timeline">
+
+    <!-- P1 -->
+    <div class="proto-item">
+      <div class="proto-number-col">
+        <div class="proto-num">01</div>
+        <div class="proto-tag">Low-res</div>
+      </div>
+      <div class="proto-content">
+        <div class="proto-q">Driving question</div>
+        <div class="proto-title">What are the mechanics of our components?</div>
+        <p class="proto-desc">
+          Cardboard, foam, and a pink plastic tube. The goal wasn't beauty — it was speed. We needed to understand ball reloader alignment, whether a kicker hinge would work, and whether a ramp was necessary at all. This scrappy model surfaced the right questions before we committed to any material.
+        </p>
+        <div class="proto-learnings">
+          <div class="proto-learning">Kicker needs a pivot — not a rotating shaft — to swing cleanly</div>
+          <div class="proto-learning">Ball must be held precisely on the tee for consistent contact</div>
+          <div class="proto-learning">Ramp eliminated — adds friction and unpredictability</div>
+        </div>
+      </div>
+      <div class="proto-img-col">
+        <div class="proto-img-blob">
+          <img src="low_res_cardboard_prototype.png" alt="Low-res cardboard prototype">
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="proto-item">
+      <div class="proto-number-col">
+        <div class="proto-num">02</div>
+        <div class="proto-tag">Critical subsystem</div>
+      </div>
+      <div class="proto-content">
+        <div class="proto-q">Driving question</div>
+        <div class="proto-title">How far can we launch with a kicker?</div>
+        <p class="proto-desc">
+          First acrylic and PLA prototype. We isolated the kicker mechanism, testing shaft rotation vs. kicker-on-shaft, and finalizing hardware. We filled the kicker foot with copper BBs for mass — the MATLAB analysis showed pendulum mass plateaus around 0.27 kg, so we stayed in that zone. The blue 3D-printed foot and adjustable standoff let us dial in release height.
+        </p>
+        <div class="proto-learnings">
+          <div class="proto-learning">Kicker rotates on shaft, not with it — cleaner swing arc</div>
+          <div class="proto-learning">Copper BBs added to kicker foot for momentum without bulk</div>
+          <div class="proto-learning">Adjustable standoff in rear slots controls release height</div>
+        </div>
+      </div>
+      <div class="proto-img-col">
+        <div class="proto-img-blob">
+          <img src="critical_first_prototype.png" alt="Critical first prototype — acrylic kicker">
+        </div>
+      </div>
+    </div>
+
+    <!-- P3 -->
+    <div class="proto-item">
+      <div class="proto-number-col">
+        <div class="proto-num">03</div>
+        <div class="proto-tag">Elevated + shorter</div>
+      </div>
+      <div class="proto-content">
+        <div class="proto-q">Driving question</div>
+        <div class="proto-title">How does the kicker geometry change the trajectory?</div>
+        <p class="proto-desc">
+          MATLAB trajectory plots across launch angles 30°–50° showed that a shorter, elevated kicker hitting the ball at the bottom of its swing delivered far better distance than a long arm swinging from higher up. We also confronted a key constraint: the 24" envelope meant the kicker couldn't swing freely past vertical. The solution — a hard stopper — changed our force analysis and eventually required minimal added weight.
+        </p>
+        <div class="proto-learnings">
+          <div class="proto-learning">Shorter arm + higher pivot = better trajectory toward 7' target</div>
+          <div class="proto-learning">Stopper added to comply with 12"×12"×24" constraint</div>
+          <div class="proto-learning">Stopper impact not captured in original FBD — required re-analysis</div>
+        </div>
+      </div>
+      <div class="proto-img-col">
+        <div class="proto-img-blob">
+          <img src="third_prototype_with_elevated_kicker_and_shorter_kicker.png" alt="Third prototype — elevated and shorter kicker">
+        </div>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="proto-item">
+      <div class="proto-number-col">
+        <div class="proto-num">04</div>
+        <div class="proto-tag">Final</div>
+      </div>
+      <div class="proto-content">
+        <div class="proto-q">Driving question</div>
+        <div class="proto-title">How does everything come together?</div>
+        <p class="proto-desc">
+          The full system: white PLA cylindrical housing, wavy acrylic side walls, funnel on top, spring-loaded dispenser, orange tee and kicker foot, fake grass base. Every part drawn, CAD'd, printed or laser-cut. 19 unique components. It launched 60 balls through the target in two minutes.
+        </p>
+        <div class="proto-learnings">
+          <div class="proto-learning">All subsystems aligned and integrated for launch day</div>
+          <div class="proto-learning">Minimal counterweight achieved — stopper absorbed most of the impact load</div>
+          <div class="proto-learning">Ball dispenser timing matched kicker cycle reliably across all 60 shots</div>
+        </div>
+      </div>
+      <div class="proto-img-col">
+        <div class="proto-img-blob">
+          <img src="hero_isometric.png" alt="Final Parabolic Putter — isometric view">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ANALYSIS -->
+<section class="analysis">
+  <div class="section-eyebrow">The Math</div>
+  <h2 class="section-title" style="color:var(--cream);">Theory, testing,<br><em style="color:var(--coral);">and the gap between them.</em></h2>
+  <p class="body-text" style="color:rgba(200,184,154,0.85);">We didn't just build — we modeled. MATLAB scripts plotted projectile trajectories across every relevant variable. FBDs told us what forces to expect. And then physical testing told us what we'd missed.</p>
+
+  <div class="analysis-grid">
+
+    <div class="analysis-card">
+      <div class="analysis-card-title">Pendulum Mass Optimization</div>
+      <p>Using conservation of momentum, we modeled the mass transfer factor as a function of pendulum mass. The ping pong ball is so light that the factor approaches its maximum quickly — around 0.05 kg the returns start diminishing, and by 0.27 kg, extra mass is essentially negligible. We used copper BBs to stay in the effective range without overbuilding.</p>
+      <div class="result">
+        <div class="result-label">Optimal pendulum mass range</div>
+        <div class="result-value">0.05 kg → 0.27 kg</div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="analysis-card-title">Trajectory Modeling</div>
+      <p>MATLAB projectile trajectory plots across launch angles 30°–50° for a pendulum length of 8", release height of 16", and pivot height of 12". Two targets marked: the large lower hole (blue, 7 in. height at 7') and the small upper hole (red, 13 in. height at 7'). The plots gave us the physical dimensions to build toward — then we validated in the lab.</p>
+      <div class="result">
+        <div class="result-label">Optimal launch angle range</div>
+        <div class="result-value">~35° – 45° for 7' target</div>
+      </div>
+    </div>
+
+    <div class="theory-reality">
+      <div>
+        <h3>Theory said: no counterweight needed.</h3>
+        <p>Our FBD showed that the calculated counterweight to prevent sliding was <strong>–0.64 kg</strong> — meaning friction alone between the base and table would be sufficient. Fwall = 4.12 N. Potential energy stored: 0.20 J.</p>
+      </div>
+      <div>
+        <h3>Reality said: add some weight.</h3>
+        <p>When the kicker swung and hit the hard stopper — something our original FBD didn't account for — the impulse exceeded frictional resistance and the system rocked. We adapted, added minimal weight, kept it at the low end of the spectrum, and it held perfectly on launch day. Theory ≠ reality. Physical testing is essential.</p>
+      </div>
+    </div>
+
+    <div class="analysis-img" style="grid-column: 1 / -1;">
+      <img src="matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB projectile trajectory plots">
+    </div>
+
+  </div>
+</section>
+
+<!-- MY PART -->
+<section class="my-part">
+  <div class="my-part-grid">
+    <div class="my-part-images">
+      <div class="my-part-img tall" style="aspect-ratio:3/4;">
+        <img src="hero_side.png" alt="Full machine showing dispenser" style="height:100%;">
+      </div>
+      <div class="my-part-img" style="aspect-ratio:1;">
+        <img src="initial_vs_final_ball_dispenser_mechanism.png" alt="Initial vs final ball dispenser">
+      </div>
+      <div class="my-part-img" style="aspect-ratio:1;">
+        <img src="some_of_the_first_iterations_of_the_ball_tee.png" alt="First iterations of the ball tee">
+      </div>
+    </div>
+    <div>
+      <div class="candy-pill">↑ My contribution</div>
+      <div class="section-eyebrow">The Ball Dispenser</div>
+      <h2 class="section-title">Inspired by a <em>candy machine.</em></h2>
+      <p class="body-text">
+        While the Parabolic Putter was a full team effort across every subsystem, the ball dispensing mechanism is what I took on and designed from the ground up. The inspiration came from a simple candy dispenser — gravity-fed, one ball at a time, elegant in its simplicity.
+      </p>
+      <p class="body-text" style="margin-top:14px;">
+        The wavy acrylic side walls weren't structurally required. They were an intentional aesthetic choice — to make the machine feel alive and interesting, not just functional. Every part had to be compatible with the rest of the assembly: tolerances, screw patterns, and spatial fit all had to work together.
+      </p>
+
+      <div class="mechanism-steps">
+        <div class="mech-step">
+          <div class="mech-step-num">1</div>
+          <div class="mech-step-text"><strong>Funnel on top</strong> — balls are loaded by the second operator through the PLA funnel, which feeds them into the cylindrical reservoir.</div>
+        </div>
+        <div class="mech-step">
+          <div class="mech-step-num">2</div>
+          <div class="mech-step-text"><strong>Gravity feed</strong> — balls stack inside the base tube and descend one by one under their own weight.</div>
+        </div>
+        <div class="mech-step">
+          <div class="mech-step-num">3</div>
+          <div class="mech-step-text"><strong>Rotating plate release</strong> — a single ball drops onto the rotating acrylic dispenser plate, which positions it precisely for the tee.</div>
+        </div>
+        <div class="mech-step">
+          <div class="mech-step-num">4</div>
+          <div class="mech-step-text"><strong>Spring return</strong> — the plate snaps back via an extension spring, ready for the next ball. The only spring in the system lives here — keeping the kicker's launch path free of variability.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAD -->
+<section class="cad-section">
+  <div class="section-eyebrow">CAD &amp; Engineering Drawings</div>
+  <h2 class="section-title">Every part <em>drawn, modeled,</em><br>and toleranced.</h2>
+  <p class="body-text">19 unique components across PLA, acrylic, steel, brass, bronze, and nylon. Full assembly modeled in Fusion 360 before a single part was printed.</p>
+
+  <div class="parts-count">
+    <div class="part-pill"><span class="part-pill-dot pla"></span> PLA — primary structure</div>
+    <div class="part-pill"><span class="part-pill-dot"></span> Acrylic — walls, base, dispenser</div>
+    <div class="part-pill"><span class="part-pill-dot steel"></span> Steel — fasteners, spring, d-shaft</div>
+    <div class="part-pill"><span class="part-pill-dot brass"></span> Brass — heat inserts</div>
+    <div class="part-pill"><span class="part-pill-dot bronze"></span> Bronze — bushings</div>
+    <div class="part-pill"><span class="part-pill-dot nylon"></span> Nylon — shoulder screw</div>
+  </div>
+
+  <div class="cad-grid">
+    <div class="cad-card wide">
+      <img src="final_CAD_screenshot.png" alt="Final CAD isometric render">
+      <div class="cad-card-label">
+        <span class="cad-card-name">Full Assembly — Isometric</span>
+        <span class="cad-card-tag">Fusion 360</span>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="exploded_view_drawing.png" alt="Exploded view engineering drawing">
+      <div class="cad-card-label">
+        <span class="cad-card-name">Exploded View + BOM</span>
+        <span class="cad-card-tag">DWG 1 · Scale 1:16</span>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="cylindrical_base_drawing.png" alt="Cylindrical base engineering drawing">
+      <div class="cad-card-label">
+        <span class="cad-card-name">Cylindrical Base</span>
+        <span class="cad-card-tag">DWG 4 · Alexa Cavazos</span>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="right_tee_drawing.png" alt="Ball tee right side engineering drawing">
+      <div class="cad-card-label">
+        <span class="cad-card-name">Ball Tee — Right Side</span>
+        <span class="cad-card-tag">DWG 1 · Alexa Cavazos</span>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="analysis_and_calculations.png" alt="Handwritten free body diagrams and analysis">
+      <div class="cad-card-label">
+        <span class="cad-card-name">FBD &amp; Force Analysis</span>
+        <span class="cad-card-tag">HW9 Submission</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL RESULT -->
+<div class="final-result">
+  <div class="result-hero-row">
+    <div class="result-text-col">
+      <div class="section-eyebrow">Launch Day</div>
+      <h2 class="section-title">It worked.<br><em>Really well.</em></h2>
+      <p class="body-text">March 17, 2026. Two minutes on the clock. The kicker swung, the dispenser fed, and the team kept the cycle running.</p>
+      <div class="big-stat">
+        <div class="big-stat-item">
+          <div class="big-stat-num">60</div>
+          <div class="big-stat-desc">balls through the target in the 2-minute window</div>
+        </div>
+        <div class="big-stat-item">
+          <div class="big-stat-num">7'</div>
+          <div class="big-stat-desc">target distance — exceeds expectations tier</div>
+        </div>
+        <div class="big-stat-item">
+          <div class="big-stat-num">~1</div>
+          <div class="big-stat-desc">ball every 2 seconds — dispenser cycle held</div>
+        </div>
+        <div class="big-stat-item">
+          <div class="big-stat-num">min</div>
+          <div class="big-stat-desc">counterweight used — kept at the low end of the spectrum</div>
+        </div>
+      </div>
+    </div>
+    <div class="result-img-col">
+      <img src="hero_isometric.png" alt="Final machine isometric">
+      <img src="testing_final.png" alt="Testing on launch day">
+    </div>
+  </div>
+
+  <div class="gallery-strip">
+    <div class="gallery-strip-img">
+      <img src="fun_picture_of_us_waiting_for_our_part__to_3d_pring.png" alt="Team at 3D printers">
+    </div>
+    <div class="gallery-strip-img">
+      <img src="supports_being_3d_printed.png" alt="Parts being 3D printed">
+    </div>
+    <div class="gallery-strip-img">
+      <img src="working_picture_of_live_iterating_and_CADing_the_ball_tee.png" alt="Live CADing session">
+    </div>
+    <div class="gallery-strip-img">
+      <img src="copper_balls_to_fill_kicker_and_add_weight.png" alt="Copper BBs for kicker mass">
+    </div>
+  </div>
+</div>
+
+<!-- REFLECTIONS -->
+<section class="reflections">
+  <div class="section-eyebrow">Hindsight as Foresight</div>
+  <h2 class="section-title">What we <em>learned.</em></h2>
+
+  <div class="reflections-grid">
+    <div class="reflection-card">
+      <div class="reflection-card-tag">Design</div>
+      <div class="reflection-card-title">Prototype the critical mechanism first.</div>
+      <p>The kicker was the heart of everything. Getting it into a physical prototype early — even in cardboard — let us understand pivot behavior, ball contact geometry, and release height in a way that no amount of sketching could. Speed of iteration beat depth of planning.</p>
+    </div>
+    <div class="reflection-card">
+      <div class="reflection-card-tag">Analysis</div>
+      <div class="reflection-card-title">Models are starting points, not verdicts.</div>
+      <p>Our FBD said we didn't need a counterweight. Our machine disagreed — because the stopper created an impulsive load our static model didn't capture. We adapted. The lesson: analytical models inform decisions; physical testing validates them. You need both.</p>
+    </div>
+    <div class="reflection-card">
+      <div class="reflection-card-tag">Next iteration</div>
+      <div class="reflection-card-title">Tighten the packaging and streamline the reload.</div>
+      <p>The dispenser cycle worked — but there was still dead time between shots that a more compact, tighter mechanism could eliminate. A more reliable and faster reload would push the 60-ball count higher. Next time: design the reload path as a first-class constraint, not an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="footer-logo">Alexa Cavazos</a>
+  <ul class="footer-links">
+    <li><a href="index.html">Work</a></li>
+    <li><a href="clock-container-portfolio.html">Clock Container</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
