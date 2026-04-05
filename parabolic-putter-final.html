@@ -527,20 +527,21 @@
   .analysis-card {
     background: var(--dark);
     border-radius: 20px;
-    padding: 32px 28px;
+    padding: 36px 32px;
+    border: 2px solid rgba(42,155,170,0.25);
   }
 
   .analysis-card h4 {
     font-family: 'Chango', system-ui;
-    font-size: 22px;
+    font-size: 24px;
     color: var(--teal);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .analysis-card p {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.8;
-    color: rgba(240,234,214,0.75);
+    color: rgba(240,234,214,0.95);
   }
 
   .result-pill {
@@ -1776,12 +1777,12 @@
         <span class="hero-stat-label">balls in 2 min</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-number">7'</span>
+        <span class="hero-stat-number">5'</span>
         <span class="hero-stat-label">target distance</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-number">19</span>
-        <span class="hero-stat-label">unique parts</span>
+        <span class="hero-stat-number">11</span>
+        <span class="hero-stat-label">custom parts</span>
       </div>
     </div>
   </div>
@@ -1845,29 +1846,29 @@
         <img src="images_pingpong/low_res_cardboard_prototype.png" alt="Low-res cardboard prototype">
       </div>
       <div class="process-info">
-        <div class="process-step-label">Prototype 1 — Low-res</div>
+        <div class="process-step-label">Prototype 1: Low-res</div>
         <div class="process-card-title">What are the mechanics?</div>
-        <p class="process-card-body">Cardboard, foam, pink plastic tube. The goal wasn't beauty — it was speed. We needed to understand ball reloader alignment, kicker hinge geometry, and whether a ramp was even necessary.</p>
+        <p class="process-card-body">This was our first step in visualizing the system. We needed to understand ball reloader alignment, kicker geometry, and whether a ramp was even necessary.</p>
         <div class="process-bullets">
-          <div class="process-bullet">Kicker needs a pivot — not a rotating shaft — to swing cleanly</div>
-          <div class="process-bullet">Ramp eliminated — added friction and unpredictability</div>
-          <div class="process-bullet">Ball tee geometry proved more important than expected</div>
+          <div class="process-bullet">Dispenser can't be directly on top of where the ball gets shot from</div>
+          <div class="process-bullet">Ramp eliminated because it added friction and unpredictability of direction</div>
         </div>
       </div>
     </div>
 
     <div class="process-card">
-      <div class="process-img">
-        <img src="images_pingpong/critical_first_prototype.png" alt="Critical first prototype — acrylic and PLA">
+      <div class="process-img" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+        <img src="images_pingpong/critical_first_prototype.png" alt="Critical first prototype — acrylic and PLA" style="height:100%; object-fit:cover;">
+        <img src="images_pingpong/copper_balls_to_fill_kicker_and_add_weight.png" alt="Copper BBs filling the kicker foot" style="height:100%; object-fit:cover;">
       </div>
       <div class="process-info">
-        <div class="process-step-label">Prototype 2 — Critical subsystem</div>
-        <div class="process-card-title">How far can we launch?</div>
-        <p class="process-card-body">First acrylic + PLA prototype. Isolated the kicker, tested shaft-rotation vs. kicker-on-shaft, and finalized hardware. Copper BBs added to kicker foot for mass — MATLAB showed pendulum mass plateaus around 0.27 kg.</p>
+        <div class="process-step-label">Prototype 2: Critical subsystem</div>
+        <div class="process-card-title">How far can we launch? Should we stick with this mechanism?</div>
+        <p class="process-card-body">First acrylic & PLA prototype. Isolated the kicker to test whether this mechanism seemed feasible to work. Being limited to only material found in our lab, we looked for ways to make the kicker heavier: we filled the kicker with Copper BBs to increase mass. MATLAB showed pendulum mass plateaus around 0.27 kg, we reached that. This prototype's findings:</p>
         <div class="process-bullets">
-          <div class="process-bullet">Kicker rotates on shaft — not with it — cleaner swing arc</div>
-          <div class="process-bullet">Copper BBs fill kicker foot to optimize momentum</div>
-          <div class="process-bullet">Adjustable rear standoff controls release height precisely</div>
+          <div class="process-bullet">It was really important that we prioritize alignment of the kicker in the future, constrain it and not allow it to swing side to side,</div>
+          <div class="process-bullet">Our current setup was not getting the ball far enough, altough it was still enough to motivate us to stick with this mechanism</div>
+          <div class="process-bullet">Raised the question: what design adjustments can we make to increase trajectory distance, considering increasing mass will NOT dramatically increase the traveled distance?</div>
         </div>
       </div>
     </div>
@@ -1877,11 +1878,11 @@
         <img src="images_pingpong/third_prototype_with_elevated_kicker_and_shorter_kicker.png" alt="Third prototype with elevated shorter kicker">
       </div>
       <div class="process-info">
-        <div class="process-step-label">Prototype 3 — Elevated + shorter</div>
-        <div class="process-card-title">How does geometry change trajectory?</div>
-        <p class="process-card-body">MATLAB plots showed a shorter elevated kicker delivers better 7' distance. The 24" envelope constraint meant the kicker couldn't swing past vertical — we added a hard stopper, which changed our force analysis and required minimal added counterweight.</p>
+        <div class="process-step-label">Prototype 3: Elevated + shorter</div>
+        <div class="process-card-title">Should we reorient our 12"x12"x24" allowable space?</div>
+        <p class="process-card-body">Before this prototype, we were using the 24" dimension lengthwise, allowing the pendelum to swing from a 90 degree angle to the front (following a semi-circle trajectory). We played around with the idea of reorienting the space to have the 24" constraint vertically. MATLAB plots showed a shorter elevated kicker delivers better 5' distance. The now 12" envelope horizontal constraint meant the kicker couldn't swing past vertical (once it hit the ball). Therefore, we added a hard stopper, which changed our force analysis and required minimal added counterweight. With this development, we were able to reach the target. It is worth noting that there were maaany iterations (with dierent heights, kicker lenghts, angles shot at, etc) in between prototype 2 and 3. </p>
         <div class="process-bullets">
-          <div class="process-bullet">Shorter arm + higher pivot → better trajectory at 7'</div>
+          <div class="process-bullet">Shorter arm + higher pivot → better trajectory at 5'</div>
           <div class="process-bullet">Stopper added to comply with 12"×12"×24" envelope</div>
           <div class="process-bullet">Stopper impulse not in original FBD — required re-analysis</div>
         </div>
@@ -1893,13 +1894,13 @@
         <img src="images_pingpong/testing_final.png" alt="Testing the final assembled machine">
       </div>
       <div class="process-info">
-        <div class="process-step-label">Prototype 4 — Final</div>
-        <div class="process-card-title">How does everything come together?</div>
-        <p class="process-card-body">Full system: white PLA cylindrical housing, wavy acrylic walls, funnel on top, spring-loaded ball dispenser, orange tee and kicker foot, fake grass base. 19 parts. Every one drawn, modeled, and toleranced before printing or cutting.</p>
+        <div class="process-step-label">Prototype 4: Final</div>
+        <div class="process-card-title">How does everything come together within allowable dimension constraints?</div>
+        <p class="process-card-body">We now had a fully functioning kicker, and a fully functional ball dispenser. The new challenge was in aligning both of these systems within the allowed dimensions and keeping a smooth path that would deliver the ball to the right position. The full assembly was done in CAD to get the dimensions right and verify alignment and many iterations of different ramps (from the dispenser to the ball tee), ball tees, and overall alignment positions were done. The ball dispenser ended up needing to be raised.</p>
         <div class="process-bullets">
-          <div class="process-bullet">All subsystems aligned for reliable launch-day operation</div>
-          <div class="process-bullet">Dispenser timing matched kicker cycle across all 60 shots</div>
-          <div class="process-bullet">Minimal counterweight — stopper absorbed most impact load</div>
+          <div class="process-bullet">Raised height of dispensing mechanism</div>
+          <div class="process-bullet">Iterated through different ramp paths from dispenser to launcher and different ball tees.</div>
+          <div class="process-bullet">All subsystems aligned for reliable operation</div>
         </div>
       </div>
     </div>
@@ -1911,32 +1912,39 @@
     <h2 class="section-title">Analysis &amp; <span class="hl">The Math</span></h2>
   </div>
 
+  <p class="reveal" style="font-size: 15px; line-height: 1.8; color: var(--mid); max-width: 720px; margin-bottom: 32px;">These analyses and MATLAB plots weren't done in one sitting, they happened throughout the entire process. Every time we needed to confirm a decision, pivot direction, or test a new idea, we went back to the math. Here are some for reference.</p>
+
   <div class="analysis-grid reveal">
     <div class="analysis-card">
       <h4>Pendulum Mass Optimization</h4>
       <p>The mass transfer factor approaches its maximum quickly for a light projectile like a ping pong ball. Around 0.05 kg the returns start diminishing; by 0.27 kg extra mass is essentially negligible. We filled the kicker foot with copper BBs to hit this range without overbuilding.</p>
-      <div class="result-pill">Optimal range: 0.05 → 0.27 kg</div>
+      <div class="result-pill">Optimal range: >0.27 kg</div>
     </div>
     <div class="analysis-card">
       <h4>Trajectory Modeling</h4>
-      <p>MATLAB projectile plots across launch angles 30°–50° for pendulum length 8", release height 16", and pivot height 12". Two targets plotted: large lower hole (blue) and small upper hole (red) at 7 feet. These plots defined our physical dimensions before we touched a printer.</p>
-      <div class="result-pill">Target angle: ~35° – 45° at 7'</div>
+      <p>MATLAB projectile plots across launch angles 30°–50° for pendulum length 8", release height 16", and pivot height 12". Two targets plotted: large lower hole (blue) and small upper hole (red). These plots gave us a starting point of how to design our system, and we iterated after that.</p>
+      <div class="result-pill">Target angle: ~35° – 45°</div>
     </div>
 
     <div class="theory-card">
       <div class="theory-col">
-        <h4>Theory said: no counterweight needed.</h4>
-        <p>Our free body diagram calculated the required counterweight to prevent sliding as –0.64 kg, meaning table friction alone was sufficient. F<sub>wall</sub> = 4.12 N. Potential energy stored: 0.20 J. We were confident.</p>
+        <h4>Theory: no counterweight needed.</h4>
+        <p>Our initial free body diagram calculated the required counterweight to prevent sliding as –0.64 kg, meaning table friction alone was sufficient. F<sub>wall</sub> = 4.12 N. Potential energy stored: 0.20 J. This analysis was done for the first kicker design.</p>
       </div>
       <div class="theory-divider"></div>
       <div class="theory-col">
-        <h4>Reality said: add some weight.</h4>
-        <p>When the kicker hit the hard stopper — something our static FBD didn't account for — the impulse exceeded frictional resistance. We adapted quickly, added minimal weight, kept it at the low end of the spectrum, and it held perfectly on launch day. Theory ≠ reality. Physical testing is essential.</p>
+        <h4>Reality: added some weight.</h4>
+        <p>As we updated our kicker design, we added a hard stopper that we didn't originally account for in our static FBD. The impulse exceeded frictional resistance. We adapted quickly, added minimal weight, kept it at the low end of the spectrum, and it held perfectly on launch day. I found that physical testing is essential.</p>
       </div>
     </div>
 
-    <div class="matlab-wrap">
-      <img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB projectile trajectory plots">
+    <div style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="matlab-wrap" style="grid-column: auto;">
+        <img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB projectile trajectory plots">
+      </div>
+      <div class="matlab-wrap" style="grid-column: auto;">
+        <img src="images_pingpong/analysis_and_calculations.png" alt="Handwritten FBD and force analysis">
+      </div>
     </div>
   </div>
 
@@ -1948,28 +1956,28 @@
 
   <div class="dispenser-grid reveal">
     <div class="dispenser-left">
-      <div class="my-tag">My contribution</div>
+      <div class="my-tag">One of my personal biggest focuses</div>
       <div class="big-q">
-        Inspired by a candy dispenser. One ball at a time, every time.
+        Inspired by a candy dispenser!
       </div>
-      <p>The Parabolic Putter was a full team effort across every subsystem. The ball dispensing mechanism is the part I designed from the ground up. The inspiration came from a candy dispenser — gravity does the work, and a simple gate controls the release, one at a time.</p>
-      <p>The wavy acrylic side walls weren't structurally required — they were an intentional aesthetic choice. The machine should feel interesting, not just functional. Every part had to be compatible with the rest of the assembly: tolerances, screw patterns, and spatial fit all had to integrate cleanly across the full 19-part system.</p>
+      <p>The Parabolic Putter was a full team effort across every subsystem. The ball dispensing mechanism was one of my biggest focuses on the project. The inspiration came from a candy dispenser, balls fall with gravity and a simple gate controls the release, one at a time.</p>
+      <p>The wavy acrylic side walls weren't structurally required, but they were an intentional aesthetic choice to make it look professional, finished and if possible, pretty. I wanted it to be eye-catching and interesting, not just functional. Proper alignment was the most challenging part: alignment withing the dispenser of all the parts and alignment with the rest of the machine.</p>
       <div class="mechanism-steps">
         <div class="mech-step">
           <div class="mech-n">1</div>
-          <div class="mech-t"><strong>Funnel on top</strong> — balls load through the PLA funnel into the cylindrical reservoir.</div>
+          <div class="mech-t"><strong>Funnel on top</strong> -> balls load through the offset funnel into the aligned acryclic dispenser plate</div>
         </div>
         <div class="mech-step">
           <div class="mech-n">2</div>
-          <div class="mech-t"><strong>Gravity feed</strong> — balls stack inside the base tube and descend one by one.</div>
+          <div class="mech-t"><strong>Rotating plate</strong> -> Rotate the plate to move ball into the ramp</div>
         </div>
         <div class="mech-step">
           <div class="mech-n">3</div>
-          <div class="mech-t"><strong>Rotating plate release</strong> — one ball drops onto the acrylic dispenser plate, positioning it precisely on the tee.</div>
+          <div class="mech-t"><strong>Ramp</strong> —> ball onto ramp where it travels to be positioned precisely on the tee.</div>
         </div>
         <div class="mech-step">
           <div class="mech-n">4</div>
-          <div class="mech-t"><strong>Spring return</strong> — the plate snaps back via extension spring, ready for the next ball. The only spring in the system lives here.</div>
+          <div class="mech-t"><strong>Spring return</strong> —> the rotating plate snaps back via extension spring, and the next ball falls into the cavity on the plate.</div>
         </div>
       </div>
     </div>
@@ -1999,43 +2007,31 @@
     <div class="cad-card wide">
       <img src="images_pingpong/final_CAD_screenshot.png" alt="Final CAD isometric render">
       <div class="cad-label">
-        <span class="cad-name">Full Assembly — Isometric</span>
-        <span class="cad-tag">Fusion 360</span>
+        <span class="cad-name">Full Assembly CAD</span>
       </div>
     </div>
     <div class="cad-card">
       <img src="images_pingpong/exploded_view_drawing.png" alt="Exploded view + BOM">
       <div class="cad-label">
         <span class="cad-name">Exploded View + BOM</span>
-        <span class="cad-tag">DWG 1 · 1:16</span>
       </div>
     </div>
     <div class="cad-card">
       <img src="images_pingpong/cylindrical_base_drawing.png" alt="Cylindrical base drawing">
       <div class="cad-label">
         <span class="cad-name">Cylindrical Base</span>
-        <span class="cad-tag">DWG 4 · Alexa</span>
       </div>
     </div>
     <div class="cad-card">
       <img src="images_pingpong/right_tee_drawing.png" alt="Ball tee right side drawing">
       <div class="cad-label">
         <span class="cad-name">Ball Tee — Right Side</span>
-        <span class="cad-tag">DWG 1 · Alexa</span>
-      </div>
-    </div>
-    <div class="cad-card half" style="grid-column:span 2;">
-      <img src="images_pingpong/analysis_and_calculations.png" alt="Handwritten FBD and force analysis">
-      <div class="cad-label">
-        <span class="cad-name">FBD &amp; Force Analysis</span>
-        <span class="cad-tag">HW9 Submission</span>
       </div>
     </div>
     <div class="cad-card">
       <img src="images_pingpong/concept_sketches.png" alt="Concept sketches">
       <div class="cad-label">
         <span class="cad-name">Concept Sketches</span>
-        <span class="cad-tag">Week 8 Ideation</span>
       </div>
     </div>
   </div>
@@ -2052,16 +2048,26 @@
       <div class="stat-desc">balls through target in 2 minutes</div>
     </div>
     <div class="stat-box">
-      <div class="stat-num">7'</div>
-      <div class="stat-desc">target distance — exceeds expectations</div>
+      <div class="stat-num">5'</div>
+      <div class="stat-desc">target distance</div>
     </div>
     <div class="stat-box">
-      <div class="stat-num">~2s</div>
-      <div class="stat-desc">per ball — dispenser held its rhythm</div>
+      <div class="stat-num">accurate</div>
+      <div class="stat-desc">very accurate, we miss only 3 balls</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">min</div>
-      <div class="stat-desc">counterweight — kept at low end</div>
+      <div class="stat-desc">counterweight kept at low end with 4 lb</div>
+    </div>
+  </div>
+
+  <div style="max-width: 720px; margin: 0 auto 40px; border-radius: 16px; overflow: hidden; background: var(--dark);" class="reveal">
+    <video controls preload="metadata" style="width: 100%; display: block;">
+      <source src="images_pingpong/testing_of_final_video.mp4" type="video/mp4">
+    </video>
+    <div style="padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.06);">
+      <div style="font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-bottom: 2px;">Launch day</div>
+      <div style="font-family: 'Chango', system-ui; font-size: 16px; color: var(--cream);">Testing the Final Machine</div>
     </div>
   </div>
 
