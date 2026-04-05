@@ -161,7 +161,6 @@
   }
   .hero-tagline p {
     font-family: 'Chango', system-ui;
-    font-style: italic;
     font-weight: 300;
     font-size: clamp(18px, 2.2vw, 25px);
     color: var(--mid);
@@ -170,7 +169,6 @@
   .hero-tagline p strong {
     color: var(--coral);
     font-weight: 700;
-    font-style: normal;
   }
 
   .hero-bottom {
@@ -503,14 +501,6 @@
     border-bottom: 1px solid rgba(44,26,14,0.08);
   }
   .skill-name { font-size: 14px; color: var(--dark); }
-  .skill-dots { display: flex; gap: 5px; }
-  .dot {
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    border: 2px solid var(--sand);
-  }
-  .dot.filled { background: var(--coral); border-color: var(--coral); }
-  .skills-col.soft .dot.filled { background: var(--teal); border-color: var(--teal); }
 
   .skills-badges {
     display: flex;
@@ -606,7 +596,6 @@
   }
   .contact-link:nth-child(1) .contact-link-icon { background: var(--coral); }
   .contact-link:nth-child(2) .contact-link-icon { background: var(--teal); }
-  .contact-link:nth-child(3) .contact-link-icon { background: var(--olive); }
   .contact-link-label {
     font-size: 10px;
     letter-spacing: 0.15em;
@@ -677,7 +666,7 @@
   </svg>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Mechanical Engineering · Stanford University · Class of 2027</p>
+    <p class="hero-eyebrow">Mechanical Engineering · Stanford University · Class of 2028</p>
     <h1 class="hero-name">
       Alexa
       <span class="outline">Cavazos</span>
@@ -724,18 +713,19 @@
   <h2 class="section-heading reveal">About <span class="accent">Me</span></h2>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>I'm a <strong>Mechanical Engineering student at Stanford University</strong> with a deep obsession for making — not just designing, but actually building things and understanding exactly why they work (or don't).</p>
-      <p>I'm drawn to the details that most people skip: the tolerance stack that makes a joint feel just right, the kerf width that sits between too loose and too tight, the prototype that proves your sketch was wrong in the best possible way.</p>
-      <p>My projects live at the intersection of <em>engineering rigor</em> and <em>aesthetic intention</em> — things that are well-made and feel that way.</p>
+      <p>I'm a <strong>Mechanical Engineering student at Stanford</strong>, originally from Monterrey, Mexico. I came here drawn to engineering — and stayed for the realization that what I love most isn't just understanding how things work, but actually <em>building them</em> and discovering where your sketch was wrong in the best possible way.</p>
+      <p>At the <strong>Hollberg Lab</strong>, I design and fabricate custom hardware for a precision methane laser spectroscopy system — building 3D-printed adapters to motorize manual stages, iterating on windshield wiper mechanisms to protect optical components, and learning what it really means to prepare a lab instrument for the field. It's where tolerance analysis stops being a homework problem and starts mattering.</p>
+      <p>Outside the lab, I've led logistics for Stanford's first <strong>Designathon</strong>, directed large-scale construction projects with Techo, and served as community engagement lead for Stanford Women in Design — roles that taught me that good engineering isn't just about the object, it's about the people it's made for. I bring that same attention to detail and care for the user into everything I build.</p>
+      <p>My projects live at the intersection of <em>engineering rigor and aesthetic intention</em> — things that are well-made and feel that way.</p>
     </div>
     <div class="about-stats">
       <div class="stat-box">
-        <div class="stat-num">ME</div>
-        <div class="stat-label">Major at Stanford</div>
+        <div class="stat-num">3.96</div>
+        <div class="stat-label">GPA · Stanford ME</div>
       </div>
       <div class="stat-box">
-        <div class="stat-num">0.001"</div>
-        <div class="stat-label">Tolerance that matters</div>
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Cost reduction on lab hardware</div>
       </div>
       <div class="stat-box">
         <div class="stat-num">∞</div>
@@ -812,27 +802,27 @@
   <div class="skills-layout reveal">
     <div class="skills-col engineering">
       <h3>Engineering</h3>
-      <div class="skill-item"><span class="skill-name">CAD (Fusion 360 / SolidWorks)</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Laser Cutting &amp; DFM</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Tolerance Analysis</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Prototyping &amp; Iteration</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
-      <div class="skill-item"><span class="skill-name">3D Printing (Bambu Lab)</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Mechanical Design</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">GD&amp;T</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Python / MATLAB</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">CAD (Fusion 360 / SolidWorks)</span></div>
+      <div class="skill-item"><span class="skill-name">Laser Cutting &amp; DFM</span></div>
+      <div class="skill-item"><span class="skill-name">Tolerance Analysis</span></div>
+      <div class="skill-item"><span class="skill-name">Prototyping &amp; Iteration</span></div>
+      <div class="skill-item"><span class="skill-name">3D Printing (Bambu Lab)</span></div>
+      <div class="skill-item"><span class="skill-name">Mechanical Design</span></div>
+      <div class="skill-item"><span class="skill-name">GD&amp;T</span></div>
+      <div class="skill-item"><span class="skill-name">Python / MATLAB</span></div>
       <div class="skills-badges">
         <span class="badge">Fusion 360</span><span class="badge">SolidWorks</span><span class="badge">Laser Cutter</span><span class="badge">3D Printing</span><span class="badge">MATLAB</span><span class="badge">Python</span><span class="badge">GD&amp;T</span>
       </div>
     </div>
     <div class="skills-col soft">
       <h3>Soft Skills</h3>
-      <div class="skill-item"><span class="skill-name">Attention to detail</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Problem-solving</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Iterative thinking</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Visual communication</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Cross-disciplinary curiosity</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Written communication</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
-      <div class="skill-item"><span class="skill-name">Project ownership</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Attention to detail</span></div>
+      <div class="skill-item"><span class="skill-name">Problem-solving</span></div>
+      <div class="skill-item"><span class="skill-name">Iterative thinking</span></div>
+      <div class="skill-item"><span class="skill-name">Visual communication</span></div>
+      <div class="skill-item"><span class="skill-name">Cross-disciplinary curiosity</span></div>
+      <div class="skill-item"><span class="skill-name">Written communication</span></div>
+      <div class="skill-item"><span class="skill-name">Project ownership</span></div>
       <div class="skills-badges">
         <span class="badge">Adobe Suite</span><span class="badge">Figma</span><span class="badge">Notion</span><span class="badge">Framer</span><span class="badge">Photography</span>
       </div>
@@ -861,13 +851,7 @@
         <div class="contact-link-value">Alexa Cavazos</div>
       </div>
     </a>
-    <a href="https://github.com/alexacw7" target="_blank" class="contact-link">
-      <div class="contact-link-icon">⌥</div>
-      <div>
-        <div class="contact-link-label">GitHub</div>
-        <div class="contact-link-value">github.com/alexacw7</div>
-      </div>
-    </a>
+
   </div>
 </section>
 
