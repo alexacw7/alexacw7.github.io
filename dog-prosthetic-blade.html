@@ -34,12 +34,11 @@
 
   img { cursor: zoom-in; }
 
-  /* ── BACK LINK ── */
   .back-link {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 20px 40px;
+    padding: 18px 40px;
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -53,41 +52,29 @@
   .back-link:hover { color: var(--coral); }
   .back-link::before { content: '←'; font-size: 14px; }
 
-  /* ── HERO ── */
+  /* HERO */
   .hero {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     min-height: 90vh;
+    border-bottom: 3px solid var(--dark);
   }
 
-  .hero-photo {
-    overflow: hidden;
-    position: relative;
-  }
-  .hero-photo img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s ease;
-  }
-  .hero-photo:hover img { transform: scale(1.03); }
-
-  .hero-center {
+  .hero-left {
     background: var(--dark);
+    padding: 72px 60px 60px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 52px 44px;
+    justify-content: space-between;
     position: relative;
     overflow: hidden;
-    z-index: 2;
   }
 
-  .hero-center::before {
+  .hero-left::before {
     content: '';
     position: absolute;
-    top: -100px; left: -100px;
-    width: 400px; height: 400px;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
     background: var(--teal);
     border-radius: 50%;
     opacity: 0.07;
@@ -100,59 +87,84 @@
     text-transform: uppercase;
     font-weight: 500;
     color: var(--sand);
-    margin-bottom: 16px;
+    position: relative; z-index: 1;
   }
 
   .hero-title {
     font-family: 'Chango', system-ui;
-    font-size: clamp(36px, 4.5vw, 64px);
-    line-height: 0.92;
+    font-size: clamp(44px, 5.5vw, 80px);
+    line-height: 0.9;
     color: var(--cream);
-    margin-bottom: 8px;
+    position: relative; z-index: 1;
   }
   .hero-title .accent { color: var(--coral); display: block; }
 
   .hero-sub {
-    font-size: 13px;
-    color: rgba(240,234,214,0.65);
-    line-height: 1.75;
-    margin-top: 20px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: rgba(240,234,214,0.62);
+    max-width: 400px;
     border-left: 3px solid var(--teal);
-    padding-left: 14px;
-    max-width: 300px;
+    padding-left: 16px;
+    position: relative; z-index: 1;
+    margin-top: 24px;
   }
 
-  .hero-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 28px;
+  .hero-bottom { position: relative; z-index: 1; }
+
+  .hero-meta-table {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 20px;
+    margin-bottom: 20px;
   }
 
-  .tag {
+  .hm-label {
     font-size: 9px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sand);
+    opacity: 0.5;
+    padding-top: 2px;
+  }
+
+  .hm-value {
+    font-size: 12px;
+    color: var(--sand);
+    line-height: 1.5;
+  }
+
+  .hero-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .htag {
+    font-size: 9px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 5px 12px;
+    padding: 4px 11px;
     border-radius: 100px;
-    border: 1px solid rgba(240,234,214,0.2);
-    color: var(--cream);
+    border: 1px solid rgba(240,234,214,0.18);
+    color: rgba(240,234,214,0.55);
   }
-  .tag.accent-tag { background: var(--coral); border-color: var(--coral); }
-  .tag.teal-tag   { background: var(--teal);  border-color: var(--teal); color: var(--dark); }
+  .htag.coral { background: var(--coral); border-color: var(--coral); color: var(--cream); }
+  .htag.teal  { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
 
-  .hero-team {
-    margin-top: 28px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(240,234,214,0.1);
-    font-size: 11px;
-    color: rgba(240,234,214,0.4);
-    letter-spacing: 0.06em;
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-caption {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    background: rgba(26,22,18,0.8);
+    backdrop-filter: blur(6px);
+    color: var(--sand);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
   }
-  .hero-team span { color: var(--sand); }
 
-  /* ── TICKER ── */
+  /* TICKER */
   .ticker-wrap {
     border-top: 3px solid var(--dark);
     border-bottom: 3px solid var(--dark);
@@ -166,28 +178,25 @@
     white-space: nowrap;
     animation: tick 26s linear infinite;
     font-family: 'Chango', system-ui;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--cream);
   }
-  .ticker-inner .dot { color: rgba(255,255,255,0.4); }
+  .ticker-inner .dot { color: rgba(255,255,255,0.38); }
   @keyframes tick {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
 
-  /* ── PAGE BODY ── */
-  .page-body {
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 0 48px;
+  /* SECTIONS */
+  .section {
+    padding: 80px 64px;
+    border-bottom: 1px solid rgba(42,37,34,0.12);
   }
 
-  /* ── SECTION HEADER ── */
   .section-header {
     display: flex;
     align-items: baseline;
     gap: 20px;
-    padding-top: 80px;
     margin-bottom: 48px;
   }
 
@@ -196,310 +205,275 @@
     font-size: 80px;
     line-height: 1;
     color: var(--sand);
-    opacity: 0.35;
+    opacity: 0.3;
     user-select: none;
     flex-shrink: 0;
   }
 
   .section-title {
     font-family: 'Chango', system-ui;
-    font-size: clamp(34px, 4.5vw, 58px);
+    font-size: clamp(32px, 4vw, 54px);
     line-height: 1;
     color: var(--dark);
   }
   .section-title .hl { color: var(--coral); }
 
-  /* ── 01 BRIEF ── */
-  .brief-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-
-  .big-quote {
-    font-family: 'Chango', system-ui;
-    font-size: clamp(18px, 2.2vw, 26px);
-    color: var(--dark);
-    line-height: 1.3;
-    position: relative;
-    padding-left: 24px;
-    margin-bottom: 24px;
-  }
-  .big-quote::before {
-    content: '"';
-    position: absolute;
-    left: -10px; top: -20px;
-    font-size: 120px;
-    line-height: 1;
-    color: var(--teal);
-    opacity: 0.22;
-    font-family: 'Chango', system-ui;
-  }
-
-  .brief-body p {
+  .body-text {
     font-size: 15px;
     line-height: 1.85;
     color: var(--mid);
+    max-width: 700px;
   }
-  .brief-body p + p { margin-top: 14px; }
-  .brief-body p strong { color: var(--dark); font-weight: 500; }
+  .body-text strong { color: var(--dark); font-weight: 500; }
 
-  .fact-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* 01 INTRO */
+  .intro-section { background: var(--cream); }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: start;
   }
 
-  .fact-card {
+  .key-facts { display: flex; flex-direction: column; gap: 3px; }
+
+  .key-fact {
     background: var(--dark);
-    border-radius: 16px;
-    padding: 24px 28px;
+    padding: 22px 24px;
     display: flex;
-    gap: 18px;
+    gap: 16px;
     align-items: flex-start;
   }
+  .key-fact:first-child { border-radius: 16px 16px 0 0; }
+  .key-fact:last-child  { border-radius: 0 0 16px 16px; }
 
-  .fact-num {
+  .kf-num {
     font-family: 'Chango', system-ui;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1;
     flex-shrink: 0;
   }
-  .fact-card:nth-child(1) .fact-num { color: var(--coral); }
-  .fact-card:nth-child(2) .fact-num { color: var(--teal); }
-  .fact-card:nth-child(3) .fact-num { color: var(--gold); }
+  .key-fact:nth-child(1) .kf-num { color: var(--coral); }
+  .key-fact:nth-child(2) .kf-num { color: var(--teal); }
+  .key-fact:nth-child(3) .kf-num { color: var(--gold); }
+  .key-fact:nth-child(4) .kf-num { color: var(--olive); }
 
-  .fact-label {
-    font-size: 10px;
-    letter-spacing: 0.15em;
+  .kf-label {
+    font-size: 9px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--sand);
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
-  .fact-body { font-size: 13px; color: rgba(240,234,214,0.72); line-height: 1.65; }
+  .kf-body { font-size: 12.5px; line-height: 1.6; color: rgba(240,234,214,0.68); }
 
-  /* ── AI DOG IMAGE ── */
-  .ai-dog-wrap {
-    margin-top: 40px;
-    border-radius: 20px;
+  .ai-dog {
+    margin-top: 24px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(42,37,34,0.1);
     position: relative;
   }
-  .ai-dog-wrap img { width: 100%; display: block; }
-  .ai-dog-caption {
+  .ai-dog img { width: 100%; display: block; }
+  .ai-dog-cap {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 10px 14px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.65));
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    padding: 8px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    font-size: 9px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(240,234,214,0.85);
+    color: rgba(240,234,214,0.8);
   }
 
-  /* ── 02 DESIGN ── */
-  .design-grid {
+  /* 02 ANALYTICAL */
+  .analysis-section { background: var(--off-white); }
+
+  .analysis-intro {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    gap: 56px;
+    align-items: start;
+    margin-bottom: 40px;
   }
 
-  .design-card {
-    border-radius: 20px;
-    overflow: hidden;
-    background: var(--off-white);
-    border: 1px solid rgba(42,37,34,0.1);
-    transition: transform 0.22s ease;
-  }
-  .design-card:hover { transform: translateY(-4px); }
-
-  .design-card.wide { grid-column: span 2; }
-
-  .design-img {
-    width: 100%;
-    overflow: hidden;
-  }
-  .design-img img {
-    width: 100%; display: block;
-    transition: transform 0.4s ease;
-  }
-  .design-img:hover img { transform: scale(1.03); }
-
-  .design-info { padding: 20px 22px 24px; }
-
-  .design-label {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--coral);
-    margin-bottom: 6px;
-  }
-
-  .design-card-title {
-    font-family: 'Chango', system-ui;
-    font-size: 20px;
-    color: var(--dark);
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-
-  .design-card-body {
-    font-size: 13px;
-    line-height: 1.75;
-    color: var(--mid);
-  }
-
-  /* simplification model section */
-  .model-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    margin-top: 0;
-  }
-
-  .model-text h3 {
-    font-family: 'Chango', system-ui;
-    font-size: 28px;
-    color: var(--dark);
-    margin-bottom: 14px;
-    line-height: 1.1;
-  }
-
-  .model-text p {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--mid);
-  }
-  .model-text p + p { margin-top: 12px; }
-  .model-text p strong { color: var(--dark); font-weight: 500; }
-
-  .model-img {
+  .analysis-intro-img {
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(42,37,34,0.1);
+    background: white;
   }
-  .model-img img { width: 100%; display: block; }
+  .analysis-intro-img img { width: 100%; display: block; }
 
-  /* ── 03 ANALYSIS ── */
-  .analysis-dark {
+  .eq-box {
     background: var(--dark);
-    border-radius: 20px;
-    padding: 48px;
-    margin-bottom: 20px;
+    border-radius: 16px;
+    padding: 26px 30px;
+    margin-top: 24px;
   }
-
-  .analysis-dark h3 {
-    font-family: 'Chango', system-ui;
-    font-size: 26px;
+  .eq-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--teal);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
-
-  .analysis-dark p {
+  .eq-text {
+    font-family: 'Chango', system-ui;
     font-size: 14px;
-    line-height: 1.8;
-    color: rgba(240,234,214,0.72);
-    max-width: 680px;
+    color: var(--cream);
+    line-height: 1.6;
   }
-  .analysis-dark p + p { margin-top: 12px; }
-  .analysis-dark p strong { color: var(--cream); font-weight: 500; }
+  .eq-sub {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: rgba(240,234,214,0.5);
+  }
 
   .calcs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    margin-top: 24px;
+    margin-bottom: 28px;
   }
 
-  .calc-img {
+  .calc-card {
     border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(42,37,34,0.1);
+    background: white;
   }
-  .calc-img img { width: 100%; display: block; }
+  .calc-card img { width: 100%; display: block; }
+  .calc-card-label {
+    padding: 10px 14px;
+    border-top: 1px solid rgba(42,37,34,0.08);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
 
-  .results-strip {
+  .results-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  .result-box {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.09);
+  .result-card {
+    background: var(--dark);
     border-radius: 16px;
-    padding: 24px 20px;
+    padding: 24px 22px;
   }
-
-  .result-box-title {
+  .result-card-title {
     font-family: 'Chango', system-ui;
     font-size: 16px;
     color: var(--teal);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
+  .result-card p { font-size: 12.5px; line-height: 1.7; color: rgba(240,234,214,0.65); }
 
-  .result-box p {
-    font-size: 12px;
-    line-height: 1.7;
-    color: rgba(240,234,214,0.6);
-    max-width: none;
-  }
-
-  /* tables */
-  .table-wrap {
-    margin-top: 20px;
+  .table-img {
     border-radius: 14px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(42,37,34,0.1);
+    background: white;
+    margin-bottom: 14px;
   }
-  .table-wrap img { width: 100%; display: block; }
+  .table-img img { width: 100%; display: block; }
 
-  /* ── 04 FEA ── */
-  .fea-intro {
+  /* 03 DESIGN */
+  .design-section { background: var(--cream); }
+
+  .design-narrative {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
     align-items: start;
+    margin-bottom: 32px;
   }
 
-  .fea-intro-text h3 {
-    font-family: 'Chango', system-ui;
-    font-size: 24px;
-    color: var(--dark);
-    margin-bottom: 12px;
-  }
-  .fea-intro-text p {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--mid);
-  }
-  .fea-intro-text p + p { margin-top: 12px; }
-  .fea-intro-text p strong { color: var(--dark); font-weight: 500; }
-
-  .fea-loading {
+  .design-narrative-img {
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(42,37,34,0.1);
   }
-  .fea-loading img { width: 100%; display: block; }
+  .design-narrative-img img { width: 100%; display: block; }
+
+  .design-note {
+    background: var(--off-white);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-top: 20px;
+    border-left: 4px solid var(--coral);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+  .design-note strong { color: var(--dark); font-weight: 500; }
+
+  .cad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .cad-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: var(--off-white);
+    transition: transform 0.2s ease;
+  }
+  .cad-card:hover { transform: translateY(-3px); }
+  .cad-card.wide { grid-column: span 2; }
+  .cad-card img { width: 100%; display: block; }
+
+  .cad-card-info { padding: 14px 16px 16px; border-top: 1px solid rgba(42,37,34,0.08); }
+  .cad-step { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); margin-bottom: 4px; }
+  .cad-title { font-family: 'Chango', system-ui; font-size: 15px; color: var(--dark); margin-bottom: 4px; line-height: 1.2; }
+  .cad-desc { font-size: 12px; line-height: 1.65; color: var(--mid); }
+
+  /* 04 FEA */
+  .fea-section { background: var(--off-white); }
+
+  .fea-setup {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+
+  .fea-loading-img {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: white;
+  }
+  .fea-loading-img img { width: 100%; display: block; }
 
   .fea-results-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
-    margin-top: 32px;
+    margin-bottom: 20px;
   }
 
   .fea-card {
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
-    background: var(--off-white);
     border: 1px solid rgba(42,37,34,0.1);
+    background: white;
   }
   .fea-card img { width: 100%; display: block; }
   .fea-card-label {
@@ -509,15 +483,11 @@
     justify-content: space-between;
     align-items: center;
   }
-  .fea-card-name {
-    font-family: 'Chango', system-ui;
-    font-size: 14px;
-    color: var(--dark);
-  }
+  .fea-card-name { font-family: 'Chango', system-ui; font-size: 14px; color: var(--dark); }
   .fea-card-tag {
     font-size: 9px;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--mid);
     border: 1px solid var(--sand);
@@ -525,305 +495,246 @@
     padding: 3px 10px;
   }
 
-  .comparison-table {
-    margin-top: 20px;
-    border-radius: 16px;
+  .fea-table {
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid rgba(42,37,34,0.1);
-    background: var(--off-white);
+    background: white;
+    margin-bottom: 28px;
   }
-  .comparison-table img { width: 100%; display: block; }
+  .fea-table img { width: 100%; display: block; }
 
-  /* theory-reality style callout */
-  .discrepancy-card {
-    grid-column: 1 / -1;
-    background: var(--teal);
-    border-radius: 20px;
-    padding: 36px 44px;
+  .discussion-grid {
     display: grid;
-    grid-template-columns: 1fr 2px 1fr;
-    gap: 40px;
-    align-items: start;
-    margin-top: 4px;
-  }
-
-  .disc-divider {
-    background: rgba(255,255,255,0.25);
-    align-self: stretch;
-  }
-
-  .disc-col h4 {
-    font-family: 'Chango', system-ui;
-    font-size: 20px;
-    color: var(--cream);
-    margin-bottom: 10px;
-    line-height: 1.15;
-  }
-  .disc-col p {
-    font-size: 13px;
-    line-height: 1.75;
-    color: rgba(240,234,214,0.9);
-  }
-
-  /* ── 05 FABRICATION ── */
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
 
-  .process-card {
+  .disc-card { border-radius: 16px; padding: 30px 26px; }
+  .disc-card.dark { background: var(--dark); }
+  .disc-card.coral { background: var(--coral); }
+
+  .disc-card h4 { font-family: 'Chango', system-ui; font-size: 17px; margin-bottom: 10px; line-height: 1.15; }
+  .disc-card.dark h4 { color: var(--teal); }
+  .disc-card.coral h4 { color: var(--cream); }
+
+  .disc-card p { font-size: 13px; line-height: 1.78; }
+  .disc-card.dark p { color: rgba(240,234,214,0.68); }
+  .disc-card.coral p { color: rgba(240,234,214,0.92); }
+
+  .disc-img {
+    grid-column: span 2;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: white;
+    margin-top: 0;
+  }
+  .disc-img img { width: 100%; display: block; }
+
+  /* 05 PROTOTYPE */
+  .proto-section { background: var(--cream); }
+
+  .proto-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .proto-card {
     border-radius: 20px;
     overflow: hidden;
     background: var(--off-white);
     border: 1px solid rgba(42,37,34,0.1);
-    transition: transform 0.22s ease;
+    transition: transform 0.2s ease;
   }
-  .process-card:hover { transform: translateY(-4px); }
+  .proto-card:hover { transform: translateY(-3px); }
 
-  .process-img {
+  .proto-img {
     width: 100%;
+    aspect-ratio: 4/3;
     overflow: hidden;
     border-radius: 20px 20px 50% 50% / 20px 20px 40px 40px;
   }
-  .process-img img {
-    width: 100%; display: block;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-  }
+  .proto-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .process-info { padding: 22px 20px 24px; }
+  .proto-info { padding: 20px 20px 22px; }
 
-  .process-step-label {
+  .proto-step {
     font-size: 10px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     font-weight: 500;
     margin-bottom: 6px;
   }
-  .process-card:nth-child(1) .process-step-label { color: var(--coral); }
-  .process-card:nth-child(2) .process-step-label { color: var(--teal); }
-  .process-card:nth-child(3) .process-step-label { color: var(--olive); }
-  .process-card:nth-child(4) .process-step-label { color: var(--gold); }
+  .proto-card:nth-child(1) .proto-step { color: var(--coral); }
+  .proto-card:nth-child(2) .proto-step { color: var(--teal); }
+  .proto-card:nth-child(3) .proto-step { color: var(--olive); }
+  .proto-card:nth-child(4) .proto-step { color: var(--gold); }
 
-  .process-card-title {
-    font-family: 'Chango', system-ui;
-    font-size: 20px;
-    color: var(--dark);
-    margin-bottom: 8px;
-    line-height: 1.1;
+  .proto-title { font-family: 'Chango', system-ui; font-size: 18px; color: var(--dark); margin-bottom: 8px; line-height: 1.1; }
+  .proto-body { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+  .proto-bullets { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .proto-bullet { display: flex; gap: 8px; font-size: 12px; color: var(--mid); line-height: 1.5; }
+  .proto-bullet::before { content: '→'; color: var(--coral); font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+
+  .testing-detail {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
   }
 
-  .process-card-body {
-    font-size: 13px;
-    line-height: 1.75;
-    color: var(--mid);
+  .testing-detail-img {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
   }
+  .testing-detail-img img { width: 100%; display: block; }
 
-  .process-bullets {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .process-bullet {
-    display: flex;
+  .test-result-row { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+  .test-badge {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
+    background: var(--dark);
+    border-radius: 100px;
+    padding: 10px 18px;
     font-size: 12px;
-    color: var(--mid);
-    line-height: 1.5;
+    color: var(--cream);
   }
-  .process-bullet::before {
-    content: '→';
-    flex-shrink: 0;
-    color: var(--coral);
-    font-size: 11px;
-    margin-top: 1px;
-  }
+  .test-badge .tb-num { font-family: 'Chango', system-ui; font-size: 20px; color: var(--coral); }
 
-  /* ── 06 FINAL RESULT ── */
-  .mosaic {
+  /* 06 FINAL PRODUCT */
+  .final-section { background: var(--dark); padding: 0; border-bottom: none; }
+
+  .final-header { padding: 64px 64px 40px; }
+  .final-header .section-title { color: var(--cream); }
+  .final-header .section-title .hl { color: var(--coral); }
+  .final-header p { font-size: 15px; line-height: 1.8; color: rgba(240,234,214,0.5); max-width: 580px; margin-top: 14px; }
+
+  .final-mosaic {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    grid-auto-rows: 260px;
-    gap: 12px;
-    margin-top: 8px;
+    grid-template-rows: 300px 300px;
+    gap: 3px;
   }
 
-  .mosaic-cell {
-    background: var(--dark);
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-  }
-  .mosaic-cell:first-child { grid-row: span 2; }
+  .mosaic-cell { overflow: hidden; position: relative; }
+  .mosaic-cell.tall { grid-row: span 2; }
 
   .mosaic-cell img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
-    filter: brightness(0.88);
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.8);
   }
-  .mosaic-cell:hover img { transform: scale(1.05); filter: brightness(1); }
+  .mosaic-cell:hover img { transform: scale(1.04); filter: brightness(1); }
 
-  .mosaic-caption {
+  .mosaic-cap {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 10px 14px;
+    padding: 8px 14px;
     background: linear-gradient(transparent, rgba(0,0,0,0.65));
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: rgba(240,234,214,0.85);
   }
 
-  /* stats strip */
-  .stats-strip {
+  .final-next {
+    padding: 48px 64px 64px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 20px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
   }
 
-  .stat-box {
-    background: var(--dark);
-    border-radius: 16px;
-    padding: 24px 20px;
-    text-align: center;
-  }
-  .stat-num {
-    font-family: 'Chango', system-ui;
-    font-size: 40px;
-    line-height: 0.95;
-    color: var(--coral);
-  }
-  .stat-desc {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--sand);
-    margin-top: 8px;
-    line-height: 1.4;
-  }
+  .next-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+  .next-title { font-family: 'Chango', system-ui; font-size: clamp(26px, 3.5vw, 44px); line-height: 0.95; color: var(--cream); margin-bottom: 20px; }
+  .next-title span { color: var(--coral); }
 
-  /* ── REFLECTIONS ── */
-  .reflection-grid {
+  .next-items { display: flex; flex-direction: column; gap: 14px; }
+  .next-item { display: flex; gap: 14px; align-items: flex-start; }
+  .ni-num { font-family: 'Chango', system-ui; font-size: 20px; color: var(--coral); line-height: 1; flex-shrink: 0; padding-top: 2px; }
+  .ni-text { font-size: 13.5px; line-height: 1.7; color: rgba(240,234,214,0.62); }
+  .ni-text strong { color: var(--cream); font-weight: 500; }
+
+  .next-cad-img { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+  .next-cad-img img { width: 100%; display: block; }
+
+  /* 07 CONCLUSION */
+  .conclusion-section { background: var(--cream); }
+
+  .conclusion-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin-bottom: 80px;
-    padding: 0 48px;
-    max-width: 1160px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .reflection-card {
-    padding: 36px 32px;
-    border-radius: 20px;
-  }
-  .reflection-card:nth-child(1) { background: var(--dark); }
-  .reflection-card:nth-child(2) { background: var(--coral); }
-  .reflection-card:nth-child(3) { background: var(--cream); border: 2px solid rgba(42,37,34,0.12); }
+  .concl-card { padding: 36px 28px; border-radius: 20px; }
+  .concl-card:nth-child(1) { background: var(--dark); }
+  .concl-card:nth-child(2) { background: var(--coral); }
+  .concl-card:nth-child(3) { background: var(--cream); border: 2px solid rgba(42,37,34,0.12); }
 
-  .reflection-card h4 {
-    font-family: 'Chango', system-ui;
-    font-size: 20px;
-    margin-bottom: 14px;
-    line-height: 1.1;
-  }
-  .reflection-card:nth-child(1) h4 { color: var(--teal); }
-  .reflection-card:nth-child(2) h4 { color: var(--cream); }
-  .reflection-card:nth-child(3) h4 { color: var(--dark); }
+  .concl-card h4 { font-family: 'Chango', system-ui; font-size: 20px; margin-bottom: 14px; line-height: 1.1; }
+  .concl-card:nth-child(1) h4 { color: var(--teal); }
+  .concl-card:nth-child(2) h4 { color: var(--cream); }
+  .concl-card:nth-child(3) h4 { color: var(--dark); }
 
-  .reflection-card p { font-size: 13.5px; line-height: 1.8; }
-  .reflection-card:nth-child(1) p { color: rgba(240,234,214,0.72); }
-  .reflection-card:nth-child(2) p { color: rgba(240,234,214,0.92); }
-  .reflection-card:nth-child(3) p { color: var(--mid); }
+  .concl-card p { font-size: 13.5px; line-height: 1.8; }
+  .concl-card:nth-child(1) p { color: rgba(240,234,214,0.7); }
+  .concl-card:nth-child(2) p { color: rgba(240,234,214,0.92); }
+  .concl-card:nth-child(3) p { color: var(--mid); }
 
-  /* ── FOOTER ── */
+  /* FOOTER */
   .footer-banner {
     background: var(--dark);
     border-top: 3px solid var(--coral);
-    padding: 52px 48px;
+    padding: 52px 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
   }
-  .footer-banner h2 {
-    font-family: 'Chango', system-ui;
-    font-size: clamp(28px, 4vw, 52px);
-    color: var(--cream);
-    line-height: 1;
-  }
+  .footer-banner h2 { font-family: 'Chango', system-ui; font-size: clamp(28px, 4vw, 52px); color: var(--cream); line-height: 1; }
   .footer-banner h2 span { color: var(--coral); }
   .footer-meta { text-align: right; }
   .footer-meta p { font-size: 13px; color: var(--sand); line-height: 1.8; }
 
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.93);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-out;
-    padding: 24px;
-  }
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; padding: 24px; }
   .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 90vw; max-height: 90vh;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-    cursor: default;
-  }
-  .lightbox-close {
-    position: absolute;
-    top: 20px; right: 28px;
-    color: white; font-size: 32px;
-    cursor: pointer; line-height: 1;
-    opacity: 0.7; transition: opacity 0.2s;
-    background: none; border: none;
-  }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 10px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); cursor: default; }
+  .lightbox-close { position: absolute; top: 20px; right: 28px; color: white; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; background: none; border: none; }
   .lightbox-close:hover { opacity: 1; }
 
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 960px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-photo:first-child, .hero-photo:last-child { min-height: 240px; }
-    .brief-grid, .model-row, .fea-intro { grid-template-columns: 1fr; }
-    .design-grid, .calcs-grid, .fea-results-grid { grid-template-columns: 1fr; }
-    .design-card.wide { grid-column: span 1; }
-    .discrepancy-card { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; }
-    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .mosaic-cell:first-child { grid-row: span 1; }
-    .stats-strip { grid-template-columns: 1fr 1fr; }
-    .reflection-grid { grid-template-columns: 1fr; padding: 0 20px; }
-    .results-strip { grid-template-columns: 1fr; }
+    .hero, .intro-grid, .analysis-intro, .design-narrative,
+    .fea-setup, .testing-detail, .final-next { grid-template-columns: 1fr; }
+    .calcs-grid, .fea-results-grid, .results-row,
+    .discussion-grid, .proto-grid, .cad-grid { grid-template-columns: 1fr; }
+    .disc-img, .cad-card.wide { grid-column: span 1; }
+    .conclusion-grid { grid-template-columns: 1fr; }
+    .final-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .mosaic-cell.tall { grid-row: span 1; }
+    .section { padding: 60px 28px; }
+    .final-header, .final-next, .footer-banner { padding-left: 28px; padding-right: 28px; }
+    .hero-left { padding: 48px 28px 40px; }
   }
-
   @media (max-width: 640px) {
     body { border-width: 4px; }
-    .page-body { padding: 0 20px; }
-    .hero-photo:first-child, .hero-photo:last-child { display: none; }
+    .back-link { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 300px; }
     .footer-banner { flex-direction: column; }
     .footer-meta { text-align: left; }
-    .back-link { padding: 16px 20px; }
-    .analysis-dark { padding: 28px 20px; }
   }
 </style>
 </head>
@@ -831,37 +742,42 @@
 
 <a href="index.html" class="back-link">Back to portfolio</a>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-photo">
-    <img src="images_blade/final_product_2.png" alt="Dog prosthetic blade — final product held up">
-  </div>
-  <div class="hero-center">
+  <div class="hero-left">
     <p class="hero-eyebrow">ME80 · Mechanics of Materials · Winter 2026</p>
-    <h1 class="hero-title">
-      Dog Prosthetic
-      <span class="accent">Running Blade</span>
-    </h1>
-    <p class="hero-sub">
-      A J-shaped running prosthetic for dogs — mass-optimized through hand calculations, validated with FEA simulation, and 3D-printed in PLA. Supports 70 lbs.
-    </p>
-    <div class="hero-tags">
-      <span class="tag accent-tag">FEA</span>
-      <span class="tag teal-tag">Mass Optimization</span>
-      <span class="tag">Fusion 360</span>
-      <span class="tag">3D Printing</span>
-      <span class="tag">Hand Calculations</span>
-      <span class="tag">Von Mises</span>
-      <span class="tag">Buckling Analysis</span>
+    <div>
+      <h1 class="hero-title">Dog Prosthetic <span class="accent">Running Blade</span></h1>
+      <p class="hero-sub">A mass-optimized J-shaped running prosthetic for dogs — derived analytically, validated with FEA, and load-tested to 70 lbs in a gym press machine.</p>
     </div>
-    <div class="hero-team">with <span>Maddie Garber &amp; Shoshana Kessler</span></div>
+    <div class="hero-bottom">
+      <div class="hero-meta-table">
+        <span class="hm-label">Team</span>
+        <span class="hm-value">Alexa Cavazos, Ellia Cavanaugh, Martin Amaya</span>
+        <span class="hm-label">Course</span>
+        <span class="hm-value">ME80 — Stanford University, Winter 2026</span>
+        <span class="hm-label">My role</span>
+        <span class="hm-value">CAD &amp; Manufacturing lead</span>
+        <span class="hm-label">Tools</span>
+        <span class="hm-value">Fusion 360 · Fusion 360 Simulation · Bambu Lab X1E</span>
+      </div>
+      <div class="hero-tags">
+        <span class="htag coral">FEA</span>
+        <span class="htag teal">Mass Optimization</span>
+        <span class="htag">3D Print</span>
+        <span class="htag">Von Mises</span>
+        <span class="htag">Buckling</span>
+        <span class="htag">PLA</span>
+      </div>
+    </div>
   </div>
-  <div class="hero-photo">
-    <img src="images_blade/ideation_of_leg_implementation_dog_AI-generated.png" alt="AI-generated dog with prosthetic blade">
+  <div class="hero-right">
+    <img src="images_blade/final_product_2.png" alt="Final 3D-printed PLA prosthetic blade">
+    <div class="hero-caption">Final 3D-printed PLA prototype</div>
   </div>
 </section>
 
-<!-- ticker -->
+<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
     <span>FEA Simulation</span><span class="dot">✦</span>
@@ -869,399 +785,459 @@
     <span>Von Mises Stress</span><span class="dot">✦</span>
     <span>Buckling Analysis</span><span class="dot">✦</span>
     <span>J-Shaped Blade</span><span class="dot">✦</span>
-    <span>PLA 3D Print</span><span class="dot">✦</span>
     <span>70 lb Load Test</span><span class="dot">✦</span>
     <span>Factor of Safety</span><span class="dot">✦</span>
+    <span>Fusion 360</span><span class="dot">✦</span>
     <span>FEA Simulation</span><span class="dot">✦</span>
     <span>Mass Optimization</span><span class="dot">✦</span>
     <span>Von Mises Stress</span><span class="dot">✦</span>
     <span>Buckling Analysis</span><span class="dot">✦</span>
     <span>J-Shaped Blade</span><span class="dot">✦</span>
-    <span>PLA 3D Print</span><span class="dot">✦</span>
     <span>70 lb Load Test</span><span class="dot">✦</span>
     <span>Factor of Safety</span><span class="dot">✦</span>
+    <span>Fusion 360</span><span class="dot">✦</span>
   </div>
 </div>
 
-<div class="page-body">
-
-  <!-- ═══════════════ 01 THE BRIEF ═══════════════ -->
+<!-- 01 INTRODUCTION -->
+<section class="section intro-section">
   <div class="section-header reveal">
     <span class="section-num">01</span>
-    <h2 class="section-title">The <span class="hl">Brief</span></h2>
+    <h2 class="section-title">Intro &amp; <span class="hl">Why</span></h2>
   </div>
-
-  <div class="brief-grid reveal">
-    <div class="brief-body">
-      <div class="big-quote">
-        Design a structural component, analyze it with hand calculations, validate with FEA, and build it.
-      </div>
-      <p>For ME80's final project, our team chose to design a <strong>J-shaped running prosthetic blade for dogs</strong> — the same geometry used in human Paralympic blades, adapted for a medium-sized dog (~30 kg). The goal: mass-optimize the cross-section dimensions of each blade segment to be as light as possible while maintaining a minimum factor of safety of 2 under a 300 N running load.</p>
-      <p>We modeled the blade as a 5-segment frame, derived internal reactions in each segment through hand calculations, set up constraint equations based on yield and deflection limits, and ran FEA in Fusion 360 to validate. We then 3D-printed two versions — one with sharp edges and one with filleted edges — and load-tested both in a gym press machine up to 70 lbs.</p>
+  <div class="intro-grid reveal">
+    <div>
+      <p class="body-text">Every year, thousands of dogs lose limbs due to trauma, cancer, or congenital defects. While amputation saves a dog's life, existing prosthetic options are often limited — wheeled carts that restore minimal mobility, or rigid pegs that allow standing but fail to replicate the dynamic mechanics of a natural gait.</p>
+      <p class="body-text" style="margin-top:16px;">We set out to design a <strong>mass-optimized J-shaped running prosthetic blade</strong> for a medium-sized dog (~30 kg) with a below-knee hind-leg amputation. J-shaped blades function as elastic energy-storage devices: they bend under load, storing strain energy, and release it during push-off — the same geometry used in human Paralympic blades, scaled for a dog.</p>
+      <p class="body-text" style="margin-top:16px;"><strong>Why mass optimization?</strong> Excess prosthetic mass at the distal end of a limb disproportionately increases rotational inertia during the swing phase, raising the energetic cost of locomotion and causing faster muscle fatigue. The goal: minimize mass while maintaining safe stress levels throughout the blade under a 300 N running load.</p>
+      <p class="body-text" style="margin-top:16px;">The blade was modeled as a <strong>5-segment frame</strong>, fixed at the top (the socket attachment), with a ground reaction force applied upward at the toe. The load was taken as 3× body weight to represent running and jumping — where this type of prosthetic, with its high energy return, is most useful.</p>
     </div>
-
-    <div class="fact-cards">
-      <div class="fact-card">
-        <div class="fact-num">300N</div>
-        <div>
-          <div class="fact-label">Design load</div>
-          <div class="fact-body">Running impact force for a 30 kg dog. Applied upward at the toe of the blade with the top fixed as a cantilever.</div>
+    <div>
+      <div class="key-facts">
+        <div class="key-fact">
+          <div class="kf-num">300N</div>
+          <div>
+            <div class="kf-label">Design load</div>
+            <div class="kf-body">3× body weight (~30 kg dog). Represents peak forces during running and jumping — activities where the J-blade's energy return is most useful.</div>
+          </div>
+        </div>
+        <div class="key-fact">
+          <div class="kf-num">FS≥2</div>
+          <div>
+            <div class="kf-label">Target factor of safety</div>
+            <div class="kf-body">Enforced as a stress constraint across all 5 segments. Buckling also checked for members with compressive axial loads.</div>
+          </div>
+        </div>
+        <div class="key-fact">
+          <div class="kf-num">5</div>
+          <div>
+            <div class="kf-label">Beam segments</div>
+            <div class="kf-body">The J-blade simplified into 5 straight segments with local coordinate axes, making the analytical derivation of internal reactions tractable.</div>
+          </div>
+        </div>
+        <div class="key-fact">
+          <div class="kf-num">2×</div>
+          <div>
+            <div class="kf-label">Versions prototyped</div>
+            <div class="kf-body">Sharp-edged (closest to analytical model) and filleted (smoother, more realistic). Both 3D-printed in PLA and tested to 70 lbs.</div>
+          </div>
         </div>
       </div>
-      <div class="fact-card">
-        <div class="fact-num">FS≥2</div>
-        <div>
-          <div class="fact-label">Minimum factor of safety</div>
-          <div class="fact-body">Target against yielding across all 5 blade segments, with additional buckling check on diagonal members.</div>
-        </div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-num">70lb</div>
-        <div>
-          <div class="fact-label">Physical load test</div>
-          <div class="fact-body">Both sharp-edged and filleted blades held 70 lbs in a gym press machine without failure on launch day.</div>
-        </div>
+      <div class="ai-dog">
+        <img src="images_blade/ideation_of_leg_implementation_dog_AI-generated.png" alt="AI-generated dog with prosthetic running blade">
+        <div class="ai-dog-cap">AI-generated visualization of the final goal</div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════ 02 ANALYTICAL RESULTS ═══════════════ -->
+<!-- 02 ANALYTICAL RESULTS -->
+<section class="section analysis-section">
   <div class="section-header reveal">
     <span class="section-num">02</span>
     <h2 class="section-title">Analytical <span class="hl">Results</span></h2>
   </div>
 
-  <div class="analysis-dark reveal">
-    <h3>5-Segment Internal Reaction Analysis</h3>
-    <p>We simplified the blade into 5 segments with local coordinate axes, then applied equilibrium equations at the fixed support (top) and took sections through each segment to find internal forces and moments throughout the structure.</p>
-    <p><strong>Key results:</strong> Segment 1 (toe, horizontal) carries pure shear and bending. Segment 2 (lower diagonal) carries a combination of axial compression and bending. Segments 3–5 carry progressively higher moments as you move toward the fixed end. The critical section is near the upper diagonal-to-horizontal transition, where bending moment is highest.</p>
-    <p>With internal reactions known at every section, we set up <strong>constraint equations</strong> — requiring the maximum normal stress (bending + axial) at each section to stay below the PLA yield strength divided by the target factor of safety — and solved for the minimum allowable cross-section width at each segment. This is the mass optimization: minimum width that keeps FS ≥ 2 everywhere.</p>
-
-    <div class="calcs-grid">
-      <div class="calc-img">
-        <img src="images_blade/local_axes_for_each_submember.png" alt="Local axes diagram for each segment">
-      </div>
-      <div class="calc-img">
-        <img src="images_blade/calculations_deriving_internal_reactions_1.png" alt="Hand calculations — internal reactions part 1">
-      </div>
-      <div class="calc-img">
-        <img src="images_blade/calculations_deriving_internal_reactions_2.png" alt="Hand calculations — internal reactions part 2">
-      </div>
-      <div class="calc-img">
-        <img src="images_blade/strain_constraint_equations_by_segment.png" alt="Strain constraint equations by segment">
+  <div class="analysis-intro reveal">
+    <div>
+      <p class="body-text">Local coordinate systems were defined for each of the five segments. Equilibrium equations gave axial force N, shear V, and bending moment M(x) along each member. The key assumption: <strong>normal stress governs failure</strong>, combining axial and bending stress at |y| = h/2 from the neutral axis. FEA later confirmed this — maximum stress always occurs at the outer edges.</p>
+      <p class="body-text" style="margin-top:16px;">Setting combined stress equal to σ_allow = σ_yield / FS and solving for cross-section width b(x) gives the <strong>mass optimization</strong>: the minimum width at every point that keeps FS ≥ 2. Because M(x) is linear within each segment (no distributed loads), b(x) also varies linearly — giving smooth, implementable transitions.</p>
+      <p class="body-text" style="margin-top:16px;">For segments 1 and 5 (toe and socket regions), the analytically derived minimum width approaches zero — which would create unsafe sharp tapers. The maximum required width was used instead for these segments, prioritizing durability and balance at the attachment and ground-contact points.</p>
+      <div class="eq-box">
+        <div class="eq-label">Core constraint equation — solved for b(x)</div>
+        <div class="eq-text">N/(b·h) + M(x)·(h/2) / (b·h³/12) = σ_yield / FS</div>
+        <div class="eq-sub">The only unknown is b(x). Solving gives the minimum cross-section width at each point along each segment. Width varies linearly with x because M(x) is linear and N is constant within each member.</div>
       </div>
     </div>
-
-    <div class="results-strip">
-      <div class="result-box">
-        <div class="result-box-title">Material: PLA</div>
-        <p>Yield strength ~35 MPa. Young's modulus ~3.5 GPa. Chosen for availability, printability, and sufficient stiffness for the scale of this prototype.</p>
-      </div>
-      <div class="result-box">
-        <div class="result-box-title">Buckling Check</div>
-        <p>Diagonal segments carry compressive axial loads. Euler buckling analysis confirmed safety factors of 60+ on segment 2 and 2075+ on segment 4 — buckling not a governing failure mode.</p>
-      </div>
-      <div class="result-box">
-        <div class="result-box-title">Optimization Output</div>
-        <p>Minimum cross-section widths derived per segment. Results compared against maximum widths from deflection limits to confirm feasibility of each dimension.</p>
-      </div>
-    </div>
-
-    <div class="table-wrap" style="margin-top:20px;">
-      <img src="images_blade/factor_of_safety_against_buckling_table.png" alt="Factor of safety against buckling — table by segment">
-    </div>
-    <div class="table-wrap">
-      <img src="images_blade/minimum_and_maximum_cross_section_widths_table.png" alt="Minimum and maximum cross section widths table">
+    <div class="analysis-intro-img">
+      <img src="images_blade/j-shaped_prosthetic_blade_modeling_simpliication.png" alt="J-blade simplified into 5 beam segments">
     </div>
   </div>
 
-  <!-- ═══════════════ 03 DESIGN ═══════════════ -->
+  <div class="calcs-grid reveal">
+    <div class="calc-card">
+      <img src="images_blade/local_axes_for_each_submember.png" alt="Local axes for each submember">
+      <div class="calc-card-label">Local axes — 5-segment model</div>
+    </div>
+    <div class="calc-card">
+      <img src="images_blade/calculations_deriving_internal_reactions_1.png" alt="Internal reactions — segments 1 &amp; 2">
+      <div class="calc-card-label">Internal reactions — segments 1, 2</div>
+    </div>
+    <div class="calc-card">
+      <img src="images_blade/calculations_deriving_internal_reactions_2.png" alt="Internal reactions — segments 3, 4, 5">
+      <div class="calc-card-label">Internal reactions — segments 3, 4, 5</div>
+    </div>
+    <div class="calc-card">
+      <img src="images_blade/strain_constraint_equations_by_segment.png" alt="Strain constraint equations by segment">
+      <div class="calc-card-label">Constraint equations → b(x) per segment</div>
+    </div>
+  </div>
+
+  <div class="results-row reveal">
+    <div class="result-card">
+      <div class="result-card-title">Material: PLA</div>
+      <p>Yield strength 35 MPa (BambuLabs datasheet, load parallel to print layers — the stronger direction). PLA chosen for availability and brittleness similar to carbon fiber, the real material for running blades.</p>
+    </div>
+    <div class="result-card">
+      <div class="result-card-title">Buckling check</div>
+      <p>Segments 2, 3, 4 carry compressive axial loads. Euler buckling (fixed-fixed, K = 0.5) gives FS of 60 on segment 2 and 2075+ on segments 3–4. Buckling is not the governing failure mode.</p>
+    </div>
+    <div class="result-card">
+      <div class="result-card-title">Optimization output</div>
+      <p>Minimum b ranges from ~0 (segments 1, 5) to 51 mm (segment 3 — constant, highest moment). These values were implemented directly in CAD as the lofting profile dimensions.</p>
+    </div>
+  </div>
+
+  <div class="table-img reveal">
+    <img src="images_blade/minimum_and_maximum_cross_section_widths_table.png" alt="Min and max cross-section widths by segment">
+  </div>
+  <div class="table-img reveal">
+    <img src="images_blade/factor_of_safety_against_buckling_table.png" alt="Factor of safety against buckling by segment">
+  </div>
+</section>
+
+<!-- 03 DESIGN -->
+<section class="section design-section">
   <div class="section-header reveal">
     <span class="section-num">03</span>
-    <h2 class="section-title">Design <span class="hl">&amp; CAD</span></h2>
+    <h2 class="section-title"><span class="hl">Design</span></h2>
   </div>
 
-  <div class="model-row reveal">
-    <div class="model-text">
-      <h3>From J-blade to 5-segment beam model</h3>
-      <p>The J-shaped blade geometry was inspired by real running prosthetics. To make it analytically tractable, we simplified it into a <strong>5-segment frame</strong>, each segment with its own local coordinate axes, allowing us to derive internal reactions (axial force N, shear V, and moment M) at cross-sections throughout the blade.</p>
-      <p>The CAD started as a sharp-edged lofted model and evolved through two major versions: <strong>sharp edges</strong> (used for the first prototype and initial FEA) and <strong>filleted edges</strong> (the final design, which reduced stress concentrations and was easier to 3D print). Cross-section widths were derived from the mass optimization and varied by segment based on the loading each one carries.</p>
+  <div class="design-narrative reveal">
+    <div>
+      <p class="body-text">The J-blade geometry was drawn from a schematic in the Journal of Disability Research and scaled by 0.5 to suit a medium-sized dog (12.5 cm tall × 10.5 cm wide). The 5-segment simplification from the analytical model was translated directly into a parametric CAD sketch — key angles 148.7° at the top bend and 44.7° at the lower bend.</p>
+      <p class="body-text" style="margin-top:16px;">Each segment was profiled at the analytically derived widths and lofted to create a continuously varying cross-section. The profile is set at a constant height of h = 1.5 cm throughout, with only width b varying by segment. Two final designs were produced: a <strong>sharp-edged version</strong> that closely follows the straight-beam analytical model, and a <strong>filleted version</strong> for smoother, more realistic geometry.</p>
+      <div class="design-note">At the junctions between segments, widths were adjusted slightly from the analytical optimum to avoid abrupt geometric discontinuities. The difference between adjacent segment widths at each junction was very small, so the larger value was used as dominant — maintaining structural continuity without significantly deviating from the optimization.</div>
     </div>
-    <div class="model-img">
-      <img src="images_blade/j-shaped_prosthetic_blade_modeling_simpliication.png" alt="J-blade modeling simplification — 5-segment beam">
-    </div>
-  </div>
-
-  <div class="design-grid reveal" style="margin-top: 32px;">
-    <div class="design-card">
-      <div class="design-img">
-        <img src="images_blade/CAD_sketch_side_profile.png" alt="CAD sketch side profile with dimensions">
-      </div>
-      <div class="design-info">
-        <div class="design-label">CAD — Sketch</div>
-        <div class="design-card-title">Side Profile &amp; Dimensions</div>
-        <p class="design-card-body">Parametric sketch defining key angles (148.7° top, 44.7° lower) and segment lengths (4.891" diagonal, 2.186" horizontal) derived from the analytical model.</p>
-      </div>
-    </div>
-    <div class="design-card">
-      <div class="design-img">
-        <img src="images_blade/lofting_of_beams_CAD.png" alt="Lofting of beams in Fusion 360">
-      </div>
-      <div class="design-info">
-        <div class="design-label">CAD — Lofting</div>
-        <div class="design-card-title">Variable Cross-Section Loft</div>
-        <p class="design-card-body">Each segment was lofted between profiles of different widths, reflecting the optimized cross-section sizes. This required careful profile placement to maintain structural continuity.</p>
-      </div>
-    </div>
-    <div class="design-card">
-      <div class="design-img">
-        <img src="images_blade/final_CAD_with_sharp_edges.png" alt="Final CAD — sharp edges version">
-      </div>
-      <div class="design-info">
-        <div class="design-label">CAD v1</div>
-        <div class="design-card-title">Sharp-Edged Blade</div>
-        <p class="design-card-body">First full CAD version. Used for the initial FEA simulation and first prototype print. Sharp corners at transitions created higher stress concentrations at joints.</p>
-      </div>
-    </div>
-    <div class="design-card">
-      <div class="design-img">
-        <img src="images_blade/final_CAD_with_fileted_edges.png" alt="Final CAD — filleted edges version">
-      </div>
-      <div class="design-info">
-        <div class="design-label">CAD v2 — Final</div>
-        <div class="design-card-title">Filleted Blade</div>
-        <p class="design-card-body">All sharp transitions replaced with smooth fillets. More realistic geometry for a real prosthetic, and confirmed manufacturable with the Bambu Lab printer. This version was used for the final FEA and physical prototype.</p>
-      </div>
-    </div>
-    <div class="design-card wide">
-      <div class="design-img">
-        <img src="images_blade/ideation_of_leg_implementation_CAD.png" alt="CAD ideation of blade on dog leg">
-      </div>
-      <div class="design-info">
-        <div class="design-label">CAD — Context</div>
-        <div class="design-card-title">Implementation Ideation</div>
-        <p class="design-card-body">Conceptual CAD showing the blade attached to a simplified leg stub, with a cylindrical socket. This helped visualize how the fixed boundary condition at the top maps to the real-world attachment point.</p>
-      </div>
+    <div class="design-narrative-img">
+      <img src="images_blade/CAD_sketch_side_profile.png" alt="CAD side profile sketch with angles and dimensions">
     </div>
   </div>
 
-  <!-- ═══════════════ 03 DESIGN ═══════════════ -->
+  <div class="cad-grid reveal">
+    <div class="cad-card">
+      <img src="images_blade/blade_CAD_before_loting.png" alt="Blade beams with uniform cross-sections before lofting">
+      <div class="cad-card-info">
+        <div class="cad-step">Step 1</div>
+        <div class="cad-title">Beams with Uniform Sections</div>
+        <p class="cad-desc">5 segments placed at correct angles. Preliminary uniform cross-sections before optimization widths are applied.</p>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="images_blade/lofting_of_beams_CAD.png" alt="Lofting between beam profiles in Fusion 360">
+      <div class="cad-card-info">
+        <div class="cad-step">Step 2</div>
+        <div class="cad-title">Variable Cross-Section Loft</div>
+        <p class="cad-desc">Each segment lofted between profiles at the analytically derived widths. Junctions smoothed to avoid discontinuities.</p>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="images_blade/final_CAD_with_sharp_edges.png" alt="Final CAD — sharp edges">
+      <div class="cad-card-info">
+        <div class="cad-step">Final v1</div>
+        <div class="cad-title">Sharp-Edged Blade</div>
+        <p class="cad-desc">Closest to the analytical straight-beam model. Used for primary FEA comparison. Sharp corners create localized stress concentrations at transitions.</p>
+      </div>
+    </div>
+    <div class="cad-card">
+      <img src="images_blade/final_CAD_with_fileted_edges.png" alt="Final CAD — filleted edges">
+      <div class="cad-card-info">
+        <div class="cad-step">Final v2</div>
+        <div class="cad-title">Filleted Blade</div>
+        <p class="cad-desc">All transitions smoothed. More realistic for a real prosthetic. Introduces curved-beam effects not in hand calcs — lower FS (1.764) but fewer stress concentrations.</p>
+      </div>
+    </div>
+    <div class="cad-card wide">
+      <img src="images_blade/ideation_of_leg_implementation_CAD.png" alt="CAD of blade with socket leg implementation">
+      <div class="cad-card-info">
+        <div class="cad-step">Ideation</div>
+        <div class="cad-title">Leg Implementation CAD</div>
+        <p class="cad-desc">Conceptual CAD showing the blade with a cylindrical socket. Visualizes how the fixed boundary condition at the top maps to a real limb attachment — a key next step for making this functional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FEA -->
+<section class="section fea-section">
   <div class="section-header reveal">
     <span class="section-num">04</span>
     <h2 class="section-title">FEA <span class="hl">Simulation</span></h2>
   </div>
 
-  <div class="fea-intro reveal">
-    <div class="fea-intro-text">
-      <h3>Setup &amp; loading condition</h3>
-      <p>FEA was run in Fusion 360 Simulation. The top attachment surface was set as a <strong>fixed constraint</strong>, matching the real-world socket attachment. A <strong>300 N upward point load</strong> was applied at the toe of the blade, simulating peak running impact.</p>
-      <p>We ran simulations on both the <strong>sharp-edged</strong> and <strong>filleted</strong> versions to compare results. The filleted blade showed higher Von Mises stress (19.84 MPa max vs. 17.626 MPa for the sharp version) but also higher minimum factor of safety in the critical regions. Both designs remain <strong>well within PLA's yield strength</strong> of ~35 MPa.</p>
-      <p>The maximum stress concentration appeared consistently at the inner curve of the upper bend — where the bending moment is highest — aligning with the analytical prediction.</p>
+  <div class="fea-setup reveal">
+    <div>
+      <p class="body-text">FEA was run in Fusion 360 Simulation on both the sharp-edged and filleted blades. <strong>Loading:</strong> top surface fixed (socket attachment), 300 N upward point load at the toe. <strong>Material:</strong> PLA defined as a custom material with yield strength 35 MPa — not available by default in Fusion.</p>
+      <p class="body-text" style="margin-top:16px;">The analytical optimization targeted a constant maximum stress of 17.5 MPa (= 35 MPa / FS 2) across the outer edges. The sharp-edged FEA closely matched: <strong>max stress 17.626 MPa, min FS 1.986</strong>. The filleted version deviated more due to curved-beam effects: <strong>max stress 19.84 MPa, min FS 1.764</strong> — still well below yield, but a useful reminder that fillets aren't free.</p>
+      <p class="body-text" style="margin-top:16px;">The relatively uniform yellow stress contours along the outer edges of the non-filleted blade — away from junctions — visually confirmed the bending-dominance assumption and the success of the optimization approach.</p>
     </div>
-    <div class="fea-loading">
+    <div class="fea-loading-img">
       <img src="images_blade/FEA_loading_condition.png" alt="FEA loading condition — 300N at toe, fixed at top">
     </div>
   </div>
 
   <div class="fea-results-grid reveal">
     <div class="fea-card">
-      <img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="Filleted blade Von Mises stress FEA — view 1">
+      <img src="images_blade/non-filleted_prosthetic_FS_FEA.png" alt="Non-filleted FS FEA">
       <div class="fea-card-label">
-        <span class="fea-card-name">Von Mises — Filleted (Front)</span>
-        <span class="fea-card-tag">Max 19.84 MPa</span>
+        <span class="fea-card-name">FS — Sharp-Edged</span>
+        <span class="fea-card-tag">Min FS 1.986</span>
       </div>
     </div>
     <div class="fea-card">
-      <img src="images_blade/fileted_prosthetic_vonmises_FEA_2.png" alt="Filleted blade Von Mises stress FEA — view 2">
+      <img src="images_blade/filleted_prosthetic_FS_FEA.png" alt="Filleted FS FEA">
       <div class="fea-card-label">
-        <span class="fea-card-name">Von Mises — Filleted (Side)</span>
-        <span class="fea-card-tag">Max 19.84 MPa</span>
-      </div>
-    </div>
-    <div class="fea-card">
-      <img src="images_blade/filleted_prosthetic_FS_FEA.png" alt="Filleted blade Factor of Safety FEA">
-      <div class="fea-card-label">
-        <span class="fea-card-name">Factor of Safety — Filleted</span>
+        <span class="fea-card-name">FS — Filleted</span>
         <span class="fea-card-tag">Min FS 1.764</span>
       </div>
     </div>
     <div class="fea-card">
-      <img src="images_blade/non-filleted_prosthetic_FS_FEA.png" alt="Non-filleted blade Factor of Safety FEA">
+      <img src="images_blade/non-filleted_prosthetic_vonmises_FEA.png" alt="Non-filleted Von Mises FEA">
       <div class="fea-card-label">
-        <span class="fea-card-name">Factor of Safety — Sharp</span>
-        <span class="fea-card-tag">Min FS 1.986</span>
+        <span class="fea-card-name">Von Mises — Sharp-Edged</span>
+        <span class="fea-card-tag">Max 17.626 MPa</span>
+      </div>
+    </div>
+    <div class="fea-card">
+      <img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="Filleted Von Mises FEA">
+      <div class="fea-card-label">
+        <span class="fea-card-name">Von Mises — Filleted</span>
+        <span class="fea-card-tag">Max 19.84 MPa</span>
       </div>
     </div>
   </div>
 
-  <div class="comparison-table reveal">
-    <img src="images_blade/FEA_results_table.png" alt="FEA results comparison table — filleted vs non-filleted">
+  <div class="fea-table reveal">
+    <img src="images_blade/FEA_results_table.png" alt="FEA results table — FS range and Von Mises stress for both designs">
   </div>
 
-  <div class="fea-results-grid reveal" style="margin-top:0;">
-    <div class="discrepancy-card">
-      <div class="disc-col">
-        <h4>Hand calcs said: FS ≥ 2 everywhere.</h4>
-        <p>The analytical model predicted all segments would meet the target factor of safety of 2 under 300 N loading, based on the optimized cross-section widths. The model assumed idealized boundary conditions and uniform cross-sections within each segment.</p>
-      </div>
-      <div class="disc-divider"></div>
-      <div class="disc-col">
-        <h4>FEA said: min FS = 1.764 at the bend.</h4>
-        <p>The FEA flagged a localized stress concentration at the inner curve of the upper bend, where the geometry transitions sharply — dropping below FS = 2. Two likely sources: the analytical model couldn't capture stress concentrations at joints, and PLA material properties show variability by print orientation. Still well below yield — the blade held 70 lbs in testing.</p>
-      </div>
+  <p class="body-text reveal" style="margin-bottom:20px;">Four types of discrepancy from the ideal constant-stress distribution were identified — each explained by a specific geometric or modeling choice:</p>
+
+  <div class="discussion-grid reveal">
+    <div class="disc-card dark">
+      <h4>Stress drops at junctions</h4>
+      <p>Near sub-member connections, contours shift from yellow to green. Extra material added for smooth lofting stiffens these regions beyond what the analytical model predicts — intentional, but it means stress there is lower than the optimization target.</p>
+    </div>
+    <div class="disc-card coral">
+      <h4>Sharp corners amplify stress</h4>
+      <p>Localized red regions at sharp edges of the non-filleted blade reflect stress concentrations that classical beam theory (σ = My/I) cannot capture. Fillets resolve this — but introduce curved-beam effects that raise the overall maximum stress to 19.84 MPa.</p>
+    </div>
+    <div class="disc-card dark">
+      <h4>Segment 3 inner-edge concentration</h4>
+      <p>A localized spike at the inner edge of segment 3 slightly exceeds 17.5 MPa. Not tied to a corner or junction — likely caused by minor bending moment redistribution as the structure deflects, which the idealized piecewise-beam model doesn't capture.</p>
+    </div>
+    <div class="disc-card coral">
+      <h4>Segments 1 &amp; 5 — intentionally over-built</h4>
+      <p>Very high FS and near-zero stress here (dark blue in FEA). Material was retained intentionally for stability at the ground-contact and socket-attachment points — structural function outweighs mass optimization at the extremes.</p>
+    </div>
+    <div class="disc-img">
+      <img src="images_blade/two_possible_sources_discrepancy_between_FEA_and_analytical.png" alt="Two possible sources of discrepancy between FEA and analytical results">
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════ 05 FABRICATION ═══════════════ -->
+<!-- 05 PROTOTYPE & TESTING -->
+<section class="section proto-section">
   <div class="section-header reveal">
     <span class="section-num">05</span>
-    <h2 class="section-title">Prototype &amp; <span class="hl">Testing</span></h2>
+    <h2 class="section-title">Prototype <span class="hl">&amp; Testing</span></h2>
   </div>
 
-  <div class="process-steps reveal">
-    <div class="process-card">
-      <div class="process-img">
-        <img src="images_blade/blades_in_process_of_3D_printing.png" alt="Blades being 3D printed on Bambu Lab">
+  <div class="proto-grid reveal">
+    <div class="proto-card">
+      <div class="proto-img">
+        <img src="images_blade/blades_in_process_of_3D_printing.png" alt="Blades 3D printing on Bambu Lab X1E">
       </div>
-      <div class="process-info">
-        <div class="process-step-label">Step 1 — Manufacturing</div>
-        <div class="process-card-title">3D Printing on Bambu Lab</div>
-        <p class="process-card-body">Both the sharp-edged and filleted blades were printed in PLA on the Bambu Lab. The filleted version required careful orientation to minimize support structures along the curved geometry.</p>
-        <div class="process-bullets">
-          <div class="process-bullet">Two versions printed: sharp-edged and filleted</div>
-          <div class="process-bullet">PLA chosen for availability and sufficient stiffness</div>
-          <div class="process-bullet">Print orientation selected to align layer lines with primary load direction</div>
+      <div class="proto-info">
+        <div class="proto-step">Fabrication — 3D Printing</div>
+        <div class="proto-title">Bambu Lab X1E</div>
+        <p class="proto-body">Both blades printed lying on one side profile so the applied load acts parallel to the layer lines — the stronger PLA orientation. 85% gyroid infill with 10 wall loops to approximate the near-solid structure assumed in FEA.</p>
+        <div class="proto-bullets">
+          <div class="proto-bullet">PLA — brittle like carbon fiber, suitable for preliminary structural testing</div>
+          <div class="proto-bullet">85% gyroid infill · 10 wall loops for near-solid internal structure</div>
+          <div class="proto-bullet">Print orientation: load direction parallel to layer lines (stronger axis)</div>
         </div>
       </div>
     </div>
-    <div class="process-card">
-      <div class="process-img">
-        <img src="images_blade/close_up_support_structures.png" alt="Support structures on the printed blade">
+    <div class="proto-card">
+      <div class="proto-img">
+        <img src="images_blade/close_up_support_structures.png" alt="Dense support structures on printed blade">
       </div>
-      <div class="process-info">
-        <div class="process-step-label">Step 2 — Post-processing</div>
-        <div class="process-card-title">Removing Support Structures</div>
-        <p class="process-card-body">Both blades required extensive support structure removal. The curved inner geometry of the filleted blade generated particularly dense supports that had to be carefully filed down.</p>
-        <div class="process-bullets">
-          <div class="process-bullet">Dense supports at the inner curve of the upper bend</div>
-          <div class="process-bullet">Filed and sanded to clean up surfaces</div>
-          <div class="process-bullet">Verified dimensional accuracy after cleanup</div>
+      <div class="proto-info">
+        <div class="proto-step">Fabrication — Post-Processing</div>
+        <div class="proto-title">Removing Support Structures</div>
+        <p class="proto-body">The continuously varying width required extensive support structures throughout printing — especially dense at the inner curve of the upper bend. Removed and filed down after printing.</p>
+        <div class="proto-bullets">
+          <div class="proto-bullet">Continuous width variation generated supports at every taper</div>
+          <div class="proto-bullet">Dense supports at inner curves — most difficult to remove</div>
+          <div class="proto-bullet">Main challenge: support removal was far more time-consuming than expected</div>
         </div>
       </div>
     </div>
-    <div class="process-card">
-      <div class="process-img">
-        <img src="images_blade/me_filing_down_support_structures.png" alt="Filing down support structures in AMPS">
+    <div class="proto-card">
+      <div class="proto-img">
+        <img src="images_blade/me_filing_down_support_structures.png" alt="Alexa filing down support residue in AMPS">
       </div>
-      <div class="process-info">
-        <div class="process-step-label">Step 3 — Finishing</div>
-        <div class="process-card-title">Manual Finishing in AMPS</div>
-        <p class="process-card-body">Hand-filing the printed blades in the AMPS makerspace. More time-consuming than expected — one of the key process learnings for this project.</p>
-        <div class="process-bullets">
-          <div class="process-bullet">Metal file used on the inner curve supports</div>
-          <div class="process-bullet">Minimizing supports in future prints would save significant time</div>
-          <div class="process-bullet">Final surfaces clean enough for load testing</div>
+      <div class="proto-info">
+        <div class="proto-step">Fabrication — Finishing</div>
+        <div class="proto-title">Manual Finishing in AMPS</div>
+        <p class="proto-body">Hand-filing support residue in the AMPS makerspace. A key lesson: design for minimal supports next time by adjusting print orientation or splitting the part strategically.</p>
+        <div class="proto-bullets">
+          <div class="proto-bullet">Metal file used on inner curve surfaces</div>
+          <div class="proto-bullet">Final surface finish adequate for structural load testing</div>
+          <div class="proto-bullet">Future: optimize orientation to reduce support volume from the start</div>
         </div>
       </div>
     </div>
-    <div class="process-card">
-      <div class="process-img">
-        <img src="images_blade/fileted_edged_blade_supporting_70lb.png" alt="Filleted blade supporting 70 lb in gym press machine">
+    <div class="proto-card">
+      <div class="proto-img">
+        <img src="images_blade/fun_picture_team_with_final_product.png" alt="Team with final blades in AMPS">
       </div>
-      <div class="process-info">
-        <div class="process-step-label">Step 4 — Load Testing</div>
-        <div class="process-card-title">70 lb Gym Press Test</div>
-        <p class="process-card-body">Both blades were tested in a gym press machine, loaded incrementally to 70 lbs. Neither blade failed. The filleted blade showed noticeably more flex — consistent with its lower stiffness from the smoother geometry.</p>
-        <div class="process-bullets">
-          <div class="process-bullet">Both sharp and filleted versions held 70 lbs without failure</div>
-          <div class="process-bullet">Visual flex observed in the filleted blade under load</div>
-          <div class="process-bullet">300 N design load exceeded — confidence in structural integrity</div>
+      <div class="proto-info">
+        <div class="proto-step">Team</div>
+        <div class="proto-title">Building Together</div>
+        <p class="proto-body">Alexa (CAD &amp; manufacturing), Ellia (analytical calculations), Martin (FEA) — with each member providing feedback across all three roles throughout. A shared parametric spreadsheet kept min/max widths per segment organized across the team.</p>
+        <div class="proto-bullets">
+          <div class="proto-bullet">FEA feedback drove the addition of the filleted version</div>
+          <div class="proto-bullet">CAD was fully parametrized — F.S., h, and widths all adjustable</div>
+          <div class="proto-bullet">Calculations person provided loading assumptions that guided FEA setup</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ 06 FINAL RESULT ═══════════════ -->
-  <div class="section-header reveal">
-    <span class="section-num">06</span>
-    <h2 class="section-title">Final <span class="hl">Product</span></h2>
-  </div>
-
-  <div class="stats-strip reveal">
-    <div class="stat-box">
-      <div class="stat-num">70lb</div>
-      <div class="stat-desc">physical load sustained without failure</div>
+  <div class="testing-detail reveal">
+    <div>
+      <p class="body-text"><strong>Testing method:</strong> both blades were positioned vertically between weight plates on a gym press machine. The flat plates, constrained to move only vertically by the machine, closely replicated the FEA loading conditions — a fixed top and a vertical upward force at the toe.</p>
+      <p class="body-text" style="margin-top:16px;">Loads of 20, 60, and <strong>70 lbs were applied to both versions</strong>. Both blades held all three loads with no plastic deformation. Before-and-after photos confirmed no yielding at each step.</p>
+      <p class="body-text" style="margin-top:16px;">The design load was 300 N ≈ 67.44 lbs. Sustaining 70 lbs — above the design load — constituted <strong>successful validation</strong>. The filleted blade showed noticeably more flex under load, consistent with its lower stiffness and lower FEA factor of safety.</p>
+      <div class="test-result-row">
+        <div class="test-badge"><span class="tb-num">70</span><span>lbs — both versions held</span></div>
+        <div class="test-badge"><span class="tb-num">0</span><span>plastic deformation</span></div>
+        <div class="test-badge"><span class="tb-num">✓</span><span>design load exceeded</span></div>
+      </div>
     </div>
-    <div class="stat-box">
-      <div class="stat-num">2</div>
-      <div class="stat-desc">versions built — sharp &amp; filleted</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">19.84</div>
-      <div class="stat-desc">MPa max Von Mises stress (well below PLA yield)</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">5</div>
-      <div class="stat-desc">segments analyzed with internal reactions</div>
+    <div class="testing-detail-img">
+      <img src="images_blade/fileted_edged_blade_supporting_70lb.png" alt="Filleted blade supporting 70 lbs in gym press machine">
     </div>
   </div>
+</section>
 
-  <div class="mosaic reveal">
-    <div class="mosaic-cell">
-      <img src="images_blade/fun_picture_team_with_final_product.png" alt="Team with final product in AMPS">
-      <div class="mosaic-caption">Team with final blades in AMPS</div>
+<!-- 06 FINAL PRODUCT -->
+<div class="final-section">
+  <div class="final-header reveal">
+    <div class="section-header" style="margin-bottom:12px;">
+      <span class="section-num" style="color:rgba(196,174,136,0.3);">06</span>
+      <h2 class="section-title">Final <span class="hl">Product</span></h2>
+    </div>
+    <p>Two 3D-printed PLA prototypes — sharp-edged and filleted — both sustaining the 300 N design load. The analytical approach worked end-to-end.</p>
+  </div>
+
+  <div class="final-mosaic reveal">
+    <div class="mosaic-cell tall">
+      <img src="images_blade/fun_picture_team_with_final_product.png" alt="Team with both final blades">
+      <div class="mosaic-cap">The team with both final blades</div>
     </div>
     <div class="mosaic-cell">
-      <img src="images_blade/final_product_1.png" alt="Final product — both blades laid out">
-      <div class="mosaic-caption">Both versions — sharp &amp; filleted</div>
+      <img src="images_blade/final_product_1.png" alt="Both blades laid out — sharp and filleted">
+      <div class="mosaic-cap">Sharp (right) · Filleted (left)</div>
     </div>
     <div class="mosaic-cell">
-      <img src="images_blade/final_product_3.png" alt="Final product — filleted blade close up">
-      <div class="mosaic-caption">Filleted blade — final version</div>
+      <img src="images_blade/final_product_3.png" alt="Filleted blade close-up held in hand">
+      <div class="mosaic-cap">Filleted blade — final version</div>
     </div>
     <div class="mosaic-cell">
-      <img src="images_blade/team_testing_product_in_gym.png" alt="Team testing blades in gym">
-      <div class="mosaic-caption">Load testing — gym press machine</div>
+      <img src="images_blade/team_testing_product_in_gym.png" alt="Team testing blades at the gym">
+      <div class="mosaic-cap">Gym press machine load test</div>
     </div>
     <div class="mosaic-cell">
-      <img src="images_blade/sharp-edged_blade_supporting_70lb.png" alt="Sharp-edged blade supporting 70 lbs">
-      <div class="mosaic-caption">Sharp blade holding 70 lbs</div>
+      <img src="images_blade/sharp-edged_blade_supporting_70lb.png" alt="Sharp blade under 70 lb load">
+      <div class="mosaic-cap">Sharp blade holding 70 lbs</div>
     </div>
   </div>
 
-  <!-- ═══════════════ 07 KEY LEARNINGS ═══════════════ -->
+  <div class="final-next reveal">
+    <div>
+      <div class="next-label">Potential next steps</div>
+      <div class="next-title">Where this <span>goes next</span></div>
+      <div class="next-items">
+        <div class="next-item">
+          <span class="ni-num">1</span>
+          <span class="ni-text"><strong>Carbon fiber fabrication.</strong> PLA was a reasonable prototype but carbon fiber is what running blades are actually made from — and evaluating its energy return is the most important next step.</span>
+        </div>
+        <div class="next-item">
+          <span class="ni-num">2</span>
+          <span class="ni-text"><strong>Custom socket design.</strong> A limb cup interface sized to an actual dog's residual limb is the critical step before real-world use.</span>
+        </div>
+        <div class="next-item">
+          <span class="ni-num">3</span>
+          <span class="ni-text"><strong>Stiffness as a constraint.</strong> Adding stiffness constraints to the mass optimization would give more control over energy return and the dog's gait experience.</span>
+        </div>
+        <div class="next-item">
+          <span class="ni-num">4</span>
+          <span class="ni-text"><strong>Test it on a dog.</strong> The ultimate goal.</span>
+        </div>
+      </div>
+    </div>
+    <div class="next-cad-img">
+      <img src="images_blade/ideation_of_leg_implementation_CAD.png" alt="CAD of leg implementation with socket">
+    </div>
+  </div>
+</div>
+
+<!-- 07 CONCLUSION -->
+<section class="section conclusion-section">
   <div class="section-header reveal">
     <span class="section-num">07</span>
     <h2 class="section-title"><span class="hl">Conclusion</span></h2>
   </div>
 
-</div><!-- end page-body -->
+  <div class="conclusion-grid reveal">
+    <div class="concl-card">
+      <h4>The approach worked.</h4>
+      <p>Both designs matched analytical predictions closely. The sharp-edged blade achieved FS 1.986 and max stress 17.626 MPa — nearly exactly the target FS 2 and 17.5 MPa. Both held 70 lbs in physical testing with no plastic deformation. The mass optimization approach was validated end-to-end: hand calculations → FEA → physical test, each confirming the last.</p>
+    </div>
+    <div class="concl-card">
+      <h4>Where it could be improved.</h4>
+      <p>Mass optimization wasn't perfect at the junctions — stress dropped below the target constant value where extra material was added for smooth lofting. Future iterations should explore CAD approaches that more closely preserve the analytically derived linearly varying b(x) functions, or refine the analytical model by relaxing the rigid-junction assumption used in the piecewise beam idealization.</p>
+    </div>
+    <div class="concl-card">
+      <h4>What this project taught.</h4>
+      <p>Theory, simulation, and physical testing tell different parts of the same story. The analytical model set the dimensions. FEA caught what beam theory missed — stress concentrations, curved-beam effects, load redistribution at joints. Physical testing proved the structure works. All three are necessary, in that order. And the goal — a real blade, for a real dog — is still worth building toward.</p>
+    </div>
+  </div>
+</section>
 
-<div class="reflection-grid reveal">
-  <div class="reflection-card">
-    <h4>FEA catches what hand calcs miss.</h4>
-    <p>Our analytical model assumed uniform cross-sections and idealized joints — which couldn't capture the stress concentration at the inner curve of the upper bend. FEA found a localized region where FS dropped below 2, even though the rest of the blade was fine. The two methods complement each other: hand calcs give intuition and drive design decisions, FEA validates and finds the surprises.</p>
-  </div>
-  <div class="reflection-card">
-    <h4>Print orientation matters more than you think.</h4>
-    <p>PLA's material properties vary significantly with print orientation — our calculations used bulk properties, but the actual blade may have been weaker in certain directions due to layer adhesion. This is one of the likely sources of the FEA-vs-analytical discrepancy. Next time: simulate with anisotropic material properties aligned to the print direction.</p>
-  </div>
-  <div class="reflection-card">
-    <h4>Next Steps</h4>
-    <p>The most important next step is material: PLA is not suitable for a real prosthetic. Carbon fiber or nylon would dramatically improve the strength-to-weight ratio and fatigue resistance. Geometrically, the socket attachment needs proper design — our idealized fixed boundary is far from a real socket. And ideally, this would be sized to an actual dog's leg measurements.</p>
-  </div>
-</div>
-
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <div class="footer-banner">
   <div>
     <h2>Alexa <span>Cavazos</span></h2>
     <p style="color: var(--sand); font-size: 13px; margin-top: 8px;">Stanford University · Mechanical Engineering</p>
   </div>
   <div class="footer-meta">
-    <p>ME80: Mechanics of Materials</p>
-    <p>Winter 2026 · Dog Prosthetic Running Blade</p>
-    <p style="color: var(--teal); margin-top: 8px;">with Maddie Garber &amp; Shoshana Kessler</p>
+    <p>ME80: Mechanics of Materials · Winter 2026</p>
+    <p>Dog Prosthetic Running Blade</p>
+    <p style="color: var(--teal); margin-top: 8px;">with Ellia Cavanaugh &amp; Martin Amaya</p>
   </div>
 </div>
 
@@ -1276,16 +1252,15 @@
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        setTimeout(() => entry.target.classList.add('visible'), i * 50);
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.07 });
   reveals.forEach(el => obs.observe(el));
 
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('click', () => {
       if (img.id === 'lightbox-img') return;
@@ -1295,12 +1270,7 @@
       document.body.style.overflow = 'hidden';
     });
   });
-
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
+  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
