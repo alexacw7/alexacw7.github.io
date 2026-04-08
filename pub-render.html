@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacLaren's Pub — CS148 — Alexa Cavazos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #F0EAD6;
+    --dark:      #1A1612;
+    --coral:     #E04E2A;
+    --teal:      #2A9BAA;
+    --olive:     #6B7A1E;
+    --gold:      #D4980A;
+    --sand:      #C4AE88;
+    --off-white: #F7F2E8;
+    --mid:       #6B5040;
+    --purple:    #6B5BAF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    border: 6px solid var(--coral);
+  }
+
+  img { cursor: zoom-in; }
+
+  /* ── BACK LINK ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--sand);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(240,234,214,0.08);
+    width: 100%;
+    transition: color 0.2s;
+    background: var(--dark);
+  }
+  .back-link:hover { color: var(--coral); }
+  .back-link::before { content: '←'; font-size: 14px; }
+
+  /* ── HERO — full render ── */
+  .hero {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(240,234,214,0.06);
+  }
+
+  .hero img {
+    width: 100%;
+    display: block;
+    max-height: 85vh;
+    object-fit: cover;
+    object-position: center;
+    cursor: default;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(26,22,18,0.92) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-text {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 48px 64px 52px;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 14px;
+    opacity: 0.7;
+  }
+
+  .hero-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(40px, 6vw, 84px);
+    line-height: 0.9;
+    color: var(--cream);
+  }
+  .hero-title .accent { color: var(--coral); display: block; }
+
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(240,234,214,0.6);
+    max-width: 560px;
+    border-left: 3px solid rgba(107,91,175,0.7);
+    padding-left: 16px;
+  }
+
+  .hero-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+
+  .htag {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 11px;
+    border-radius: 100px;
+    border: 1px solid rgba(240,234,214,0.15);
+    color: rgba(240,234,214,0.5);
+  }
+  .htag.coral  { background: var(--coral);  border-color: var(--coral);  color: var(--cream); }
+  .htag.purple { background: var(--purple); border-color: var(--purple); color: var(--cream); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    border-top: 3px solid rgba(240,234,214,0.06);
+    border-bottom: 3px solid rgba(240,234,214,0.06);
+    background: var(--coral);
+    padding: 10px 0;
+    overflow: hidden;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 44px;
+    white-space: nowrap;
+    animation: tick 22s linear infinite;
+    font-family: 'Chango', system-ui;
+    font-size: 15px;
+    color: var(--cream);
+  }
+  .ticker-inner .dot { color: rgba(255,255,255,0.38); }
+  @keyframes tick {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── BODY ── */
+  .page-body {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding-top: 80px;
+    margin-bottom: 44px;
+  }
+
+  .section-num {
+    font-family: 'Chango', system-ui;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--sand);
+    opacity: 0.15;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1;
+    color: var(--cream);
+  }
+  .section-title .hl { color: var(--coral); }
+  .section-title .purple { color: #9B8FD4; }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(240,234,214,0.62);
+    max-width: 700px;
+  }
+  .body-text strong { color: var(--cream); font-weight: 500; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── 01 ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .tech-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tech-card {
+    background: rgba(240,234,214,0.04);
+    border: 1px solid rgba(240,234,214,0.07);
+    padding: 20px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .tech-card:first-child { border-radius: 14px 14px 0 0; }
+  .tech-card:last-child  { border-radius: 0 0 14px 14px; }
+
+  .tc-icon {
+    font-family: 'Chango', system-ui;
+    font-size: 24px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .tech-card:nth-child(1) .tc-icon { color: #9B8FD4; }
+  .tech-card:nth-child(2) .tc-icon { color: var(--coral); }
+  .tech-card:nth-child(3) .tc-icon { color: var(--gold); }
+  .tech-card:nth-child(4) .tc-icon { color: var(--teal); }
+
+  .tc-label {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 3px;
+  }
+  .tc-body { font-size: 12.5px; line-height: 1.6; color: rgba(240,234,214,0.55); }
+
+  /* ── 02 LIGHTING ── */
+  .lighting-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .light-card {
+    background: rgba(240,234,214,0.03);
+    border: 1px solid rgba(240,234,214,0.07);
+    border-radius: 16px;
+    padding: 28px 26px;
+  }
+  .light-card:first-child {
+    grid-column: span 2;
+    background: rgba(107,91,175,0.12);
+    border-color: rgba(107,91,175,0.25);
+  }
+
+  .light-card h4 {
+    font-family: 'Chango', system-ui;
+    font-size: 17px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .light-card:nth-child(1) h4 { color: #9B8FD4; }
+  .light-card:nth-child(2) h4 { color: var(--coral); }
+  .light-card:nth-child(3) h4 { color: var(--gold); }
+  .light-card:nth-child(4) h4 { color: var(--teal); }
+
+  .light-card p { font-size: 13px; line-height: 1.75; color: rgba(240,234,214,0.6); }
+
+  /* ── 03 MY WORK ── */
+  .mywork-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .mw-card {
+    background: rgba(240,234,214,0.03);
+    border: 1px solid rgba(240,234,214,0.07);
+    border-radius: 16px;
+    padding: 26px 24px;
+    border-left: 3px solid var(--coral);
+  }
+
+  .mw-card h4 {
+    font-family: 'Chango', system-ui;
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .mw-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mw-card li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(240,234,214,0.6);
+    display: flex;
+    gap: 8px;
+  }
+
+  .mw-card li::before {
+    content: '→';
+    color: var(--coral);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── FULL RENDER DETAIL ── */
+  .render-detail {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(240,234,214,0.08);
+    margin-top: 8px;
+  }
+  .render-detail img { width: 100%; display: block; cursor: default; }
+
+  .render-caption {
+    padding: 14px 20px;
+    background: rgba(240,234,214,0.03);
+    border-top: 1px solid rgba(240,234,214,0.06);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,234,214,0.35);
+  }
+
+  /* ── FOOTER ── */
+  .footer-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .footer-banner {
+    background: rgba(240,234,214,0.03);
+    border: 1px solid rgba(240,234,214,0.07);
+    border-radius: 20px;
+    padding: 44px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-banner h2 {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(28px, 3.5vw, 48px);
+    color: var(--cream);
+    line-height: 1;
+  }
+  .footer-banner h2 span { color: var(--coral); }
+
+  .footer-meta { text-align: right; }
+  .footer-meta p { font-size: 13px; color: var(--sand); opacity: 0.6; line-height: 1.8; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 90vw; max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    cursor: default;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px; right: 28px;
+    color: white; font-size: 32px;
+    cursor: pointer; line-height: 1;
+    opacity: 0.6; transition: opacity 0.2s;
+    background: none; border: none;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid, .lighting-grid, .mywork-grid { grid-template-columns: 1fr; }
+    .light-card:first-child { grid-column: span 1; }
+    .page-body { padding: 0 28px; }
+    .hero-text { padding: 32px 28px 40px; }
+    .footer-banner { flex-direction: column; padding: 32px 28px; }
+    .footer-meta { text-align: left; }
+    .footer-section { padding: 60px 28px; }
+  }
+  @media (max-width: 640px) {
+    body { border-width: 4px; }
+    .back-link { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">Back to portfolio</a>
+
+<!-- ═══ HERO — the render fills the screen ═══ -->
+<div class="hero">
+  <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub — CS148 final render in Blender Cycles" style="cursor:default;">
+  <div class="hero-overlay"></div>
+  <div class="hero-text">
+    <p class="hero-eyebrow">CS148 · Introduction to Computer Graphics · Spring 2026</p>
+    <h1 class="hero-title">
+      MacLaren's Pub
+      <span class="accent">CS148 Render</span>
+    </h1>
+    <p class="hero-sub">
+      A photorealistic Blender Cycles recreation of MacLaren's Pub — featuring ray-traced global illumination, neon color bleeding, physically based materials, UV-mapped textures, and depth of field.
+    </p>
+    <div class="hero-tags">
+      <span class="htag coral">Blender Cycles</span>
+      <span class="htag purple">Ray Tracing</span>
+      <span class="htag">Global Illumination</span>
+      <span class="htag">UV Unwrapping</span>
+      <span class="htag">PBR Materials</span>
+      <span class="htag">Depth of Field</span>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Blender Cycles</span><span class="dot">✦</span>
+    <span>Ray Tracing</span><span class="dot">✦</span>
+    <span>Global Illumination</span><span class="dot">✦</span>
+    <span>Color Bleeding</span><span class="dot">✦</span>
+    <span>UV Mapping</span><span class="dot">✦</span>
+    <span>PBR Materials</span><span class="dot">✦</span>
+    <span>Depth of Field</span><span class="dot">✦</span>
+    <span>MacLaren's Pub</span><span class="dot">✦</span>
+    <span>Blender Cycles</span><span class="dot">✦</span>
+    <span>Ray Tracing</span><span class="dot">✦</span>
+    <span>Global Illumination</span><span class="dot">✦</span>
+    <span>Color Bleeding</span><span class="dot">✦</span>
+    <span>UV Mapping</span><span class="dot">✦</span>
+    <span>PBR Materials</span><span class="dot">✦</span>
+    <span>Depth of Field</span><span class="dot">✦</span>
+    <span>MacLaren's Pub</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- ═══ 01 THE PROJECT ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">The <span class="hl">Project</span></h2>
+  </div>
+
+  <div class="about-grid reveal">
+    <div>
+      <p class="body-text">For CS148's final project, the goal was to create a photorealistic scene in Blender using Cycles ray-tracing — demonstrating soft shadows, indirect illumination, physically based reflections, and realistic material behavior.</p>
+      <p class="body-text" style="margin-top:16px;">We recreated <strong>MacLaren's Pub</strong> from How I Met Your Mother: the booths, the bar, the neon signs, the frosty windows — and replaced the original pub sign with a glowing "CS148" neon light that became the scene's primary light source. The neon sign's purple glow bleeds onto surrounding surfaces, the glossy tabletops reflect it accurately, and depth of field pulls focus to the foreground seating area.</p>
+      <p class="body-text" style="margin-top:16px;">A significant portion of the scene's geometry was modeled from scratch in Blender, with the rest carefully imported and re-textured with custom materials and shaders.</p>
+    </div>
+    <div>
+      <div class="tech-cards">
+        <div class="tech-card">
+          <div class="tc-icon">☽</div>
+          <div>
+            <div class="tc-label">Renderer</div>
+            <div class="tc-body">Blender Cycles — path-traced ray tracing with full global illumination, soft shadows, and indirect light bounces.</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tc-icon">◈</div>
+          <div>
+            <div class="tc-label">Lighting</div>
+            <div class="tc-body">Emissive ceiling lights, neon sign emission, area light behind the hallway wall, custom transmissive lamp shade shader.</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tc-icon">◆</div>
+          <div>
+            <div class="tc-label">Materials</div>
+            <div class="tc-body">PBR glass, glossy tabletops, imported leather, procedural wood and brick, custom node-based shaders throughout.</div>
+          </div>
+        </div>
+        <div class="tech-card">
+          <div class="tc-icon">◎</div>
+          <div>
+            <div class="tc-label">Camera</div>
+            <div class="tc-body">Depth of field focused on the foreground booth — blurring the back counter and beer bottles to give the scene a photographic feel.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 02 LIGHTING & RENDERING ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Lighting &amp; <span class="purple">Ray Tracing</span></h2>
+  </div>
+
+  <div class="lighting-grid reveal">
+    <div class="light-card">
+      <h4>Neon sign as the primary light source</h4>
+      <p>The "CS148" neon sign uses an emissive material and acts as the scene's dominant direct light — producing a strong purple global illumination effect that bleeds visibly onto nearby walls, booths, and barstools. This was the key demonstration of Cycles' color bleeding and indirect illumination capabilities. The blue neon signs on the window side create a secondary cool light that competes with the purple, giving the scene its moody color contrast.</p>
+    </div>
+    <div class="light-card">
+      <h4>Soft shadows &amp; indirect light</h4>
+      <p>Ceiling lamps emit light as area sources — producing natural, soft-edged shadows rather than the harsh shadows of point lights. Every surface in the scene receives indirect illumination from multiple bounces, giving the bar its realistic ambient quality.</p>
+    </div>
+    <div class="light-card">
+      <h4>Reflections &amp; glass</h4>
+      <p>Glossy tabletops carry physically accurate reflections of the objects on them and soft streaks of neon light. Glassware uses a shader for accurate transmission and reflection. The frosty windows let backlight through while maintaining a frosted, textured look.</p>
+    </div>
+    <div class="light-card">
+      <h4>Hallway depth &amp; transmissive lamp</h4>
+      <p>An area light behind the hallway wall simulates the brighter alley entrance and separates the two rooms visually. The wall lamp uses a custom transmissive shader — light passes through from inside, giving it that fabric-shade quality instead of looking like a solid emitter.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 03 MY CONTRIBUTIONS ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">My <span class="hl">Work</span></h2>
+  </div>
+
+  <div class="mywork-grid reveal">
+    <div class="mw-card">
+      <h4>Modeled from scratch</h4>
+      <ul>
+        <li>All chairs — modeled and textured with Blender node-based materials</li>
+        <li>All tables — glossy tabletop shaders with physically accurate reflections</li>
+        <li>Bar stools — geometry and materials</li>
+        <li>Short cup on the table</li>
+        <li>Neon signs — "CS148" and the window neon, both with emissive materials and lighting setup</li>
+      </ul>
+    </div>
+    <div class="mw-card">
+      <h4>Texturing &amp; UV work</h4>
+      <ul>
+        <li>White brick hallway wall — UV-unwrapped and textured using a hand-built procedural brick shader from node work and tutorials</li>
+        <li>Mapped the brick texture geometry to the hallway accurately</li>
+        <li>Neon sign material setup — emission strength, color, interaction with environment</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ FULL RENDER ═══ -->
+  <div class="section-header reveal" style="padding-top: 64px;">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Final <span class="hl">Render</span></h2>
+  </div>
+
+  <div class="render-detail reveal">
+    <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub — full final render" style="cursor:zoom-in;">
+    <div class="render-caption">Final Blender Cycles render — MacLaren's Pub recreation · CS148 · Spring 2026</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-section">
+    <div class="footer-banner reveal">
+      <div>
+        <h2>Alexa <span>Cavazos</span></h2>
+        <p style="color: var(--sand); font-size: 13px; margin-top: 8px; opacity: 0.6;">Stanford University · Mechanical Engineering</p>
+      </div>
+      <div class="footer-meta">
+        <p>CS148: Introduction to Computer Graphics</p>
+        <p>Spring 2026 · Final Render Project</p>
+        <p style="color: #9B8FD4; margin-top: 8px; opacity: 1;">Blender Cycles · Ray Tracing · PBR</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end page-body -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 50);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+  reveals.forEach(el => obs.observe(el));
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('img[style*="zoom-in"]').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
