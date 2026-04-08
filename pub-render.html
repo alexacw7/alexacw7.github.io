@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MacLaren's Pub — CS148 — Alexa Cavazos</title>
+<title>MacLaren's Pub · CS148 · Alexa Cavazos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
@@ -431,7 +431,7 @@
 
 <!-- ═══ HERO — the render fills the screen ═══ -->
 <div class="hero">
-  <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub — CS148 final render in Blender Cycles" style="cursor:default;">
+  <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub CS148 final render in Blender Cycles" style="cursor:default;">
   <div class="hero-overlay"></div>
   <div class="hero-text">
     <p class="hero-eyebrow">CS148 · Introduction to Computer Graphics · Spring 2026</p>
@@ -440,7 +440,7 @@
       <span class="accent">CS148 Render</span>
     </h1>
     <p class="hero-sub">
-      A photorealistic Blender Cycles recreation of MacLaren's Pub — featuring ray-traced global illumination, neon color bleeding, physically based materials, UV-mapped textures, and depth of field.
+      A photorealistic Blender Cycles recreation of MacLaren's Pub, featuring ray-traced global illumination, neon color bleeding, physically based materials, UV-mapped textures, and depth of field.
     </p>
     <div class="hero-tags">
       <span class="htag coral">Blender Cycles</span>
@@ -485,8 +485,8 @@
 
   <div class="about-grid reveal">
     <div>
-      <p class="body-text">For CS148's final project, the goal was to create a photorealistic scene in Blender using Cycles ray-tracing — demonstrating soft shadows, indirect illumination, physically based reflections, and realistic material behavior.</p>
-      <p class="body-text" style="margin-top:16px;">We recreated <strong>MacLaren's Pub</strong> from How I Met Your Mother: the booths, the bar, the neon signs, the frosty windows — and replaced the original pub sign with a glowing "CS148" neon light that became the scene's primary light source. The neon sign's purple glow bleeds onto surrounding surfaces, the glossy tabletops reflect it accurately, and depth of field pulls focus to the foreground seating area.</p>
+      <p class="body-text">For CS148's final project, the goal was to create a photorealistic scene in Blender using Cycles ray-tracing, demonstrating soft shadows, indirect illumination, physically based reflections, and realistic material behavior.</p>
+      <p class="body-text" style="margin-top:16px;">The scene is a recreation of <strong>MacLaren's Pub</strong> from How I Met Your Mother: the booths, the bar, the neon signs, the frosty windows, with the original pub sign replaced by a glowing "CS148" neon light that became the scene's primary light source. The neon sign's purple glow bleeds onto surrounding surfaces, the glossy tabletops reflect it accurately, and depth of field pulls focus to the foreground seating area.</p>
       <p class="body-text" style="margin-top:16px;">A significant portion of the scene's geometry was modeled from scratch in Blender, with the rest carefully imported and re-textured with custom materials and shaders.</p>
     </div>
     <div>
@@ -495,7 +495,7 @@
           <div class="tc-icon">☽</div>
           <div>
             <div class="tc-label">Renderer</div>
-            <div class="tc-body">Blender Cycles — path-traced ray tracing with full global illumination, soft shadows, and indirect light bounces.</div>
+            <div class="tc-body">Blender Cycles: path-traced ray tracing with full global illumination, soft shadows, and indirect light bounces.</div>
           </div>
         </div>
         <div class="tech-card">
@@ -516,7 +516,7 @@
           <div class="tc-icon">◎</div>
           <div>
             <div class="tc-label">Camera</div>
-            <div class="tc-body">Depth of field focused on the foreground booth — blurring the back counter and beer bottles to give the scene a photographic feel.</div>
+            <div class="tc-body">Depth of field focused on the foreground booth, blurring the back counter and beer bottles to give the scene a photographic feel.</div>
           </div>
         </div>
       </div>
@@ -532,11 +532,11 @@
   <div class="lighting-grid reveal">
     <div class="light-card">
       <h4>Neon sign as the primary light source</h4>
-      <p>The "CS148" neon sign uses an emissive material and acts as the scene's dominant direct light — producing a strong purple global illumination effect that bleeds visibly onto nearby walls, booths, and barstools. This was the key demonstration of Cycles' color bleeding and indirect illumination capabilities. The blue neon signs on the window side create a secondary cool light that competes with the purple, giving the scene its moody color contrast.</p>
+      <p>The "CS148" neon sign uses an emissive material and acts as the scene's dominant direct light, producing a strong purple global illumination effect that bleeds visibly onto nearby walls, booths, and barstools. This was the key demonstration of Cycles' color bleeding and indirect illumination capabilities. The blue neon signs on the window side create a secondary cool light that competes with the purple, giving the scene its moody color contrast.</p>
     </div>
     <div class="light-card">
       <h4>Soft shadows &amp; indirect light</h4>
-      <p>Ceiling lamps emit light as area sources — producing natural, soft-edged shadows rather than the harsh shadows of point lights. Every surface in the scene receives indirect illumination from multiple bounces, giving the bar its realistic ambient quality.</p>
+      <p>Ceiling lamps emit light as area sources, producing natural, soft-edged shadows rather than the harsh shadows of point lights. Every surface in the scene receives indirect illumination from multiple bounces, giving the bar its realistic ambient quality.</p>
     </div>
     <div class="light-card">
       <h4>Reflections &amp; glass</h4>
@@ -544,7 +544,7 @@
     </div>
     <div class="light-card">
       <h4>Hallway depth &amp; transmissive lamp</h4>
-      <p>An area light behind the hallway wall simulates the brighter alley entrance and separates the two rooms visually. The wall lamp uses a custom transmissive shader — light passes through from inside, giving it that fabric-shade quality instead of looking like a solid emitter.</p>
+      <p>An area light behind the hallway wall simulates the brighter alley entrance and separates the two rooms visually. The wall lamp uses a custom transmissive shader where light passes through from inside, giving it that fabric-shade quality instead of looking like a solid emitter.</p>
     </div>
   </div>
 
@@ -558,19 +558,19 @@
     <div class="mw-card">
       <h4>Modeled from scratch</h4>
       <ul>
-        <li>All chairs — modeled and textured with Blender node-based materials</li>
-        <li>All tables — glossy tabletop shaders with physically accurate reflections</li>
-        <li>Bar stools — geometry and materials</li>
+        <li>All chairs, modeled and textured with Blender node-based materials</li>
+        <li>All tables, glossy tabletop shaders with physically accurate reflections</li>
+        <li>Bar stools, geometry and materials</li>
         <li>Short cup on the table</li>
-        <li>Neon signs — "CS148" and the window neon, both with emissive materials and lighting setup</li>
+        <li>Neon signs: "CS148" and the window neon, both with emissive materials and lighting setup</li>
       </ul>
     </div>
     <div class="mw-card">
       <h4>Texturing &amp; UV work</h4>
       <ul>
-        <li>White brick hallway wall — UV-unwrapped and textured using a hand-built procedural brick shader from node work and tutorials</li>
+        <li>White brick hallway wall: UV-unwrapped and textured using a hand-built procedural brick shader from node work and tutorials</li>
         <li>Mapped the brick texture geometry to the hallway accurately</li>
-        <li>Neon sign material setup — emission strength, color, interaction with environment</li>
+        <li>Neon sign material setup: emission strength, color, interaction with environment</li>
       </ul>
     </div>
   </div>
@@ -582,8 +582,8 @@
   </div>
 
   <div class="render-detail reveal">
-    <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub — full final render" style="cursor:zoom-in;">
-    <div class="render-caption">Final Blender Cycles render — MacLaren's Pub recreation · CS148 · Spring 2026</div>
+    <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub full final render" style="cursor:zoom-in;">
+    <div class="render-caption">Final Blender Cycles render · MacLaren's Pub recreation · CS148 · Spring 2026</div>
   </div>
 
   <!-- FOOTER -->
