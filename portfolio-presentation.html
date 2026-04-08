@@ -21,7 +21,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   @page { size: landscape; margin: 0; }
 
   body {
@@ -52,9 +51,9 @@
 
   .slide-num {
     position: absolute;
-    top: 36px; right: 52px;
+    top: 28px; right: 40px;
     font-family: 'Chango', system-ui;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--sand);
     opacity: 0.5;
   }
@@ -66,7 +65,7 @@
     background: var(--coral);
   }
 
-  /* TITLE */
+  /* ── TITLE ── */
   .slide-title {
     background: var(--dark);
     padding: 56px 68px;
@@ -84,11 +83,12 @@
   .slide-title .subtitle {
     font-size: 15px;
     color: var(--sand);
-    margin-top: 20px;
-    letter-spacing: 0.06em;
+    margin-top: 16px;
+    letter-spacing: 0.04em;
   }
+  .slide-title .subtitle + .subtitle { margin-top: 6px; }
   .slide-title .details {
-    margin-top: 36px;
+    margin-top: 32px;
     display: flex;
     gap: 28px;
   }
@@ -108,16 +108,23 @@
     font-size: 13px;
   }
 
-  /* PROJECT SLIDE */
+  /* ── PROJECT SLIDE: top text bar + bottom collage ── */
   .slide-project {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    padding: 40px 48px;
-    gap: 36px;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 40px 0;
   }
 
-  .project-text { display: flex; flex-direction: column; justify-content: center; }
+  .proj-header {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  .proj-header-left { flex: 1; min-width: 0; }
+  .proj-header-right { flex: 1; min-width: 0; }
 
   .project-course {
     font-size: 9px;
@@ -125,67 +132,69 @@
     text-transform: uppercase;
     font-weight: 500;
     color: var(--coral);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .project-name {
     font-family: 'Chango', system-ui;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1;
     color: var(--dark);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .project-name .hl { color: var(--coral); }
 
   .project-desc {
-    font-size: 12px;
-    line-height: 1.7;
+    font-size: 11px;
+    line-height: 1.65;
     color: var(--mid);
-    margin-bottom: 12px;
   }
 
   .project-challenge {
-    font-size: 11px;
-    line-height: 1.65;
+    font-size: 10.5px;
+    line-height: 1.6;
     color: var(--dark);
     background: rgba(42,37,34,0.05);
     border-left: 3px solid var(--coral);
-    padding: 8px 12px;
-    margin-bottom: 12px;
-    border-radius: 0 8px 8px 0;
+    padding: 7px 11px;
+    border-radius: 0 6px 6px 0;
   }
   .project-challenge strong { font-weight: 500; }
 
-  .project-stats {
+  .proj-meta {
     display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
   }
+
   .pstat {
     background: var(--dark);
-    border-radius: 10px;
-    padding: 8px 12px;
+    border-radius: 8px;
+    padding: 6px 10px;
+    display: inline-flex;
+    flex-direction: column;
   }
   .pstat-num {
     font-family: 'Chango', system-ui;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1;
     color: var(--coral);
   }
   .pstat-label {
-    font-size: 8px;
-    letter-spacing: 0.1em;
+    font-size: 7px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--sand);
     margin-top: 2px;
   }
 
-  .project-tags { display: flex; gap: 4px; flex-wrap: wrap; }
   .ptag {
-    font-size: 8px;
+    font-size: 7px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 3px 9px;
+    padding: 2px 8px;
     border-radius: 100px;
     border: 1px solid rgba(42,37,34,0.18);
     color: var(--mid);
@@ -194,57 +203,73 @@
   .ptag.teal  { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
 
   .project-team {
-    margin-top: 10px;
-    font-size: 10px;
+    margin-top: 6px;
+    font-size: 9px;
     color: var(--sand);
   }
   .project-team span { color: var(--dark); font-weight: 500; }
 
-  /* IMAGE GRID */
-  .img-grid {
-    display: grid;
+  /* ── COLLAGE ── */
+  .collage {
+    flex: 1;
+    display: flex;
     gap: 6px;
-    height: 100%;
-    max-height: calc(100vh - 80px);
+    min-height: 0;
+    padding-bottom: 10px;
   }
-  .img-grid.g-top-bottom {
-    grid-template-rows: 1.3fr 1fr;
-  }
-  .img-grid .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+  .collage-col {
+    display: flex;
+    flex-direction: column;
     gap: 6px;
+    flex: 1;
+    min-height: 0;
   }
-  .img-grid .row-3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 6px;
-  }
-  .pimg {
+
+  .collage-col.wide { flex: 1.5; }
+  .collage-col.narrow { flex: 0.8; }
+
+  .cimg {
     border-radius: 10px;
     overflow: hidden;
+    background: var(--off-white);
     border: 1px solid rgba(42,37,34,0.1);
     position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .pimg img {
+
+  .cimg.tall { flex: 1.6; }
+  .cimg.short { flex: 0.7; }
+
+  .cimg img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    object-fit: contain;
     display: block;
+    padding: 2px;
   }
-  .pimg-label {
+
+  .cimg.cover img {
+    object-fit: cover;
+    padding: 0;
+  }
+
+  .cimg-label {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 5px 8px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    padding: 4px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.55));
     font-size: 7px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: rgba(240,234,214,0.85);
   }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   .slide-contact {
     background: var(--dark);
     display: flex;
@@ -313,33 +338,39 @@
 <!-- ════════ SLIDE 2: CLOCK CONTAINER ════════ -->
 <div class="slide slide-project">
   <div class="slide-num">01 · Clock Container</div>
-  <div class="project-text">
-    <div class="project-course">ME102 · Product Realization · Winter 2025</div>
-    <div class="project-name">Clock <span class="hl">Container</span></div>
-    <p class="project-desc">A laser-cut birch plywood clock-shaped container assembled entirely through friction-fit interlocking joints. No adhesives, no fasteners. Designed to hold my daily bracelets.</p>
-    <div class="project-challenge">
-      <strong>Biggest takeaway:</strong> Curved interlocking joints are far more sensitive to kerf variation than straight ones. A 0.0005" change in kerf was the difference between too loose and too tight. Iterative scrap testing was essential, not optional. The cardboard mock-up also revealed a fundamental flaw in my sliding door concept before any plywood was cut, saving material and time. Physical prototypes expose constraints that sketches and CAD cannot.
+  <div class="proj-header">
+    <div class="proj-header-left">
+      <div class="project-course">ME102 · Product Realization · Winter 2025</div>
+      <div class="project-name">Clock <span class="hl">Container</span></div>
+      <p class="project-desc">A laser-cut birch plywood clock-shaped container assembled entirely through friction-fit interlocking joints. No adhesives, no fasteners. Designed to hold my daily bracelets.</p>
+      <div class="proj-meta">
+        <div class="pstat"><div class="pstat-num">±.001"</div><div class="pstat-label">Tolerance</div></div>
+        <div class="pstat"><div class="pstat-num">0</div><div class="pstat-label">Adhesives</div></div>
+        <div class="pstat"><div class="pstat-num">6"</div><div class="pstat-label">Max size</div></div>
+        <span class="ptag coral">Laser Cutting</span>
+        <span class="ptag">CAD</span>
+        <span class="ptag">Kerf Bending</span>
+        <span class="ptag">DFM</span>
+      </div>
+      <div class="project-team">Solo project</div>
     </div>
-    <div class="project-stats">
-      <div class="pstat"><div class="pstat-num">±.001"</div><div class="pstat-label">Tolerance</div></div>
-      <div class="pstat"><div class="pstat-num">0</div><div class="pstat-label">Adhesives</div></div>
-      <div class="pstat"><div class="pstat-num">6"</div><div class="pstat-label">Max size</div></div>
+    <div class="proj-header-right">
+      <div class="project-challenge">
+        <strong>Biggest takeaway:</strong> Curved interlocking joints are far more sensitive to kerf variation than straight ones. A 0.0005" change in kerf was the difference between too loose and too tight. Iterative scrap testing was essential, not optional. The cardboard mock-up also revealed a fundamental flaw in my sliding door concept before any plywood was cut, saving material and time. Physical prototypes expose constraints that sketches and CAD cannot.
+      </div>
     </div>
-    <div class="project-tags">
-      <span class="ptag coral">Laser Cutting</span>
-      <span class="ptag">CAD</span>
-      <span class="ptag">Tolerance Analysis</span>
-      <span class="ptag">Kerf Bending</span>
-      <span class="ptag">DFM</span>
-    </div>
-    <div class="project-team">Solo project</div>
   </div>
-  <div class="img-grid g-top-bottom">
-    <div class="pimg"><img src="images/hero.jpeg" alt="Clock Container"><div class="pimg-label">Final product</div></div>
-    <div class="row-3">
-      <div class="pimg"><img src="images/interlock.jpg" alt="Interlocking joints"><div class="pimg-label">Friction-fit joints</div></div>
-      <div class="pimg"><img src="images/cad-overall.png" alt="CAD model"><div class="pimg-label">CAD model</div></div>
-      <div class="pimg"><img src="images/drawing.png" alt="Engineering drawing"><div class="pimg-label">Engineering drawing</div></div>
+  <div class="collage">
+    <div class="collage-col wide">
+      <div class="cimg cover tall"><img src="images/hero.jpeg" alt="Clock Container"><div class="cimg-label">Final product</div></div>
+    </div>
+    <div class="collage-col">
+      <div class="cimg cover"><img src="images/interlock.jpg" alt="Interlocking joints"><div class="cimg-label">Friction-fit joints</div></div>
+      <div class="cimg"><img src="images/cad-overall.png" alt="CAD model"><div class="cimg-label">CAD model</div></div>
+    </div>
+    <div class="collage-col narrow">
+      <div class="cimg"><img src="images/drawing.png" alt="Engineering drawing"><div class="cimg-label">Engineering drawing</div></div>
+      <div class="cimg cover"><img src="images/clockface.jpg" alt="Clock face"><div class="cimg-label">Clock face detail</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -348,33 +379,39 @@
 <!-- ════════ SLIDE 3: ATHLETE LIFT ════════ -->
 <div class="slide slide-project">
   <div class="slide-num">02 · The Athlete Lift</div>
-  <div class="project-text">
-    <div class="project-course">ME102 · Product Realization · Winter 2026</div>
-    <div class="project-name">The Athlete <span class="hl">Lift</span></div>
-    <p class="project-desc">A quick-return mechanism: a pin-in-slot system where a rotating wheel drives a lever through a slotted track, converting circular motion into vertical displacement. Two of these mechanisms mirroring one another, joined by a rotating handle and the raising platform. We also took on the extra optional challenge: achieving the full cycle from rotational input in a single direction. No reversing required.</p>
-    <div class="project-challenge">
-      <strong>What I learned:</strong> I quickly found how easy it was for things to not play out exactly as expected. The original track was designed with a trapezoidal-sliding geometry because I thought it would provide extra support. It wasn't until I actually tested it that I found it over-constrained the movement and caused the platform to get stuck. This is just one of the many components we had to iterate time and time again. This project shifted my perception of product realization as a process, it made me appreciate the finer details and how much time and effort goes into every single deliberate choice.
+  <div class="proj-header">
+    <div class="proj-header-left">
+      <div class="project-course">ME102 · Product Realization · Winter 2026</div>
+      <div class="project-name">The Athlete <span class="hl">Lift</span></div>
+      <p class="project-desc">A quick-return mechanism: a pin-in-slot system where a rotating wheel drives a lever through a slotted track, converting circular motion into vertical displacement. Two of these mechanisms mirroring one another, joined by a rotating handle and the raising platform. We also took on the extra optional challenge: achieving the full cycle from rotational input in a single direction. No reversing required.</p>
+      <div class="proj-meta">
+        <div class="pstat"><div class="pstat-num">6"</div><div class="pstat-label">Vertical lift</div></div>
+        <div class="pstat"><div class="pstat-num">2×</div><div class="pstat-label">Dual mechanism</div></div>
+        <div class="pstat"><div class="pstat-num">0</div><div class="pstat-label">Adhesives</div></div>
+        <span class="ptag coral">Quick-Return</span>
+        <span class="ptag teal">Rapid Prototyping</span>
+        <span class="ptag">3D Printing</span>
+        <span class="ptag">Laser Cutting</span>
+      </div>
+      <div class="project-team">with <span>Daria Hajimiri</span></div>
     </div>
-    <div class="project-stats">
-      <div class="pstat"><div class="pstat-num">6"</div><div class="pstat-label">Vertical lift</div></div>
-      <div class="pstat"><div class="pstat-num">2×</div><div class="pstat-label">Dual mechanism</div></div>
-      <div class="pstat"><div class="pstat-num">0</div><div class="pstat-label">Adhesives</div></div>
+    <div class="proj-header-right">
+      <div class="project-challenge">
+        <strong>What I learned:</strong> I quickly found how easy it was for things to not play out exactly as expected. The original track was designed with a trapezoidal-sliding geometry because I thought it would provide extra support. It wasn't until I actually tested it that I found it over-constrained the movement and caused the platform to get stuck. This is just one of the many components we had to iterate time and time again. This project shifted my perception of product realization as a process, it made me appreciate the finer details and how much time and effort goes into every single deliberate choice.
+      </div>
     </div>
-    <div class="project-tags">
-      <span class="ptag coral">Quick-Return</span>
-      <span class="ptag teal">Rapid Prototyping</span>
-      <span class="ptag">3D Printing</span>
-      <span class="ptag">Laser Cutting</span>
-      <span class="ptag">CAD</span>
-    </div>
-    <div class="project-team">with <span>Daria Hajimiri</span></div>
   </div>
-  <div class="img-grid g-top-bottom">
-    <div class="pimg"><img src="images2/hero_isometric.png" alt="Athlete Lift isometric"><div class="pimg-label">Final build</div></div>
-    <div class="row-3">
-      <div class="pimg"><img src="images2/cardboard_prototype.png" alt="Cardboard prototype"><div class="pimg-label">Prototype 1: cardboard</div></div>
-      <div class="pimg"><img src="images2/exploded_assembly.png" alt="Exploded assembly"><div class="pimg-label">Exploded assembly</div></div>
-      <div class="pimg"><img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Team photo"><div class="pimg-label">Daria and me with the final product</div></div>
+  <div class="collage">
+    <div class="collage-col wide">
+      <div class="cimg cover tall"><img src="images2/hero_isometric.png" alt="Athlete Lift"><div class="cimg-label">Final build</div></div>
+    </div>
+    <div class="collage-col">
+      <div class="cimg cover"><img src="images2/cardboard_prototype.png" alt="Cardboard prototype"><div class="cimg-label">Prototype 1: cardboard</div></div>
+      <div class="cimg cover"><img src="images2/new_pin_slot_track.png" alt="Acrylic track fix"><div class="cimg-label">Acrylic pin-slot track fix</div></div>
+    </div>
+    <div class="collage-col narrow">
+      <div class="cimg"><img src="images2/exploded_assembly.png" alt="Exploded assembly"><div class="cimg-label">Exploded assembly</div></div>
+      <div class="cimg cover"><img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Team photo"><div class="cimg-label">Daria and me</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -383,33 +420,38 @@
 <!-- ════════ SLIDE 4: PARABOLIC PUTTER ════════ -->
 <div class="slide slide-project">
   <div class="slide-num">03 · The Parabolic Putter</div>
-  <div class="project-text">
-    <div class="project-course">ME102 · Product Realization · Winter 2026</div>
-    <div class="project-name">The Parabolic <span class="hl">Putter</span></div>
-    <p class="project-desc">After research and analysis, we narrowed down to either a spring-powered launcher or a pendulum kicker. The spring would give more power, but we were worried about the variability it introduces. We took what we considered a more elegant approach: a kicker pulled back to a pre-determined position, let go, hitting and launching the ball consistently. Most teams used a spring-loaded launcher. We prioritized precision over power.</p>
-    <div class="project-challenge">
-      <strong>Theory vs. reality:</strong> Our FBD said we didn't need a counterweight. Our machine disagreed, because the stopper created an impulsive load our static analysis didn't capture. We adapted quickly. Analytical models inform decisions; physical testing validates them. You need both, in that order. The ball dispensing mechanism was one of my biggest focuses on the project. Inspired by a candy dispenser! I wanted it to be eye-catching and interesting, not just functional.
+  <div class="proj-header">
+    <div class="proj-header-left">
+      <div class="project-course">ME102 · Product Realization · Winter 2026</div>
+      <div class="project-name">The Parabolic <span class="hl">Putter</span></div>
+      <p class="project-desc">After research and analysis, we narrowed down to either a spring-powered launcher or a pendulum kicker. The spring would give more power, but we were worried about the variability it introduces. We took what we considered a more elegant approach: a kicker pulled back to a pre-determined position, let go, hitting and launching the ball consistently. Most teams used a spring-loaded launcher. We prioritized precision over power.</p>
+      <div class="proj-meta">
+        <div class="pstat"><div class="pstat-num">60</div><div class="pstat-label">Balls / 2 min</div></div>
+        <div class="pstat"><div class="pstat-num">5'</div><div class="pstat-label">Target dist.</div></div>
+        <div class="pstat"><div class="pstat-num">11</div><div class="pstat-label">Custom parts</div></div>
+        <span class="ptag coral">Pendulum Kicker</span>
+        <span class="ptag teal">MATLAB</span>
+        <span class="ptag">3D Printing</span>
+        <span class="ptag">Force Analysis</span>
+      </div>
+      <div class="project-team">with <span>Daria Hajimiri, Luke Stratakos &amp; Will</span></div>
     </div>
-    <div class="project-stats">
-      <div class="pstat"><div class="pstat-num">60</div><div class="pstat-label">Balls / 2 min</div></div>
-      <div class="pstat"><div class="pstat-num">5'</div><div class="pstat-label">Target dist.</div></div>
-      <div class="pstat"><div class="pstat-num">11</div><div class="pstat-label">Custom parts</div></div>
+    <div class="proj-header-right">
+      <div class="project-challenge">
+        <strong>Theory vs. reality:</strong> Our FBD said we didn't need a counterweight. Our machine disagreed, because the stopper created an impulsive load our static analysis didn't capture. We adapted quickly. Analytical models inform decisions; physical testing validates them. You need both, in that order. The ball dispensing mechanism was one of my biggest focuses on the project. Inspired by a candy dispenser! I wanted it to be eye-catching and interesting, not just functional.
+      </div>
     </div>
-    <div class="project-tags">
-      <span class="ptag coral">Pendulum Kicker</span>
-      <span class="ptag teal">MATLAB</span>
-      <span class="ptag">3D Printing</span>
-      <span class="ptag">Laser Cutting</span>
-      <span class="ptag">Force Analysis</span>
-    </div>
-    <div class="project-team">with <span>Daria Hajimiri, Luke Stratakos &amp; Will</span></div>
   </div>
-  <div class="img-grid g-top-bottom">
-    <div class="pimg"><img src="images_pingpong/hero_isometric.png" alt="Parabolic Putter"><div class="pimg-label">Final assembled machine</div></div>
-    <div class="row-3">
-      <div class="pimg"><img src="images_pingpong/initial_vs_final_ball_dispenser_mechanism.png" alt="Ball dispenser"><div class="pimg-label">Ball dispenser: my focus</div></div>
-      <div class="pimg"><img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB plots"><div class="pimg-label">MATLAB trajectory analysis</div></div>
-      <div class="pimg"><img src="images_pingpong/analysis_and_calculations.png" alt="FBD calculations"><div class="pimg-label">FBD and force analysis</div></div>
+  <div class="collage">
+    <div class="collage-col">
+      <div class="cimg" style="background:var(--dark);"><img src="images_pingpong/hero_isometric.png" alt="Parabolic Putter"><div class="cimg-label">Final machine</div></div>
+    </div>
+    <div class="collage-col wide">
+      <div class="cimg"><img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB"><div class="cimg-label">MATLAB trajectories</div></div>
+    </div>
+    <div class="collage-col">
+      <div class="cimg"><img src="images_pingpong/initial_vs_final_ball_dispenser_mechanism.png" alt="Ball dispenser"><div class="cimg-label">Ball dispenser ideation vs finalized</div></div>
+      <div class="cimg"><img src="images_pingpong/final_CAD_screenshot.png" alt="Final CAD"><div class="cimg-label">Final CAD assembly</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -418,33 +460,39 @@
 <!-- ════════ SLIDE 5: DOG PROSTHETIC ════════ -->
 <div class="slide slide-project">
   <div class="slide-num">04 · Dog Prosthetic Running Blade</div>
-  <div class="project-text">
-    <div class="project-course">ME80 · Mechanics of Materials · Winter 2026</div>
-    <div class="project-name">Dog Prosthetic <span class="hl">Running Blade</span></div>
-    <p class="project-desc">A mass-optimized J-shaped running prosthetic for a medium-sized dog with a below-knee hind-leg amputation. J-shaped blades function as elastic energy-storage devices: they bend under load, storing strain energy, and release it during push-off. Modeled as a 5-segment frame, the load was taken as 3x body weight to represent running and jumping. I was the CAD and manufacturing lead.</p>
-    <div class="project-challenge">
-      <strong>What this project taught:</strong> Theory, simulation, and physical testing tell different parts of the same story. The analytical model set the dimensions. FEA caught what beam theory missed: stress concentrations, curved-beam effects, load redistribution at joints. Physical testing proved the structure works. All three are necessary, in that order. And the goal, a real blade for a real dog, is still worth building toward.
+  <div class="proj-header">
+    <div class="proj-header-left">
+      <div class="project-course">ME80 · Mechanics of Materials · Winter 2026</div>
+      <div class="project-name">Dog Prosthetic <span class="hl">Running Blade</span></div>
+      <p class="project-desc">A mass-optimized J-shaped running prosthetic for a medium-sized dog with a below-knee hind-leg amputation. J-shaped blades function as elastic energy-storage devices: they bend under load, storing strain energy, and release it during push-off. Modeled as a 5-segment frame, the load was taken as 3x body weight to represent running and jumping. I was the CAD and manufacturing lead.</p>
+      <div class="proj-meta">
+        <div class="pstat"><div class="pstat-num">300N</div><div class="pstat-label">Design load</div></div>
+        <div class="pstat"><div class="pstat-num">FS≥2</div><div class="pstat-label">Safety factor</div></div>
+        <div class="pstat"><div class="pstat-num">70lb</div><div class="pstat-label">Load tested</div></div>
+        <span class="ptag coral">FEA</span>
+        <span class="ptag teal">Mass Optimization</span>
+        <span class="ptag">Von Mises</span>
+        <span class="ptag">3D Printing</span>
+      </div>
+      <div class="project-team">with <span>Ellia Cavanaugh &amp; Martin Amaya</span> · Role: <span>CAD &amp; Manufacturing Lead</span></div>
     </div>
-    <div class="project-stats">
-      <div class="pstat"><div class="pstat-num">300N</div><div class="pstat-label">Design load</div></div>
-      <div class="pstat"><div class="pstat-num">FS≥2</div><div class="pstat-label">Safety factor</div></div>
-      <div class="pstat"><div class="pstat-num">70lb</div><div class="pstat-label">Load tested</div></div>
+    <div class="proj-header-right">
+      <div class="project-challenge">
+        <strong>What this project taught:</strong> Theory, simulation, and physical testing tell different parts of the same story. The analytical model set the dimensions. FEA caught what beam theory missed: stress concentrations, curved-beam effects, load redistribution at joints. Physical testing proved the structure works. All three are necessary, in that order. And the goal, a real blade for a real dog, is still worth building toward.
+      </div>
     </div>
-    <div class="project-tags">
-      <span class="ptag coral">FEA</span>
-      <span class="ptag teal">Mass Optimization</span>
-      <span class="ptag">Von Mises</span>
-      <span class="ptag">3D Printing</span>
-      <span class="ptag">Buckling</span>
-    </div>
-    <div class="project-team">with <span>Ellia Cavanaugh &amp; Martin Amaya</span> · Role: <span>CAD &amp; Manufacturing Lead</span></div>
   </div>
-  <div class="img-grid g-top-bottom">
-    <div class="pimg"><img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="FEA Von Mises"><div class="pimg-label">Von Mises stress: FEA</div></div>
-    <div class="row-3">
-      <div class="pimg"><img src="images_blade/final_product_2.png" alt="Final blade"><div class="pimg-label">Final 3D-printed blade</div></div>
-      <div class="pimg"><img src="images_blade/team_testing_product_in_gym.png" alt="Load testing"><div class="pimg-label">Load testing: 70 lbs</div></div>
-      <div class="pimg"><img src="images_blade/final_CAD_screenshot.png" alt="Final CAD"><div class="pimg-label">Final CAD model</div></div>
+  <div class="collage">
+    <div class="collage-col">
+      <div class="cimg"><img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="FEA"><div class="cimg-label">Von Mises stress: FEA</div></div>
+      <div class="cimg"><img src="images_blade/final_CAD_screenshot.png" alt="CAD"><div class="cimg-label">Final CAD model</div></div>
+    </div>
+    <div class="collage-col">
+      <div class="cimg cover tall"><img src="images_blade/final_product_2.png" alt="Final blade"><div class="cimg-label">Final 3D-printed blade</div></div>
+    </div>
+    <div class="collage-col narrow">
+      <div class="cimg cover"><img src="images_blade/team_testing_product_in_gym.png" alt="Load testing"><div class="cimg-label">Load testing: 70 lbs</div></div>
+      <div class="cimg cover"><img src="images_blade/fun_picture_team_with_final_product.png" alt="Team"><div class="cimg-label">Team with final product</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
