@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Alexa Cavazos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:  #F0EAD6;
+    --dark:   #1A1612;
+    --coral:  #E04E2A;
+    --teal:   #2A9BAA;
+    --olive:  #6B7A1E;
+    --gold:   #D4980A;
+    --sand:   #C4AE88;
+    --off-white: #F7F2E8;
+    --mid:    #6B5040;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* ── SLIDE ACCENTS ── */
+  .slide-accent {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .slide-num {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    font-family: 'Chango', system-ui;
+    font-size: 14px;
+    color: var(--sand);
+    opacity: 0.5;
+  }
+
+  .coral-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--coral);
+  }
+
+  /* ── TITLE SLIDE ── */
+  .slide-title {
+    background: var(--dark);
+  }
+
+  .slide-title .name {
+    font-family: 'Chango', system-ui;
+    font-size: 82px;
+    line-height: 0.9;
+    color: var(--cream);
+  }
+
+  .slide-title .name .accent {
+    color: var(--coral);
+    display: block;
+  }
+
+  .slide-title .subtitle {
+    font-size: 16px;
+    color: var(--sand);
+    margin-top: 24px;
+    letter-spacing: 0.08em;
+  }
+
+  .slide-title .details {
+    margin-top: 40px;
+    display: flex;
+    gap: 32px;
+  }
+
+  .slide-title .detail-item {
+    font-size: 12px;
+    color: rgba(240,234,214,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .slide-title .detail-item span {
+    display: block;
+    color: var(--cream);
+    font-weight: 500;
+    margin-top: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 14px;
+  }
+
+  /* ── PROJECT SLIDES ── */
+  .slide-project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    padding: 52px 64px;
+    align-items: center;
+  }
+
+  .project-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project-course {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--coral);
+    margin-bottom: 14px;
+  }
+
+  .project-name {
+    font-family: 'Chango', system-ui;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--dark);
+    margin-bottom: 18px;
+  }
+
+  .project-name .hl { color: var(--coral); }
+
+  .project-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--mid);
+    margin-bottom: 24px;
+  }
+
+  .project-stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .pstat {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 14px 18px;
+    min-width: 80px;
+  }
+
+  .pstat-num {
+    font-family: 'Chango', system-ui;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--coral);
+  }
+
+  .pstat-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-top: 4px;
+  }
+
+  .project-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .ptag {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(42,37,34,0.18);
+    color: var(--mid);
+  }
+
+  .ptag.coral { background: var(--coral); border-color: var(--coral); color: var(--cream); }
+  .ptag.teal  { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
+
+  .project-team {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--sand);
+  }
+  .project-team span { color: var(--dark); font-weight: 500; }
+
+  .project-images {
+    display: grid;
+    gap: 10px;
+    height: 100%;
+    max-height: calc(100vh - 104px);
+  }
+
+  .project-images.two-up {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .project-images.stacked {
+    grid-template-rows: 2fr 1fr;
+  }
+
+  .project-images.hero-only {
+    grid-template-rows: 1fr;
+  }
+
+  .pimg {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+  }
+
+  .pimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── CONTACT SLIDE ── */
+  .slide-contact {
+    background: var(--dark);
+    text-align: center;
+    align-items: center;
+  }
+
+  .slide-contact .name {
+    font-family: 'Chango', system-ui;
+    font-size: 56px;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .slide-contact .name span { color: var(--coral); }
+
+  .slide-contact .school {
+    font-size: 14px;
+    color: var(--sand);
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-item .label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 6px;
+  }
+
+  .contact-item .value {
+    font-size: 16px;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .slide-contact .tagline {
+    margin-top: 48px;
+    font-family: 'Chango', system-ui;
+    font-size: 18px;
+    color: var(--coral);
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      page-break-after: always;
+      break-after: page;
+    }
+    .slide:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ SLIDE 1: TITLE ════════ -->
+<div class="slide slide-title">
+  <div class="slide-accent" style="width:400px;height:400px;background:var(--coral);top:-100px;right:-80px;"></div>
+  <div class="slide-accent" style="width:200px;height:200px;background:var(--teal);bottom:60px;left:-40px;"></div>
+  <div class="name">
+    Alexa
+    <span class="accent">Cavazos</span>
+  </div>
+  <div class="subtitle">Mechanical Engineering · Stanford University · Class of 2027</div>
+  <div class="details">
+    <div class="detail-item">Email <span>alexacw@stanford.edu</span></div>
+    <div class="detail-item">GitHub <span>github.com/alexacw7</span></div>
+    <div class="detail-item">Portfolio <span>alexacw7.github.io</span></div>
+  </div>
+  <div class="coral-bar"></div>
+</div>
+
+<!-- ════════ SLIDE 2: CLOCK CONTAINER ════════ -->
+<div class="slide slide-project">
+  <div class="slide-num">01</div>
+  <div class="project-text">
+    <div class="project-course">ME102 · Foundations of Product Realization · Winter 2025</div>
+    <div class="project-name">Clock <span class="hl">Container</span></div>
+    <p class="project-desc">A laser-cut birch plywood container shaped like a vintage alarm clock — designed to hold daily bracelets. Assembled entirely through friction-fit interlocking joints. No glue, no fasteners.</p>
+    <div class="project-stats">
+      <div class="pstat">
+        <div class="pstat-num">±.001"</div>
+        <div class="pstat-label">Tolerance</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">0</div>
+        <div class="pstat-label">Adhesives</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">6"</div>
+        <div class="pstat-label">Max dimension</div>
+      </div>
+    </div>
+    <div class="project-tags">
+      <span class="ptag coral">Laser Cutting</span>
+      <span class="ptag">CAD</span>
+      <span class="ptag">Tolerance Analysis</span>
+      <span class="ptag">DFM</span>
+      <span class="ptag">Kerf Bending</span>
+    </div>
+    <div class="project-team">Solo project</div>
+  </div>
+  <div class="project-images stacked">
+    <div class="pimg"><img src="images/hero.jpeg" alt="Clock Container"></div>
+    <div class="pimg"><img src="images/clockface.jpg" alt="Clock face detail"></div>
+  </div>
+  <div class="coral-bar"></div>
+</div>
+
+<!-- ════════ SLIDE 3: ATHLETE LIFT ════════ -->
+<div class="slide slide-project">
+  <div class="slide-num">02</div>
+  <div class="project-text">
+    <div class="project-course">ME102 · Foundations of Product Realization · Winter 2026</div>
+    <div class="project-name">The Athlete <span class="hl">Lift</span></div>
+    <p class="project-desc">A quick-return mechanism that converts one-directional rotational input into vertical linear motion. Built to lift a 2.5 lb weight 6 inches off a tabletop for the 2026 Winter Olympics. No motors, no electronics, no adhesives.</p>
+    <div class="project-stats">
+      <div class="pstat">
+        <div class="pstat-num">6"</div>
+        <div class="pstat-label">Vertical lift</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">2×</div>
+        <div class="pstat-label">Dual mechanism</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">0</div>
+        <div class="pstat-label">Adhesives</div>
+      </div>
+    </div>
+    <div class="project-tags">
+      <span class="ptag coral">Quick-Return</span>
+      <span class="ptag teal">Rapid Prototyping</span>
+      <span class="ptag">3D Printing</span>
+      <span class="ptag">Laser Cutting</span>
+      <span class="ptag">CAD</span>
+    </div>
+    <div class="project-team">with <span>Daria Hajimiri</span></div>
+  </div>
+  <div class="project-images stacked">
+    <div class="pimg"><img src="images2/hero_isometric.png" alt="Athlete Lift isometric"></div>
+    <div class="pimg"><img src="images2/hero_front.png" alt="Athlete Lift front view"></div>
+  </div>
+  <div class="coral-bar"></div>
+</div>
+
+<!-- ════════ SLIDE 4: PARABOLIC PUTTER ════════ -->
+<div class="slide slide-project">
+  <div class="slide-num">03</div>
+  <div class="project-text">
+    <div class="project-course">ME102 · Foundations of Product Realization · Winter 2026</div>
+    <div class="project-name">The Parabolic <span class="hl">Putter</span></div>
+    <p class="project-desc">A fully mechanical ping pong launcher using a pendulum kicker for precision over power. Gravity-fed ball dispenser, spring return. Hit 60 balls through the target in 2 minutes. No motors, no electronics.</p>
+    <div class="project-stats">
+      <div class="pstat">
+        <div class="pstat-num">60</div>
+        <div class="pstat-label">Balls in 2 min</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">7'</div>
+        <div class="pstat-label">Target distance</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">19</div>
+        <div class="pstat-label">Unique parts</div>
+      </div>
+    </div>
+    <div class="project-tags">
+      <span class="ptag coral">Pendulum Kicker</span>
+      <span class="ptag teal">MATLAB</span>
+      <span class="ptag">3D Printing</span>
+      <span class="ptag">Laser Cutting</span>
+      <span class="ptag">Force Analysis</span>
+    </div>
+    <div class="project-team">with <span>Daria Hajimiri, Luke Stratakos &amp; Will</span></div>
+  </div>
+  <div class="project-images stacked">
+    <div class="pimg"><img src="images_pingpong/hero_isometric.png" alt="Parabolic Putter"></div>
+    <div class="pimg"><img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB trajectory analysis"></div>
+  </div>
+  <div class="coral-bar"></div>
+</div>
+
+<!-- ════════ SLIDE 5: DOG PROSTHETIC ════════ -->
+<div class="slide slide-project">
+  <div class="slide-num">04</div>
+  <div class="project-text">
+    <div class="project-course">ME80 · Mechanics of Materials · Winter 2026</div>
+    <div class="project-name">Dog Prosthetic <span class="hl">Running Blade</span></div>
+    <p class="project-desc">A mass-optimized J-shaped running prosthetic for dogs — derived analytically using a 5-segment frame model, validated with FEA (Von Mises stress), and load-tested to 70 lbs in a gym press machine.</p>
+    <div class="project-stats">
+      <div class="pstat">
+        <div class="pstat-num">300N</div>
+        <div class="pstat-label">Design load</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">FS≥2</div>
+        <div class="pstat-label">Safety factor</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-num">70lb</div>
+        <div class="pstat-label">Load tested</div>
+      </div>
+    </div>
+    <div class="project-tags">
+      <span class="ptag coral">FEA</span>
+      <span class="ptag teal">Mass Optimization</span>
+      <span class="ptag">Von Mises</span>
+      <span class="ptag">3D Printing</span>
+      <span class="ptag">Buckling</span>
+    </div>
+    <div class="project-team">with <span>Ellia Cavanaugh &amp; Martin Amaya</span> · Role: <span>CAD &amp; Manufacturing Lead</span></div>
+  </div>
+  <div class="project-images stacked">
+    <div class="pimg"><img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="Von Mises FEA"></div>
+    <div class="pimg"><img src="images_blade/final_CAD_screenshot.png" alt="Final CAD model"></div>
+  </div>
+  <div class="coral-bar"></div>
+</div>
+
+<!-- ════════ SLIDE 6: CONTACT ════════ -->
+<div class="slide slide-contact">
+  <div class="slide-accent" style="width:350px;height:350px;background:var(--coral);top:-80px;left:-60px;"></div>
+  <div class="slide-accent" style="width:250px;height:250px;background:var(--teal);bottom:-40px;right:-40px;"></div>
+  <div class="name">Alexa <span>Cavazos</span></div>
+  <div class="school">Stanford University · Mechanical Engineering · Class of 2027</div>
+  <div class="contact-row">
+    <div class="contact-item">
+      <div class="label">Email</div>
+      <div class="value">alexacw@stanford.edu</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Portfolio</div>
+      <div class="value">alexacw7.github.io</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">GitHub</div>
+      <div class="value">github.com/alexacw7</div>
+    </div>
+  </div>
+  <div class="tagline">Obsessed with making things and nailing down every last detail.</div>
+  <div class="coral-bar"></div>
+</div>
+
+</body>
+</html>
