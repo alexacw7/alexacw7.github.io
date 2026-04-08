@@ -33,7 +33,6 @@
     print-color-adjust: exact;
   }
 
-  /* ── SLIDE BASE ── */
   .slide {
     width: 100vw;
     height: 100vh;
@@ -55,7 +54,7 @@
     position: absolute;
     top: 36px; right: 52px;
     font-family: 'Chango', system-ui;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--sand);
     opacity: 0.5;
   }
@@ -67,7 +66,7 @@
     background: var(--coral);
   }
 
-  /* ── TITLE SLIDE ── */
+  /* TITLE */
   .slide-title {
     background: var(--dark);
     padding: 56px 68px;
@@ -75,7 +74,6 @@
     flex-direction: column;
     justify-content: center;
   }
-
   .slide-title .name {
     font-family: 'Chango', system-ui;
     font-size: 78px;
@@ -83,20 +81,17 @@
     color: var(--cream);
   }
   .slide-title .name .accent { color: var(--coral); display: block; }
-
   .slide-title .subtitle {
     font-size: 15px;
     color: var(--sand);
     margin-top: 20px;
     letter-spacing: 0.06em;
   }
-
   .slide-title .details {
     margin-top: 36px;
     display: flex;
     gap: 28px;
   }
-
   .detail-item {
     font-size: 11px;
     color: rgba(240,234,214,0.45);
@@ -113,12 +108,12 @@
     font-size: 13px;
   }
 
-  /* ── PROJECT SLIDE ── */
+  /* PROJECT SLIDE */
   .slide-project {
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    padding: 44px 52px;
-    gap: 40px;
+    grid-template-columns: 1fr 1.15fr;
+    padding: 40px 48px;
+    gap: 36px;
     align-items: center;
   }
 
@@ -130,73 +125,67 @@
     text-transform: uppercase;
     font-weight: 500;
     color: var(--coral);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-
   .project-name {
     font-family: 'Chango', system-ui;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1;
     color: var(--dark);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .project-name .hl { color: var(--coral); }
 
   .project-desc {
-    font-size: 13px;
-    line-height: 1.75;
+    font-size: 12px;
+    line-height: 1.7;
     color: var(--mid);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .project-challenge {
-    font-size: 12px;
-    line-height: 1.7;
+    font-size: 11px;
+    line-height: 1.65;
     color: var(--dark);
     background: rgba(42,37,34,0.05);
     border-left: 3px solid var(--coral);
-    padding: 10px 14px;
-    margin-bottom: 16px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
     border-radius: 0 8px 8px 0;
   }
-
   .project-challenge strong { font-weight: 500; }
 
   .project-stats {
     display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 10px;
+    margin-bottom: 12px;
   }
-
   .pstat {
     background: var(--dark);
     border-radius: 10px;
-    padding: 10px 14px;
+    padding: 8px 12px;
   }
-
   .pstat-num {
     font-family: 'Chango', system-ui;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1;
     color: var(--coral);
   }
-
   .pstat-label {
     font-size: 8px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--sand);
-    margin-top: 3px;
+    margin-top: 2px;
   }
 
-  .project-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-
+  .project-tags { display: flex; gap: 4px; flex-wrap: wrap; }
   .ptag {
     font-size: 8px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 100px;
     border: 1px solid rgba(42,37,34,0.18);
     color: var(--mid);
@@ -205,48 +194,38 @@
   .ptag.teal  { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
 
   .project-team {
-    margin-top: 12px;
-    font-size: 11px;
+    margin-top: 10px;
+    font-size: 10px;
     color: var(--sand);
   }
   .project-team span { color: var(--dark); font-weight: 500; }
 
-  /* ── IMAGE GRID ── */
+  /* IMAGE GRID */
   .img-grid {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     height: 100%;
-    max-height: calc(100vh - 88px);
+    max-height: calc(100vh - 80px);
   }
-
-  .img-grid.g-2x2 {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+  .img-grid.g-top-bottom {
+    grid-template-rows: 1.3fr 1fr;
   }
-
-  .img-grid.g-hero-row {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.4fr 1fr;
-  }
-
-  .img-grid.g-hero-pair {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.6fr 1fr;
-  }
-
   .img-grid .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    gap: 6px;
   }
-
+  .img-grid .row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
   .pimg {
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(42,37,34,0.1);
     position: relative;
   }
-
   .pimg img {
     width: 100%;
     height: 100%;
@@ -254,19 +233,18 @@
     object-position: center;
     display: block;
   }
-
   .pimg-label {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 6px 10px;
+    padding: 5px 8px;
     background: linear-gradient(transparent, rgba(0,0,0,0.6));
-    font-size: 8px;
+    font-size: 7px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(240,234,214,0.85);
   }
 
-  /* ── CONTACT SLIDE ── */
+  /* CONTACT */
   .slide-contact {
     background: var(--dark);
     display: flex;
@@ -276,7 +254,6 @@
     text-align: center;
     padding: 56px 68px;
   }
-
   .slide-contact .name {
     font-family: 'Chango', system-ui;
     font-size: 52px;
@@ -285,22 +262,14 @@
     margin-bottom: 10px;
   }
   .slide-contact .name span { color: var(--coral); }
-
   .slide-contact .school {
     font-size: 13px;
     color: var(--sand);
     letter-spacing: 0.08em;
     margin-bottom: 36px;
   }
-
-  .contact-row {
-    display: flex;
-    gap: 40px;
-    justify-content: center;
-  }
-
+  .contact-row { display: flex; gap: 40px; justify-content: center; }
   .contact-item { text-align: center; }
-
   .contact-item .label {
     font-size: 9px;
     letter-spacing: 0.16em;
@@ -309,7 +278,6 @@
     margin-bottom: 4px;
   }
   .contact-item .value { font-size: 15px; color: var(--cream); }
-
   .slide-contact .tagline {
     margin-top: 40px;
     font-family: 'Chango', system-ui;
@@ -348,9 +316,9 @@
   <div class="project-text">
     <div class="project-course">ME102 · Product Realization · Winter 2025</div>
     <div class="project-name">Clock <span class="hl">Container</span></div>
-    <p class="project-desc">A laser-cut birch plywood container shaped like a vintage alarm clock — designed to hold my daily bracelets. Assembled entirely through friction-fit interlocking joints. No glue, no fasteners. Just wood and precision.</p>
+    <p class="project-desc">A laser-cut birch plywood clock-shaped container assembled entirely through friction-fit interlocking joints. No adhesives, no fasteners. Designed to hold my daily bracelets.</p>
     <div class="project-challenge">
-      <strong>The hard part:</strong> Kerf tolerance on curves is incredibly sensitive — 0.0005" is the difference between a loose fit and a tight one. I had to run iterative kerf tests on scrap material to nail the right value for this specific laser cutter. My cardboard prototype also killed my original sliding-door concept early, which saved me from wasting real material.
+      <strong>Biggest takeaway:</strong> Curved interlocking joints are far more sensitive to kerf variation than straight ones. A 0.0005" change in kerf was the difference between too loose and too tight. Iterative scrap testing was essential, not optional. The cardboard mock-up also revealed a fundamental flaw in my sliding door concept before any plywood was cut, saving material and time. Physical prototypes expose constraints that sketches and CAD cannot.
     </div>
     <div class="project-stats">
       <div class="pstat"><div class="pstat-num">±.001"</div><div class="pstat-label">Tolerance</div></div>
@@ -366,11 +334,12 @@
     </div>
     <div class="project-team">Solo project</div>
   </div>
-  <div class="img-grid g-hero-pair">
-    <div class="pimg"><img src="images/hero.jpeg" alt="Clock Container hero"><div class="pimg-label">Final product</div></div>
-    <div class="row">
+  <div class="img-grid g-top-bottom">
+    <div class="pimg"><img src="images/hero.jpeg" alt="Clock Container"><div class="pimg-label">Final product</div></div>
+    <div class="row-3">
       <div class="pimg"><img src="images/interlock.jpg" alt="Interlocking joints"><div class="pimg-label">Friction-fit joints</div></div>
       <div class="pimg"><img src="images/cad-overall.png" alt="CAD model"><div class="pimg-label">CAD model</div></div>
+      <div class="pimg"><img src="images/drawing.png" alt="Engineering drawing"><div class="pimg-label">Engineering drawing</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -382,9 +351,9 @@
   <div class="project-text">
     <div class="project-course">ME102 · Product Realization · Winter 2026</div>
     <div class="project-name">The Athlete <span class="hl">Lift</span></div>
-    <p class="project-desc">A quick-return mechanism that converts one-directional rotational input into vertical linear motion. Built for the 2026 Winter Olympics — lifts a 2.5 lb weight 6 inches. No motors, no electronics, no adhesives. We also took on the optional challenge: full up-and-down cycle from rotation in a single direction.</p>
+    <p class="project-desc">A quick-return mechanism: a pin-in-slot system where a rotating wheel drives a lever through a slotted track, converting circular motion into vertical displacement. Two of these mechanisms mirroring one another, joined by a rotating handle and the raising platform. We also took on the extra optional challenge: achieving the full cycle from rotational input in a single direction. No reversing required.</p>
     <div class="project-challenge">
-      <strong>Biggest lesson:</strong> I didn't expect just how many iterations we'd need. The original PLA track caused way too much friction — we had to switch to laser-cut acrylic. The acrylic base cracked because the friction fit was too tight — so we redesigned in PLA with built-in supports and screws. Every single part went through multiple rounds. That's where the real learning happened.
+      <strong>What I learned:</strong> I quickly found how easy it was for things to not play out exactly as expected. The original track was designed with a trapezoidal-sliding geometry because I thought it would provide extra support. It wasn't until I actually tested it that I found it over-constrained the movement and caused the platform to get stuck. This is just one of the many components we had to iterate time and time again. This project shifted my perception of product realization as a process, it made me appreciate the finer details and how much time and effort goes into every single deliberate choice.
     </div>
     <div class="project-stats">
       <div class="pstat"><div class="pstat-num">6"</div><div class="pstat-label">Vertical lift</div></div>
@@ -400,11 +369,12 @@
     </div>
     <div class="project-team">with <span>Daria Hajimiri</span></div>
   </div>
-  <div class="img-grid g-hero-pair">
-    <div class="pimg"><img src="images2/hero_isometric.png" alt="Athlete Lift isometric"><div class="pimg-label">Final build — isometric</div></div>
-    <div class="row">
-      <div class="pimg"><img src="images2/cardboard_prototype.png" alt="Cardboard prototype"><div class="pimg-label">Prototype 1 — cardboard</div></div>
-      <div class="pimg"><img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Team with final product"><div class="pimg-label">Daria and me — final product</div></div>
+  <div class="img-grid g-top-bottom">
+    <div class="pimg"><img src="images2/hero_isometric.png" alt="Athlete Lift isometric"><div class="pimg-label">Final build</div></div>
+    <div class="row-3">
+      <div class="pimg"><img src="images2/cardboard_prototype.png" alt="Cardboard prototype"><div class="pimg-label">Prototype 1: cardboard</div></div>
+      <div class="pimg"><img src="images2/exploded_assembly.png" alt="Exploded assembly"><div class="pimg-label">Exploded assembly</div></div>
+      <div class="pimg"><img src="images2/me_and_my_partner_with_the_final_product.jpg" alt="Team photo"><div class="pimg-label">Daria and me with the final product</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -416,14 +386,14 @@
   <div class="project-text">
     <div class="project-course">ME102 · Product Realization · Winter 2026</div>
     <div class="project-name">The Parabolic <span class="hl">Putter</span></div>
-    <p class="project-desc">A fully mechanical ping pong launcher. Most teams used a spring — we didn't. We built a pendulum kicker because it's deterministic: release height and geometry fully define the trajectory. Precision over power. 60 balls through the target in 2 minutes.</p>
+    <p class="project-desc">After research and analysis, we narrowed down to either a spring-powered launcher or a pendulum kicker. The spring would give more power, but we were worried about the variability it introduces. We took what we considered a more elegant approach: a kicker pulled back to a pre-determined position, let go, hitting and launching the ball consistently. Most teams used a spring-loaded launcher. We prioritized precision over power.</p>
     <div class="project-challenge">
-      <strong>Theory vs. reality:</strong> Our FBD said we didn't need a counterweight. The machine disagreed — when the kicker hit the hard stopper, the impulse exceeded what our static analysis predicted. We adapted quickly, added minimal weight, and it held on launch day. Models are starting points, not verdicts. Physical testing is essential.
+      <strong>Theory vs. reality:</strong> Our FBD said we didn't need a counterweight. Our machine disagreed, because the stopper created an impulsive load our static analysis didn't capture. We adapted quickly. Analytical models inform decisions; physical testing validates them. You need both, in that order. The ball dispensing mechanism was one of my biggest focuses on the project. Inspired by a candy dispenser! I wanted it to be eye-catching and interesting, not just functional.
     </div>
     <div class="project-stats">
       <div class="pstat"><div class="pstat-num">60</div><div class="pstat-label">Balls / 2 min</div></div>
-      <div class="pstat"><div class="pstat-num">7'</div><div class="pstat-label">Target dist.</div></div>
-      <div class="pstat"><div class="pstat-num">19</div><div class="pstat-label">Unique parts</div></div>
+      <div class="pstat"><div class="pstat-num">5'</div><div class="pstat-label">Target dist.</div></div>
+      <div class="pstat"><div class="pstat-num">11</div><div class="pstat-label">Custom parts</div></div>
     </div>
     <div class="project-tags">
       <span class="ptag coral">Pendulum Kicker</span>
@@ -434,11 +404,12 @@
     </div>
     <div class="project-team">with <span>Daria Hajimiri, Luke Stratakos &amp; Will</span></div>
   </div>
-  <div class="img-grid g-hero-pair">
+  <div class="img-grid g-top-bottom">
     <div class="pimg"><img src="images_pingpong/hero_isometric.png" alt="Parabolic Putter"><div class="pimg-label">Final assembled machine</div></div>
-    <div class="row">
-      <div class="pimg"><img src="images_pingpong/initial_vs_final_ball_dispenser_mechanism.png" alt="Ball dispenser iterations"><div class="pimg-label">Ball dispenser — my contribution</div></div>
+    <div class="row-3">
+      <div class="pimg"><img src="images_pingpong/initial_vs_final_ball_dispenser_mechanism.png" alt="Ball dispenser"><div class="pimg-label">Ball dispenser: my focus</div></div>
       <div class="pimg"><img src="images_pingpong/matlab_projectile_trajections_at_varying_hitting_angles.png" alt="MATLAB plots"><div class="pimg-label">MATLAB trajectory analysis</div></div>
+      <div class="pimg"><img src="images_pingpong/analysis_and_calculations.png" alt="FBD calculations"><div class="pimg-label">FBD and force analysis</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
@@ -450,9 +421,9 @@
   <div class="project-text">
     <div class="project-course">ME80 · Mechanics of Materials · Winter 2026</div>
     <div class="project-name">Dog Prosthetic <span class="hl">Running Blade</span></div>
-    <p class="project-desc">A mass-optimized J-shaped running prosthetic for dogs with below-knee amputation. Derived analytically with a 5-segment frame model, validated with FEA, and physically load-tested to 70 lbs on a gym press machine. I was the CAD and manufacturing lead.</p>
+    <p class="project-desc">A mass-optimized J-shaped running prosthetic for a medium-sized dog with a below-knee hind-leg amputation. J-shaped blades function as elastic energy-storage devices: they bend under load, storing strain energy, and release it during push-off. Modeled as a 5-segment frame, the load was taken as 3x body weight to represent running and jumping. I was the CAD and manufacturing lead.</p>
     <div class="project-challenge">
-      <strong>Where it got interesting:</strong> The sharp-edged version matched our beam theory almost perfectly (FS 1.986 vs. target 2.0). But the filleted version — the one that actually looks like a real blade — introduced curved-beam effects that raised max stress. Theory, simulation, and physical testing all told different parts of the same story. You need all three, in that order.
+      <strong>What this project taught:</strong> Theory, simulation, and physical testing tell different parts of the same story. The analytical model set the dimensions. FEA caught what beam theory missed: stress concentrations, curved-beam effects, load redistribution at joints. Physical testing proved the structure works. All three are necessary, in that order. And the goal, a real blade for a real dog, is still worth building toward.
     </div>
     <div class="project-stats">
       <div class="pstat"><div class="pstat-num">300N</div><div class="pstat-label">Design load</div></div>
@@ -468,11 +439,12 @@
     </div>
     <div class="project-team">with <span>Ellia Cavanaugh &amp; Martin Amaya</span> · Role: <span>CAD &amp; Manufacturing Lead</span></div>
   </div>
-  <div class="img-grid g-hero-pair">
-    <div class="pimg"><img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="FEA Von Mises" style="object-position: center center;"><div class="pimg-label">Von Mises stress — FEA</div></div>
-    <div class="row">
-      <div class="pimg"><img src="images_blade/final_product_2.png" alt="Final 3D printed blade"><div class="pimg-label">Final 3D-printed blade</div></div>
-      <div class="pimg"><img src="images_blade/team_testing_product_in_gym.png" alt="Load testing in gym"><div class="pimg-label">Load testing — 70 lbs</div></div>
+  <div class="img-grid g-top-bottom">
+    <div class="pimg"><img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="FEA Von Mises"><div class="pimg-label">Von Mises stress: FEA</div></div>
+    <div class="row-3">
+      <div class="pimg"><img src="images_blade/final_product_2.png" alt="Final blade"><div class="pimg-label">Final 3D-printed blade</div></div>
+      <div class="pimg"><img src="images_blade/team_testing_product_in_gym.png" alt="Load testing"><div class="pimg-label">Load testing: 70 lbs</div></div>
+      <div class="pimg"><img src="images_blade/final_CAD_screenshot.png" alt="Final CAD"><div class="pimg-label">Final CAD model</div></div>
     </div>
   </div>
   <div class="coral-bar"></div>
