@@ -331,6 +331,119 @@
     color: rgba(240,234,214,0.35);
   }
 
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--warm); }
+
+  .exp-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 159px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(44,26,14,0.1);
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(44,26,14,0.07);
+    position: relative;
+  }
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 153px;
+    top: 46px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 3px solid var(--coral);
+    z-index: 1;
+  }
+  .exp-item:nth-child(2)::before { border-color: var(--teal); }
+  .exp-item:nth-child(3)::before { border-color: var(--olive); }
+  .exp-item:nth-child(4)::before { border-color: var(--gold); }
+  .exp-item:nth-child(5)::before { border-color: var(--coral); }
+  .exp-item:nth-child(6)::before { border-color: var(--teal); }
+
+  .exp-date {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sand);
+    font-weight: 500;
+    text-align: right;
+    padding-top: 6px;
+  }
+
+  .exp-content { padding-left: 24px; }
+
+  .exp-org {
+    font-family: 'Chango', system-ui;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 4px;
+  }
+  .exp-item:nth-child(2) .exp-org { color: var(--teal); }
+  .exp-item:nth-child(3) .exp-org { color: var(--olive); }
+  .exp-item:nth-child(4) .exp-org { color: var(--gold); }
+  .exp-item:nth-child(5) .exp-org { color: var(--coral); }
+  .exp-item:nth-child(6) .exp-org { color: var(--teal); }
+
+  .exp-role {
+    font-family: 'Chango', system-ui;
+    font-size: 20px;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .exp-desc {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 560px;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .exp-tag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 10px;
+    border: 1.5px solid rgba(44,26,14,0.18);
+    color: var(--mid);
+    border-radius: 100px;
+  }
+
+  @media (max-width: 980px) {
+    .exp-timeline::before { left: 0; }
+    .exp-item { grid-template-columns: 1fr; gap: 8px; padding-left: 28px; }
+    .exp-item::before { left: -6px; top: 40px; }
+    .exp-date { text-align: left; }
+    .exp-content { padding-left: 0; }
+  }
+
   /* ── PROJECTS ── */
   #projects { background: var(--warm); }
 
@@ -639,7 +752,8 @@
   <a href="#" class="nav-logo">Alexa Cavazos</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -662,17 +776,17 @@
       <ellipse cx="60" cy="22" rx="14" ry="22" transform="rotate(315 60 60)"/>
     </g>
     <circle cx="60" cy="60" r="20" fill="var(--gold)"/>
-    <text x="60" y="65" text-anchor="middle" font-size="11" fill="var(--dark)" font-family="sans-serif" font-weight="700">make</text>
+    <text x="60" y="65" text-anchor="middle" font-size="11" fill="var(--dark)" font-family="sans-serif" font-weight="700"> </text>
   </svg>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Mechanical Engineering · Stanford University · Class of 2028</p>
+    <p class="hero-eyebrow">Mechanical Engineering · Computer Science Minor · Stanford University </p>
     <h1 class="hero-name">
       Alexa
       <span class="outline">Cavazos</span>
     </h1>
     <div class="hero-tagline">
-      <p>Obsessed with <strong>making things</strong> and nailing down every last detail.</p>
+      <p>Looking to explore and learn!! I find it <strong>easy to be (and stay) curious</strong>.</p>
     </div>
   </div>
 
@@ -691,19 +805,19 @@
     <span>CAD</span><span class="dot">✦</span>
     <span>Laser Cutting</span><span class="dot">✦</span>
     <span>3D Printing</span><span class="dot">✦</span>
-    <span>MATLAB</span><span class="dot">✦</span>
+    <span>Innovating</span><span class="dot">✦</span>
     <span>Prototyping</span><span class="dot">✦</span>
     <span>Mechanical Design</span><span class="dot">✦</span>
     <span>Tolerance Analysis</span><span class="dot">✦</span>
-    <span>Stanford ME</span><span class="dot">✦</span>
+    <span>Curious</span><span class="dot">✦</span>
     <span>CAD</span><span class="dot">✦</span>
     <span>Laser Cutting</span><span class="dot">✦</span>
     <span>3D Printing</span><span class="dot">✦</span>
-    <span>MATLAB</span><span class="dot">✦</span>
+    <span>Problem-solving</span><span class="dot">✦</span>
     <span>Prototyping</span><span class="dot">✦</span>
     <span>Mechanical Design</span><span class="dot">✦</span>
     <span>Tolerance Analysis</span><span class="dot">✦</span>
-    <span>Stanford ME</span><span class="dot">✦</span>
+    <span>Product Design</span><span class="dot">✦</span>
   </div>
 </div>
 
@@ -713,10 +827,12 @@
   <h2 class="section-heading reveal">About <span class="accent">Me</span></h2>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>I'm a <strong>Mechanical Engineering student at Stanford</strong>, originally from Monterrey, Mexico. I came here drawn to engineering — and stayed for the realization that what I love most isn't just understanding how things work, but actually <em>building them</em> and discovering where your sketch was wrong in the best possible way.</p>
-      <p>At the <strong>Hollberg Lab</strong>, I design and fabricate custom hardware for a precision methane laser spectroscopy system — building 3D-printed adapters to motorize manual stages, iterating on windshield wiper mechanisms to protect optical components, and learning what it really means to prepare a lab instrument for the field. It's where tolerance analysis stops being a homework problem and starts mattering.</p>
-      <p>Outside the lab, I've led logistics for Stanford's first <strong>Designathon</strong>, directed large-scale construction projects with Techo, and served as community engagement lead for Stanford Women in Design — roles that taught me that good engineering isn't just about the object, it's about the people it's made for. I bring that same attention to detail and care for the user into everything I build.</p>
-      <p>My projects live at the intersection of <em>engineering rigor and aesthetic intention</em> — things that are well-made and feel that way.</p>
+      <p>I'm a <strong>Mechanical Engineering student at Stanford</strong> with a <strong>Computer Science minor</strong>. But honestly, I've been an engineer for as long as I can remember.</p>
+      <p>As a kid, I was obsessed with <em>"How It's Made"</em> and would fight my siblings for the remote just to watch factory footage. I collected Apple packaging boxes because I was fascinated by how deliberate every detail was: the material that felt perfect to touch, the seams that were clean and nearly invisible, and most of all, the way the lid would glide onto the box with that satisfying suction. <em>Someone had deliberately engineered that friction and every single detail on that box.</em></p>
+      <p>I still notice these things. I rant to everyone I know about my coffee bottle: a slide lid that's completely spill-proof, an aesthetic I actually like, and a ceramic interior so the coffee doesn't taste metallic. It's clear it is such a tought-out product and <em>I can't help but appreciate it.</em></p>
+      <p>This is just how my brain works. I instinctively analyze how things were made, designed, manufactured, and how they operate. I question whether I could improve a certain detail in a certain way. No one taught me to do this. <em>It comes naturally.</em> The difference now is that I'm learning how to actually apply it.</p>
+      <p>I work at Stanford's <strong>Hollberg Lab</strong>, where I design and build hardware for precision instrumentation. I prototype, troubleshoot, and iterate until things work the way they should. I've also worked in data engineering at <strong>CEMEX</strong>, product management at <strong>Fundación CR</strong>, and construction leadership at <strong>TECHO</strong>.</p>
+      <p>I'm curious, I pay attention, and I care about <em>getting things right</em>.</p>
     </div>
     <div class="about-stats">
       <div class="stat-box">
@@ -736,6 +852,99 @@
         <div class="stat-label">Always the point</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section" id="experience">
+  <p class="section-label reveal">Where I've worked</p>
+  <h2 class="section-heading reveal">Experience</h2>
+  <div class="exp-timeline reveal">
+
+    <div class="exp-item">
+      <div class="exp-date">2025 – Present</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Hollberg Lab</div>
+        <div class="exp-role">Hardware Design Engineer</div>
+        <p class="exp-desc">I design and fabricate custom hardware for a precision methane laser spectroscopy system. I build 3D-printed adapters to motorize manual stages, iterate on windshield wiper mechanisms to protect optical components, and prepare lab instruments for field deployment. This is where tolerance analysis stops being a homework problem and starts mattering.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">CAD</span>
+          <span class="exp-tag">3D Printing</span>
+          <span class="exp-tag">Prototyping</span>
+          <span class="exp-tag">Precision Instrumentation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2024</div>
+      <div class="exp-content">
+        <div class="exp-org">CEMEX</div>
+        <div class="exp-role">Data Engineering Intern</div>
+        <p class="exp-desc">Worked on data engineering pipelines for one of the world's largest building materials companies. Built and maintained data infrastructure that supported operational decisions across the organization.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Data Engineering</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2023</div>
+      <div class="exp-content">
+        <div class="exp-org">Fundación CR</div>
+        <div class="exp-role">Product Manager</div>
+        <p class="exp-desc">Led product management efforts at a foundation focused on social impact. Coordinated between stakeholders, defined product requirements, and drove initiatives from concept to delivery.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Product Management</span>
+          <span class="exp-tag">Strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2022 – 2023</div>
+      <div class="exp-content">
+        <div class="exp-org">TECHO</div>
+        <div class="exp-role">Construction Leader</div>
+        <p class="exp-desc">Directed large-scale construction projects building transitional housing for communities in need. Managed teams, coordinated logistics, and ensured builds were completed safely and on schedule.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Construction</span>
+          <span class="exp-tag">Leadership</span>
+          <span class="exp-tag">Project Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2025</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Designathon</div>
+        <div class="exp-role">Logistics Director</div>
+        <p class="exp-desc">Led logistics for Stanford's first Designathon, coordinating venues, sponsors, workshops, and event-day operations for a large-scale design competition.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Event Planning</span>
+          <span class="exp-tag">Design</span>
+          <span class="exp-tag">Leadership</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2024 – Present</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Women in Design</div>
+        <div class="exp-role">Community Engagement Lead</div>
+        <p class="exp-desc">Building community around design at Stanford by organizing events, workshops, and conversations that connect students across disciplines who care about how things are made and who they're made for.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Community</span>
+          <span class="exp-tag">Design</span>
+          <span class="exp-tag">Outreach</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
