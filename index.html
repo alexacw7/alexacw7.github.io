@@ -337,6 +337,14 @@
   .about-text p strong { color: var(--cream); font-weight: 500; }
   .about-text p em     { color: var(--teal); font-style: italic; }
 
+  .about-headshot {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 3px solid rgba(240,234,214,0.1);
+    margin-bottom: 3px;
+  }
+
   .about-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -874,8 +882,10 @@
       <p>I'm curious, I pay attention, and I care about <em>getting things right</em>.</p>
       <p><strong>P.S.</strong> Outside of engineering, I bake, taught myself to crochet from YouTube, upcycle clothes, and have strong opinions about espresso beans.</p>
     </div>
-    <div class="about-stats">
-      <div class="stat-box">
+    <div class="about-right">
+      <img src="images_index/headshot.JPG" alt="Alexa Cavazos" class="about-headshot">
+      <div class="about-stats">
+        <div class="stat-box">
         <div class="stat-num">3.96</div>
         <div class="stat-label">GPA · Stanford ME</div>
       </div>
@@ -890,6 +900,7 @@
       <div class="stat-box">
         <div class="stat-num">Details</div>
         <div class="stat-label">Always the point</div>
+      </div>
       </div>
     </div>
   </div>
