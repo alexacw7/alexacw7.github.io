@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Espresso Lever — Alexa Cavazos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #F0EAD6;
+    --dark:      #1A1612;
+    --coral:     #E04E2A;
+    --teal:      #2A9BAA;
+    --olive:     #6B7A1E;
+    --gold:      #D4980A;
+    --sand:      #C4AE88;
+    --off-white: #F7F2E8;
+    --mid:       #6B5040;
+    --silver:    #C8D4D8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Onest', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    border: 6px solid var(--coral);
+  }
+
+  /* ── BACK LINK ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 40px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(42,37,34,0.1);
+    width: 100%;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--coral); }
+  .back-link::before { content: '←'; font-size: 14px; }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    min-height: 90vh;
+    position: relative;
+  }
+  .hero-photo { overflow: hidden; position: relative; }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .hero-photo:hover img { transform: scale(1.03); }
+
+  .hero-center {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .hero-center::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: var(--coral);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.92;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .hero-title .accent { color: var(--coral); display: block; }
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(240,234,214,0.65);
+    line-height: 1.75;
+    margin-top: 20px;
+    border-left: 3px solid var(--teal);
+    padding-left: 14px;
+    max-width: 320px;
+  }
+  .hero-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 28px; }
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(240,234,214,0.2);
+    color: var(--cream);
+  }
+  .tag.accent-tag { background: var(--coral); border-color: var(--coral); color: var(--cream); }
+  .tag.teal-tag   { background: var(--teal);  border-color: var(--teal);  color: var(--dark); }
+  .hero-solo {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(240,234,214,0.1);
+    font-size: 11px;
+    color: rgba(240,234,214,0.4);
+    letter-spacing: 0.08em;
+  }
+  .hero-solo span { color: var(--sand); }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    border-top: 3px solid var(--dark);
+    border-bottom: 3px solid var(--dark);
+    background: var(--coral);
+    padding: 11px 0;
+    overflow: hidden;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 44px;
+    white-space: nowrap;
+    animation: tick 24s linear infinite;
+    font-family: 'Chango', system-ui;
+    font-size: 16px;
+    color: var(--cream);
+  }
+  .ticker-inner .dot { color: rgba(255,255,255,0.4); }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── PAGE BODY ── */
+  .page-body { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    padding-top: 80px;
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: 'Chango', system-ui;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--sand);
+    opacity: 0.35;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(32px, 4.5vw, 58px);
+    line-height: 1;
+    color: var(--dark);
+  }
+  .section-title .hl { color: var(--coral); }
+  .section-lead {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 720px;
+    margin-bottom: 36px;
+  }
+  .section-lead strong { color: var(--dark); font-weight: 700; }
+
+  /* ── WHY / STORY ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .why-left .big-q {
+    font-family: 'Chango', system-ui;
+    font-size: clamp(20px, 2.5vw, 30px);
+    color: var(--dark);
+    line-height: 1.3;
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 28px;
+  }
+  .why-left .big-q::before {
+    content: '"';
+    position: absolute;
+    left: -12px; top: -16px;
+    font-size: 100px;
+    line-height: 1;
+    color: var(--teal);
+    opacity: 0.25;
+    font-family: 'Chango', system-ui;
+  }
+  .why-left p { font-size: 15px; line-height: 1.85; color: var(--mid); }
+  .why-left p + p { margin-top: 14px; }
+  .why-left p strong { color: var(--dark); font-weight: 700; }
+  .sketch-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.12);
+    background: var(--off-white);
+  }
+  .sketch-card img { width: 100%; display: block; cursor: zoom-in; }
+  .sketch-card .cap {
+    padding: 12px 16px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--mid);
+    border-top: 1px solid rgba(42,37,34,0.08);
+  }
+
+  /* ── FACT CARDS ── */
+  .fact-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .fact-card {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 24px 22px;
+  }
+  .fact-num { font-family: 'Chango', system-ui; font-size: 34px; line-height: 1; margin-bottom: 10px; }
+  .fact-card:nth-child(1) .fact-num { color: var(--coral); }
+  .fact-card:nth-child(2) .fact-num { color: var(--teal); }
+  .fact-card:nth-child(3) .fact-num { color: var(--gold); }
+  .fact-card:nth-child(4) .fact-num { color: var(--olive); }
+  .fact-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-bottom: 4px; }
+  .fact-body { font-size: 12.5px; color: rgba(240,234,214,0.75); line-height: 1.6; }
+
+  /* ── MECHANISM / CAD PAIR ── */
+  .mech-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .mech-side {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--off-white);
+    border: 1px solid rgba(42,37,34,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  .mech-side .mech-img {
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    padding: 18px;
+  }
+  .mech-side .mech-img img { width: 100%; max-height: 340px; object-fit: contain; display: block; cursor: zoom-in; }
+  .mech-side .mech-cap { padding: 18px 22px 22px; }
+  .mech-badge {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+  }
+  .badge-up   { background: var(--teal); color: var(--dark); }
+  .badge-down { background: var(--coral); color: var(--cream); }
+  .mech-title { font-family: 'Chango', system-ui; font-size: 17px; color: var(--dark); margin-bottom: 6px; }
+  .mech-cap p { font-size: 12.5px; line-height: 1.7; color: var(--mid); }
+
+  .cad-hero {
+    border-radius: 18px; overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: var(--cream);
+    margin-bottom: 14px;
+  }
+  .cad-hero img { width: 100%; display: block; cursor: zoom-in; }
+
+  .parts-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .part-cell {
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: var(--off-white);
+  }
+  .part-cell .p-img { background: var(--cream); display:flex; align-items:center; justify-content:center; padding: 14px; height: 150px; }
+  .part-cell .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in; }
+  .part-cell .p-name { font-family: 'Chango', system-ui; font-size: 13px; color: var(--dark); padding: 10px 14px 14px; }
+
+  /* ── PROCESS / PROTOTYPE CARDS ── */
+  .process-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .process-card {
+    border-radius: 20px; overflow: hidden;
+    background: var(--off-white);
+    border: 1px solid rgba(42,37,34,0.1);
+    transition: transform 0.22s ease;
+  }
+  .process-card:hover { transform: translateY(-4px); }
+  .process-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; border-bottom: 1px solid rgba(42,37,34,0.08); }
+  .process-img img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+  .process-info { padding: 24px 22px 26px; }
+  .process-step-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+  .process-card:nth-child(1) .process-step-label { color: var(--coral); }
+  .process-card:nth-child(2) .process-step-label { color: var(--teal); }
+  .process-card:nth-child(3) .process-step-label { color: var(--olive); }
+  .process-card:nth-child(4) .process-step-label { color: var(--gold); }
+  .process-card-title { font-family: 'Chango', system-ui; font-size: 22px; color: var(--dark); margin-bottom: 10px; line-height: 1.1; }
+  .process-card-body { font-size: 13px; line-height: 1.75; color: var(--mid); }
+  .process-bullets { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+  .process-bullet { display: flex; gap: 8px; font-size: 12px; color: var(--mid); line-height: 1.5; }
+  .process-bullet::before { content: '→'; flex-shrink: 0; color: var(--coral); font-size: 11px; margin-top: 1px; }
+
+  /* ── FABRICATION GRID ── */
+  .fab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .fab-photo { border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; position: relative; }
+  .fab-photo.wide { grid-column: span 2; aspect-ratio: 16/10; }
+  .fab-photo.tall { grid-row: span 2; aspect-ratio: 3/5; }
+  .fab-photo img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; transition: transform 0.4s ease; }
+  .fab-photo:hover img { transform: scale(1.04); }
+  .fab-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(240,234,214,0.9);
+  }
+
+  /* ── PROBLEM / FIX ── */
+  .problems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .problem-card {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(42,37,34,0.1);
+    background: var(--off-white);
+    padding: 24px 24px 26px;
+    transition: transform 0.22s ease;
+  }
+  .problem-card:hover { transform: translateY(-3px); }
+  .problem-badge {
+    display: inline-block; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+  }
+  .badge-fail { background: var(--coral); color: var(--cream); }
+  .badge-fix  { background: var(--teal);  color: var(--dark);  }
+  .problem-title { font-family: 'Chango', system-ui; font-size: 18px; color: var(--dark); line-height: 1.2; margin-bottom: 4px; }
+  .problem-body { font-size: 13px; line-height: 1.7; color: var(--mid); }
+  .problem-body + .problem-badge { margin-top: 16px; }
+
+  /* ── ACCORDION ── */
+  .accordion {
+    border-radius: 16px;
+    border: 1px solid rgba(42,37,34,0.14);
+    background: var(--off-white);
+    overflow: hidden;
+    margin-top: 14px;
+  }
+  .accordion summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Chango', system-ui;
+    font-size: 16px;
+    color: var(--dark);
+  }
+  .accordion summary::-webkit-details-marker { display: none; }
+  .accordion summary .acc-hint {
+    font-family: 'Onest', sans-serif;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    color: var(--sand);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .accordion summary .chev { transition: transform 0.25s ease; color: var(--coral); font-size: 15px; }
+  .accordion[open] summary .chev { transform: rotate(90deg); }
+  .accordion .acc-body { padding: 4px 24px 26px; }
+  .accordion .acc-body p { font-size: 13.5px; line-height: 1.8; color: var(--mid); }
+  .accordion .acc-body p + p { margin-top: 12px; }
+  .accordion .acc-body strong { color: var(--dark); font-weight: 700; }
+
+  .op-list { display: grid; gap: 10px; margin-top: 4px; }
+  .op-item {
+    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    padding: 14px 0; border-bottom: 1px solid rgba(42,37,34,0.08);
+  }
+  .op-item:last-child { border-bottom: none; }
+  .op-tag {
+    font-family: 'Chango', system-ui; font-size: 11px; letter-spacing: 0.04em;
+    color: var(--cream); background: var(--dark); padding: 5px 11px; border-radius: 100px; white-space: nowrap;
+  }
+  .op-item:nth-child(2n) .op-tag { background: var(--teal); color: var(--dark); }
+  .op-text { font-size: 13px; line-height: 1.7; color: var(--mid); }
+  .op-text b { color: var(--dark); font-weight: 700; }
+
+  /* ── BOM TABLE ── */
+  .bom-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 6px; }
+  .bom-table th {
+    text-align: left; font-family: 'Onest', sans-serif; font-weight: 500;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand);
+    padding: 10px 12px; border-bottom: 2px solid rgba(42,37,34,0.15);
+  }
+  .bom-table td { padding: 11px 12px; border-bottom: 1px solid rgba(42,37,34,0.08); color: var(--mid); vertical-align: top; }
+  .bom-table td.num { text-align: right; white-space: nowrap; color: var(--dark); }
+  .bom-table tr:last-child td { border-bottom: none; }
+  .bom-total { font-family: 'Chango', system-ui; color: var(--dark) !important; }
+
+  /* ── VIDEO ── */
+  .video-wrap { border-radius: 16px; overflow: hidden; background: var(--dark); position: relative; }
+  .video-wrap video { width: 100%; display: block; }
+  .video-label { padding: 12px 16px; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+  .video-label-eyebrow { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-bottom: 2px; }
+  .video-label-title { font-family: 'Chango', system-ui; font-size: 16px; color: var(--cream); }
+
+  /* ── REFLECTION ── */
+  .reflection-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 80px; }
+  .reflection-card:nth-child(3) { grid-column: 1 / -1; }
+  .reflection-card { padding: 32px 28px; border-radius: 20px; }
+  .reflection-card:nth-child(1) { background: var(--dark); }
+  .reflection-card:nth-child(2) { background: var(--coral); }
+  .reflection-card:nth-child(3) { background: var(--cream); border: 2px solid rgba(42,37,34,0.1); }
+  .reflection-card h4 { font-family: 'Chango', system-ui; font-size: 20px; margin-bottom: 14px; }
+  .reflection-card:nth-child(1) h4 { color: var(--teal); }
+  .reflection-card:nth-child(2) h4 { color: var(--cream); }
+  .reflection-card:nth-child(3) h4 { color: var(--dark); }
+  .reflection-card p { font-size: 13.5px; line-height: 1.8; }
+  .reflection-card:nth-child(1) p { color: rgba(240,234,214,0.72); }
+  .reflection-card:nth-child(2) p { color: rgba(240,234,214,0.92); }
+  .reflection-card:nth-child(3) p { color: var(--mid); }
+
+  /* ── FOOTER ── */
+  .footer-banner {
+    background: var(--dark);
+    border-top: 3px solid var(--coral);
+    padding: 52px 48px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+  }
+  .footer-banner h2 { font-family: 'Chango', system-ui; font-size: clamp(28px, 4vw, 52px); color: var(--cream); line-height: 1; }
+  .footer-banner h2 span { color: var(--coral); }
+  .footer-meta { text-align: right; }
+  .footer-meta p { font-size: 13px; color: var(--sand); line-height: 1.8; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.93); z-index: 9999;
+    align-items: center; justify-content: center; cursor: zoom-out; padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 12px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); cursor: default; }
+  .lightbox-close { position: absolute; top: 20px; right: 28px; color: white; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s; background: none; border: none; }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ── ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-photo { min-height: 280px; }
+    .hero-center { order: -1; }
+    .why-grid { grid-template-columns: 1fr; }
+    .fact-row { grid-template-columns: 1fr 1fr; }
+    .mech-pair { grid-template-columns: 1fr; }
+    .parts-strip { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .fab-grid { grid-template-columns: 1fr 1fr; }
+    .fab-photo.wide { grid-column: span 2; }
+    .fab-photo.tall { grid-row: span 1; aspect-ratio: 3/4; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .reflection-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { border-width: 4px; }
+    .page-body { padding: 0 20px; }
+    .fact-row { grid-template-columns: 1fr; }
+    .fab-grid { grid-template-columns: 1fr; }
+    .fab-photo, .fab-photo.wide, .fab-photo.tall { grid-column: span 1; aspect-ratio: 4/3; }
+    .parts-strip { grid-template-columns: 1fr 1fr; }
+    .footer-banner { flex-direction: column; text-align: center; }
+    .footer-meta { text-align: center; }
+    .back-link { padding: 16px 20px; }
+    .bom-table th:nth-child(2), .bom-table td:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">Back to portfolio</a>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-photo">
+    <img src="images_espresso/hero_side.jpg" alt="Lever espresso maker pulling a shot, low side angle">
+  </div>
+  <div class="hero-center">
+    <p class="hero-eyebrow">ME103 · Product Realization: Design &amp; Making · Spring 2026</p>
+    <h1 class="hero-title">
+      The Espresso
+      <span class="accent">Lever</span>
+    </h1>
+    <p class="hero-sub">
+      A fully manual lever espresso maker, machined from solid aluminum. Press the lever, drive a sealed piston into a heated chamber, and force water through the puck. No pump. No electricity. Just leverage.
+    </p>
+    <div class="hero-tags">
+      <span class="tag accent-tag">Manual Machining</span>
+      <span class="tag teal-tag">Lathe &amp; Mill</span>
+      <span class="tag">6061 Aluminum</span>
+      <span class="tag">Piston &amp; O-Rings</span>
+      <span class="tag">CAD / Fusion 360</span>
+      <span class="tag">Design Around Purchased Parts</span>
+    </div>
+    <div class="hero-solo">a solo build · <span>ME103 final project</span></div>
+  </div>
+  <div class="hero-photo">
+    <img src="images_espresso/final_front.jpg" alt="Finished espresso lever brewing into a Stanford mug">
+  </div>
+</section>
+
+<!-- ticker -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span>Manual Lever Espresso</span><span class="dot">✦</span>
+    <span>6061 Aluminum</span><span class="dot">✦</span>
+    <span>Lathe + Mill</span><span class="dot">✦</span>
+    <span>Rotary Table</span><span class="dot">✦</span>
+    <span>Piston &amp; O-Rings</span><span class="dot">✦</span>
+    <span>54mm Portafilter</span><span class="dot">✦</span>
+    <span>No Electricity</span><span class="dot">✦</span>
+    <span>Freshly Pulled</span><span class="dot">✦</span>
+    <span>Manual Lever Espresso</span><span class="dot">✦</span>
+    <span>6061 Aluminum</span><span class="dot">✦</span>
+    <span>Lathe + Mill</span><span class="dot">✦</span>
+    <span>Rotary Table</span><span class="dot">✦</span>
+    <span>Piston &amp; O-Rings</span><span class="dot">✦</span>
+    <span>54mm Portafilter</span><span class="dot">✦</span>
+    <span>No Electricity</span><span class="dot">✦</span>
+    <span>Freshly Pulled</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<div class="page-body">
+
+  <!-- ═══ 01 WHY ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Why an <span class="hl">Espresso Lever</span></h2>
+  </div>
+
+  <div class="why-grid reveal">
+    <div class="why-left">
+      <div class="big-q">I'm a coffee addict and appreciator of it — as is the rest of my family.</div>
+      <p>Away at school, the thing I missed most about home was good coffee. My kitchen had a Keurig drip maker and not much else, and I was spending an <strong>embarrassing amount of money at cafés</strong>. So for my ME103 final project, I decided to build the thing I actually wanted: a machine that lets me pull my own espresso, by hand.</p>
+      <p>The concept is an old one — a <strong>manual lever</strong>. You load ground coffee into a portafilter, add hot water to the chamber, and press down on a long lever arm. That leverage drives a sealed piston into the chamber and forces the water through the coffee puck. The reward is a real, freshly pulled shot with zero electronics involved.</p>
+      <p>The catch: unlike my earlier projects that were mostly 3D-printed and laser-cut, this one had to be <strong>machined from solid metal</strong> and built around real, purchased espresso parts. That changed everything.</p>
+    </div>
+    <div class="sketch-card">
+      <img src="images_espresso/product_story_sketch.png" alt="Hand-drawn product story sketch of the espresso lever">
+      <div class="cap">Original product-story sketch — the &ldquo;why,&rdquo; the mechanism, and the goal: <em>&ldquo;Yay! I have my freshly brewed espresso.&rdquo;</em></div>
+    </div>
+  </div>
+
+  <div class="fact-row reveal">
+    <div class="fact-card">
+      <div class="fact-num">0</div>
+      <div class="fact-label">Motors / electronics</div>
+      <div class="fact-body">Fully manual. All brewing force comes from the lever and your arm.</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-num">54mm</div>
+      <div class="fact-label">Portafilter</div>
+      <div class="fact-body">The whole chamber was dimensioned around a standard bottomless portafilter and shower screen.</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-num">6061</div>
+      <div class="fact-label">Aluminum stock</div>
+      <div class="fact-body">Chamber, piston, frame and shaft all turned and milled from solid 6061 bar stock.</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-num">~$144</div>
+      <div class="fact-label">Total build cost</div>
+      <div class="fact-body">Raw stock plus purchased espresso hardware — full bill of materials below.</div>
+    </div>
+  </div>
+
+  <!-- ═══ 02 DESIGNING AROUND REAL PARTS ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Designing Around <span class="hl">Real Parts</span></h2>
+  </div>
+
+  <p class="section-lead reveal">
+    In ME102, most parts were things I designed and printed from scratch. This project flipped that. Before I could design anything, I had to <strong>research and buy the parts the machine would live around</strong> — the portafilter, the shower screen and gasket, and an o-ring set for the piston seal — and then design every machined part to fit them. The hard part of a mechanism, I learned, isn't figuring out how it should work. It's making all the real pieces actually work <em>together</em>.
+  </p>
+
+  <div class="problems-grid reveal">
+    <div class="problem-card">
+      <span class="problem-badge badge-fail">The rabbit hole</span>
+      <div class="problem-title">A Million O-Rings</div>
+      <p class="problem-body">Pistons and o-rings were far less intuitive than I expected. Open one supplier page and you're staring at every cross-section and material imaginable. What inner diameter should the chamber be? How much clearance does the piston need? Should the piston be smaller than the portafilter? Start from a solid rod, or a tube? Each choice felt small on its own.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-badge badge-fix">The realization</span>
+      <div class="problem-title">Everything Is Coupled</div>
+      <p class="problem-body">Rethinking one dimension meant rethinking three others. The design phase became a constant back-and-forth between diameters, clearances, and pivot positions until the whole thing was finally cohesive. This is where I learned to think past &ldquo;how it works&rdquo; and into &ldquo;how to actually make it work&rdquo; — weighing real trade-offs instead of ideal ones.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 03 CAD ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">CAD &amp; <span class="hl">Mechanism</span></h2>
+  </div>
+
+  <p class="section-lead reveal">
+    I leaned on my CAD harder than on any project before. With so many interdependent dimensions, an accurate model was the only way to be sure the mechanism would fully open without the piston getting stuck, reach the bottom of the chamber on the down-stroke, and keep every pivot point spaced correctly. I used section analysis to watch the piston travel through the chamber before cutting a single chip of metal.
+  </p>
+
+  <div class="cad-hero reveal">
+    <img src="images_espresso/cad_final.png" alt="Final CAD assembly of the espresso lever">
+  </div>
+
+  <div class="mech-pair reveal">
+    <div class="mech-side">
+      <div class="mech-img"><img src="images_espresso/cad_section_up.png" alt="Section view, lever raised, piston up"></div>
+      <div class="mech-cap">
+        <span class="mech-badge badge-up">Lever up</span>
+        <div class="mech-title">Piston Raised — Ready</div>
+        <p>With the lever up, the piston is lifted clear of the chamber. Ground coffee sits in the portafilter below and hot water fills the chamber above the puck.</p>
+      </div>
+    </div>
+    <div class="mech-side">
+      <div class="mech-img"><img src="images_espresso/cad_section_down.png" alt="Section view, lever pressed, piston bottomed"></div>
+      <div class="mech-cap">
+        <span class="mech-badge badge-down">Lever down</span>
+        <div class="mech-title">Piston Driven — Pulling the Shot</div>
+        <p>Pressing the lever drives the sealed piston down. It pressurizes the chamber and forces water through the coffee puck and out the bottomless portafilter as espresso.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="parts-strip reveal">
+    <div class="part-cell">
+      <div class="p-img"><img src="images_espresso/cad_piston.png" alt="Piston CAD"></div>
+      <div class="p-name">Piston + o-ring grooves</div>
+    </div>
+    <div class="part-cell">
+      <div class="p-img"><img src="images_espresso/cad_handle.png" alt="Lever handle CAD"></div>
+      <div class="p-name">Lever arm</div>
+    </div>
+    <div class="part-cell">
+      <div class="p-img"><img src="images_espresso/cad_frame.png" alt="Frame CAD"></div>
+      <div class="p-name">Vertical frame</div>
+    </div>
+    <div class="part-cell">
+      <div class="p-img"><img src="images_espresso/cad_shaft.png" alt="Connecting shaft CAD"></div>
+      <div class="p-name">Connecting shaft</div>
+    </div>
+  </div>
+
+  <!-- ═══ 04 PROTOTYPING ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Prototyping the <span class="hl">Mechanism</span></h2>
+  </div>
+
+  <p class="section-lead reveal">
+    Before committing to metal, I worked the geometry out in foam and quick mock-ups. The <strong>highest-risk element</strong> was always the piston–cylinder subsystem: could I make it seal air-tight, brew without leaking, and still be easy to assemble? Cheap prototypes let me answer the geometry questions first.
+  </p>
+
+  <div class="process-steps reveal">
+    <div class="process-card">
+      <div class="process-img"><img src="images_espresso/proto_foam_hinge.jpg" alt="Pink foam hinge-distance study"></div>
+      <div class="process-info">
+        <div class="process-step-label">Foam study 1</div>
+        <div class="process-card-title">Where the Hinge Goes</div>
+        <p class="process-card-body">Foam let me feel out the distance between the base–lever hinge and the cylinder — the single choice that sets how the whole mechanism moves.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Too far from the hinge → too large a moment to press comfortably</div>
+          <div class="process-bullet">Too close → not enough freedom of motion for a full stroke</div>
+          <div class="process-bullet">Dialed in the spacing that balances leverage and travel</div>
+        </div>
+      </div>
+    </div>
+    <div class="process-card">
+      <div class="process-img"><img src="images_espresso/proto_foam_assembly.jpg" alt="Foam cylinder and lever assembly"></div>
+      <div class="process-info">
+        <div class="process-step-label">Foam study 2</div>
+        <div class="process-card-title">Full-Assembly Feel</div>
+        <p class="process-card-body">A rough cylinder-and-lever assembly to sanity-check that the pieces came together the way the CAD said they would, and that the lever cleared its full range.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Confirmed the lever needs a rounded relief at the hinge to swing freely</div>
+          <div class="process-bullet">Validated overall proportions before machining</div>
+        </div>
+      </div>
+    </div>
+    <div class="process-card">
+      <div class="process-img"><img src="images_espresso/proto_foam_bench.jpg" alt="Foam prototypes and dowels on the bench"></div>
+      <div class="process-info">
+        <div class="process-step-label">First piston</div>
+        <div class="process-card-title">Sealing the Chamber</div>
+        <p class="process-card-body">The first piston mock-up followed my original idea: a cylinder with two grooves for o-rings to sit in and create the seal against the chamber wall.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Established the two-groove o-ring layout</div>
+          <div class="process-bullet">Exposed how sensitive the seal is to clearance and finish</div>
+        </div>
+      </div>
+    </div>
+    <div class="process-card">
+      <div class="process-img"><img src="images_espresso/proto_foam_closeup.jpg" alt="Second piston concept close-up"></div>
+      <div class="process-info">
+        <div class="process-step-label">Second piston</div>
+        <div class="process-card-title">A One-Way Valve Idea</div>
+        <p class="process-card-body">I explored a second piston with a one-way valve, so water could flow <em>through</em> the piston on the up-stroke — meaning the chamber wouldn't need to be re-loaded by hand before every pull.</p>
+        <div class="process-bullets">
+          <div class="process-bullet">Water passes through on lift, seals and pressurizes on press</div>
+          <div class="process-bullet">Points toward a smoother, repeatable brewing cycle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 05 FABRICATION ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Fabrication &amp; <span class="hl">Machining</span></h2>
+  </div>
+
+  <p class="section-lead reveal">
+    This was my first real machining project, and it's where the design met reality. Every metal part was turned on the lathe or cut on the mill from solid 6061 aluminum. I had a plan for how to make each part — but with no intuition yet for how a drawing becomes a physical, clamped, chip-making operation, plenty of details only revealed themselves once I was standing at the machine.
+  </p>
+
+  <div class="fab-grid reveal">
+    <div class="fab-photo tall">
+      <img src="images_espresso/fab_turn_chamber.jpg" alt="Turning the chamber on the lathe">
+      <div class="fab-caption">Turning the chamber on the lathe</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_cut_stock.jpg" alt="Cutting aluminum bar stock on the bandsaw">
+      <div class="fab-caption">Cutting stock to length</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_chamber_grooves.jpg" alt="Machined piston with o-ring grooves">
+      <div class="fab-caption">Piston o-ring grooves</div>
+    </div>
+    <div class="fab-photo wide">
+      <img src="images_espresso/fab_action_lathe.jpg" alt="At the lathe">
+      <div class="fab-caption">Long days on the lathe</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_rotary_table.jpg" alt="Rotary table setup on the mill">
+      <div class="fab-caption">Rotary table on the mill</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_mill_slot.jpg" alt="Milling the handle slot">
+      <div class="fab-caption">Milling the handle slots</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_part_in_hand.jpg" alt="Finished chamber in hand">
+      <div class="fab-caption">Chamber, in hand</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_portafilter_test.jpg" alt="Fitting the portafilter and shower screen">
+      <div class="fab-caption">Checking portafilter fit</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_deburr_frame.jpg" alt="Filing the frame cutout by hand">
+      <div class="fab-caption">Hand-finishing the frame</div>
+    </div>
+  </div>
+
+  <details class="accordion reveal">
+    <summary>
+      <span>Machining operations, step by step</span>
+      <span class="acc-hint">Read the process <span class="chev">›</span></span>
+    </summary>
+    <div class="acc-body">
+      <p>I planned every session before I walked into the lab. With limited time and limited stock, I couldn't afford to improvise a setup and hope — I had to be confident in each operation and each way of holding the part before I started cutting.</p>
+      <div class="op-list">
+        <div class="op-item">
+          <span class="op-tag">Lathe</span>
+          <div class="op-text"><b>Chamber / cylinder.</b> Faced and turned the outer diameter from bar stock, then bored the inner diameter to fit the piston with the right clearance, parting and re-mounting to reach both faces.</div>
+        </div>
+        <div class="op-item">
+          <span class="op-tag">Lathe</span>
+          <div class="op-text"><b>Piston.</b> Turned to diameter and cut the two o-ring grooves with a grooving tool, stepping over in small increments until each groove hit its target width and depth for the seal.</div>
+        </div>
+        <div class="op-item">
+          <span class="op-tag">Mill + rotary table</span>
+          <div class="op-text"><b>Internal grooves.</b> The seats for the portafilter and gasket couldn't be cut with the lathe tooling I had, so I moved the chamber to the <b>rotary table on the mill</b> to machine those internal features.</div>
+        </div>
+        <div class="op-item">
+          <span class="op-tag">Mill</span>
+          <div class="op-text"><b>Handle slots.</b> The lever needed two parallel side slots — but they can't be cut in one setup because there's no clean way to clamp for both at once. I had to indicate the part in twice and machine each side independently while keeping them true to each other.</div>
+        </div>
+        <div class="op-item">
+          <span class="op-tag">Bench</span>
+          <div class="op-text"><b>Finishing.</b> Deburring, filing the frame cutout, and fitting the purchased parts — portafilter, shower screen, gasket, and o-rings — until everything seated and sealed.</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion reveal">
+    <summary>
+      <span>Bill of materials &amp; cost</span>
+      <span class="acc-hint">$144.48 total <span class="chev">›</span></span>
+    </summary>
+    <div class="acc-body">
+      <table class="bom-table">
+        <thead>
+          <tr><th>Part</th><th>Source</th><th class="num">Qty</th><th class="num">Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3.5&quot; round solid 6061 aluminum rod, 7&quot;</td><td>222 Steel (Etsy)</td><td class="num">1</td><td class="num">$53.08</td></tr>
+          <tr><td>1&#8209;3/4&quot; dia solid 6061 aluminum rod, 5&quot;</td><td>Alan Steel &amp; Supply</td><td class="num">1</td><td class="num">$12.00</td></tr>
+          <tr><td>5/8&quot; dia 6061 aluminum rod, 13&quot;</td><td>Alan Steel &amp; Supply</td><td class="num">2</td><td class="num">$8.00</td></tr>
+          <tr><td>1&quot;&#215;2&quot; 6061 aluminum rectangular rod, 15&quot;</td><td>Alan Steel &amp; Supply</td><td class="num">1</td><td class="num">$9.00</td></tr>
+          <tr><td>Maple wood base, 8&quot;&#215;18&quot;&#215;1.5&quot; (offcut)</td><td>Woodcraft of San Carlos</td><td class="num">1</td><td class="num">$7.54</td></tr>
+          <tr><td>54mm bottomless portafilter + filter screen</td><td>Amazon</td><td class="num">1</td><td class="num">$15.99</td></tr>
+          <tr><td>Precision shower screen + 54mm silicone gasket</td><td>Amazon</td><td class="num">1</td><td class="num">$13.99</td></tr>
+          <tr><td>O-ring seal kit (Gaggia-compatible)</td><td>Amazon</td><td class="num">1</td><td class="num">$7.99</td></tr>
+          <tr><td>Chicago binding screws, 304 stainless</td><td>Amazon</td><td class="num">1</td><td class="num">$12.99</td></tr>
+          <tr><td>Stainless machine screws (1/4&#8209;20)</td><td>Bolt Depot</td><td class="num">6</td><td class="num">$2.90</td></tr>
+          <tr><td>Mild steel block, 5.4&quot;&#215;8.4&quot;&#215;3/4&quot; (discounted scrap)</td><td>Alan Steel &amp; Supply</td><td class="num">1</td><td class="num">$1.00</td></tr>
+          <tr><td class="bom-total">Total build cost</td><td></td><td class="num"></td><td class="num bom-total">$144.48</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- ═══ 06 CHALLENGES ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Challenges <span class="hl">&amp; Fixes</span></h2>
+  </div>
+
+  <div class="problems-grid reveal">
+    <div class="problem-card">
+      <span class="problem-badge badge-fail">Problem</span>
+      <div class="problem-title">Slots That Can't Be Clamped</div>
+      <p class="problem-body">The handle needs two slots on opposite sides that have to end up parallel — but there's no good way to clamp the part to cut both in a single setup.</p>
+      <span class="problem-badge badge-fix">Fix</span>
+      <p class="problem-body">I re-indicated and re-clamped the part between operations, machining each slot on its own while carefully referencing the same datums so the two stayed true to each other.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-badge badge-fail">Problem</span>
+      <div class="problem-title">Grooves the Lathe Couldn't Cut</div>
+      <p class="problem-body">I'd planned to cut the chamber's internal grooves — where the portafilter seats and the gasket sits — on the lathe. The tooling we had simply couldn't reach or form them.</p>
+      <span class="problem-badge badge-fix">Fix</span>
+      <p class="problem-body">I re-thought the setup on the fly and moved the chamber onto the rotary table on the mill, which let me machine the internal features a different way. Limited time meant I had to be certain before committing.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-badge badge-fail">Risk</span>
+      <div class="problem-title">An Air-Tight Piston Seal</div>
+      <p class="problem-body">The whole machine lives or dies on the piston sealing against the chamber — leak and there's no pressure, and no espresso.</p>
+      <span class="problem-badge badge-fix">Fix</span>
+      <p class="problem-body">A two-groove o-ring layout, dimensioned in CAD and dialed in on the lathe, gave a seal that holds pressure while still sliding smoothly through the bore.</p>
+    </div>
+    <div class="problem-card">
+      <span class="problem-badge badge-fail">The crunch</span>
+      <div class="problem-title">The Last Two Weeks</div>
+      <p class="problem-body">Deadline pressure, long lab sessions, and constant troubleshooting blurred together. There were moments I genuinely doubted I'd finish in time.</p>
+      <span class="problem-badge badge-fix">The payoff</span>
+      <p class="problem-body">Watching the parts get fabricated and slowly come together was thrilling — and pulling the first real shot made every late night worth it.</p>
+    </div>
+  </div>
+
+  <!-- ═══ 07 FINAL BUILD ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Final <span class="hl">Build</span></h2>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr; gap:14px; margin-bottom:14px;" class="reveal">
+    <div class="video-wrap">
+      <video controls preload="metadata" poster="images_espresso/fab_turn_chamber.jpg">
+        <source src="images_espresso/fabrication.mp4" type="video/mp4">
+      </video>
+      <div class="video-label">
+        <div class="video-label-eyebrow">In the machine lab</div>
+        <div class="video-label-title">Making the parts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab-grid reveal">
+    <div class="fab-photo tall">
+      <img src="images_espresso/final_front.jpg" alt="Finished espresso lever, front view, brewing">
+      <div class="fab-caption">Pulling a shot into a Stanford mug</div>
+    </div>
+    <div class="fab-photo wide">
+      <img src="images_espresso/hero_side.jpg" alt="Finished espresso lever, side angle">
+      <div class="fab-caption">Polished aluminum on a walnut base</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/fab_lever_arm.jpg" alt="Machined lever arm detail">
+      <div class="fab-caption">Lever arm detail</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/final_topdown1.jpg" alt="Top-down view of the finished machine">
+      <div class="fab-caption">Wood handle &amp; portafilter</div>
+    </div>
+    <div class="fab-photo">
+      <img src="images_espresso/final_topdown2.jpg" alt="Another view of the finished machine">
+      <div class="fab-caption">The finished lever, at home</div>
+    </div>
+  </div>
+
+  <!-- ═══ 08 REFLECTIONS ═══ -->
+  <div class="section-header reveal">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Final <span class="hl">Remarks</span></h2>
+  </div>
+
+</div><!-- end page-body -->
+
+<div style="max-width:1160px; margin:0 auto; padding:0 48px;">
+  <div class="reflection-grid reveal">
+    <div class="reflection-card">
+      <h4>Designing to make it work</h4>
+      <p>Coming in, I thought the hard part of a mechanism was the design itself. What I actually learned is that the tough part is bringing it together. Unlike past projects where parts were printed or laser-cut, this one meant researching purchased parts and designing around them — and every small choice about a diameter, a clearance, or a pivot rippled into three others. I developed the skill of thinking past how a design is <em>supposed</em> to work and into how to genuinely make it work, weighing real options against real constraints.</p>
+    </div>
+    <div class="reflection-card">
+      <h4>Learning to machine</h4>
+      <p>I'd wanted to learn to machine for a long time, and this project finally taught me — not just the tools, but how engineering actually happens in the shop. I had no intuition for how a plan translates into a physical setup, so problems surfaced that I hadn't thought about: slots that can't be clamped, grooves the lathe couldn't cut. With limited time and stock, I couldn't just try a setup on a whim; I had to plan each session in advance and be confident in every operation. That's where I got creative and learned to troubleshoot on my feet.</p>
+    </div>
+    <div class="reflection-card">
+      <h4>The hardest — and most rewarding</h4>
+      <p>The final stretch nearly broke me: the deadline pressure and endless troubleshooting had me feeling a little crazy. But seeing the parts come together and actually work was incredibly rewarding. More than any single skill, I came away with a real sense of how much deliberate, behind-the-scenes work ties a product together. This was the hardest and most rewarding project I've ever made — and next, I'd love to refine the one-way-valve piston so it re-fills on the up-stroke and pulls back-to-back shots.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="footer-banner">
+  <div>
+    <h2>Alexa <span>Cavazos</span></h2>
+    <p style="color: var(--sand); font-size: 13px; margin-top: 8px;">Stanford University · Mechanical Engineering</p>
+  </div>
+  <div class="footer-meta">
+    <p>ME103: Product Realization — Design &amp; Making</p>
+    <p>Spring 2026 · Final Project: The Espresso Lever</p>
+    <p style="color: var(--teal); margin-top: 8px;">Machined from solid 6061 aluminum</p>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 55);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Lightbox — all images except CAD line art open fullscreen
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('img').forEach(img => {
+    if (img.id === 'lightbox-img') return;
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
