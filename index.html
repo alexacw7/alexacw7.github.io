@@ -297,9 +297,66 @@
   .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* reveal that slides in from the side (used on alternating experience rows) */
+  .reveal.from-left  { transform: translate(-32px, 0); }
+  .reveal.from-right { transform: translate(32px, 0); }
+  .reveal.from-left.visible,
+  .reveal.from-right.visible { transform: translate(0, 0); }
+
+  /* ── SCROLL PROGRESS BAR ── */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 4px;
+    width: 0%;
+    background: var(--teal);
+    z-index: 10000;
+    transition: width 0.1s linear;
+    pointer-events: none;
+  }
+
+  /* ── ACTIVE NAV LINK ── */
+  .nav-links a.active {
+    text-decoration-color: var(--coral);
+    color: var(--coral);
+  }
+
+  /* ── TICKER: pause on hover so people can read it ── */
+  .ticker-wrap:hover .ticker-inner { animation-play-state: paused; }
+
+  /* ── PROJECT CARD: cursor-follow spotlight ── */
+  .project-card {
+    --mx: 50%;
+    --my: 50%;
+  }
+  .project-card .spotlight {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: radial-gradient(240px circle at var(--mx) var(--my),
+      rgba(224,78,42,0.28), transparent 70%);
+    mix-blend-mode: screen;
+  }
+  .project-card:hover .spotlight { opacity: 1; }
+
+  /* ── ACCESSIBILITY: honor reduced-motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .blob, .flower { animation: none !important; }
+  }
 
   /* ── ABOUT ── */
   #about {
@@ -498,47 +555,55 @@
   }
 
   .project-card {
-    background: var(--cream);
+    position: relative;
     border: 2.5px solid var(--dark);
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    min-height: 380px;
     transition: transform 0.22s ease, box-shadow 0.22s ease;
-    position: relative;
   }
   .project-card:hover {
     transform: translate(-4px, -4px);
     box-shadow: 6px 6px 0 var(--dark);
   }
-  .project-card.featured { grid-column: span 7; }
+  .project-card.featured { grid-column: span 7; min-height: 480px; }
   .project-card.small    { grid-column: span 5; }
   .project-card.medium   { grid-column: span 6; }
 
+  /* image fills the whole card */
   .project-thumb {
-    aspect-ratio: 16/9;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
-    flex-shrink: 0;
-    border-bottom: 2.5px solid var(--dark);
   }
-  .project-card.featured .project-thumb { aspect-ratio: 4/3; }
-
-  .project-thumb-bg {
+  .project-thumb img {
     width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Chango', system-ui;
-    font-weight: 900;
-    font-size: 72px;
-    color: rgba(255,255,255,0.12);
-    letter-spacing: -0.02em;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .project-card:hover .project-thumb img { transform: scale(1.05); }
+
+  /* dark gradient so overlaid text stays legible */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(20,12,6,0.92) 0%,
+      rgba(20,12,6,0.72) 22%,
+      rgba(20,12,6,0.15) 55%,
+      rgba(20,12,6,0) 80%);
+    z-index: 1;
+    pointer-events: none;
   }
 
   .project-info {
-    padding: 22px 24px 26px;
-    flex: 1;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 3;
+    padding: 24px 26px 26px;
     display: flex;
     flex-direction: column;
   }
@@ -546,7 +611,7 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
   .ptag {
     font-size: 9px;
@@ -554,9 +619,10 @@
     text-transform: uppercase;
     font-weight: 500;
     padding: 4px 10px;
-    border: 1.5px solid rgba(44,26,14,0.18);
-    color: var(--mid);
+    border: 1.5px solid rgba(240,234,214,0.4);
+    color: var(--cream);
     border-radius: 100px;
+    background: rgba(20,12,6,0.25);
   }
   .ptag.hot {
     background: var(--coral);
@@ -566,29 +632,46 @@
   .project-title {
     font-family: 'Chango', system-ui;
     font-weight: 900;
-    font-size: 24px;
+    font-size: 26px;
     letter-spacing: -0.01em;
-    color: var(--dark);
-    margin-bottom: 8px;
-    line-height: 1.1;
+    color: var(--cream);
+    line-height: 1.05;
   }
-  .project-card.featured .project-title { font-size: 32px; }
+  .project-card.featured .project-title { font-size: 38px; }
+
+  /* description + cta stay hidden until hover */
   .project-desc {
     font-size: 13px;
-    line-height: 1.75;
-    color: var(--mid);
-    flex: 1;
+    line-height: 1.7;
+    color: rgba(240,234,214,0.85);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.4s ease;
+  }
+  .project-card:hover .project-desc {
+    max-height: 240px;
+    opacity: 1;
+    margin-top: 10px;
   }
   .project-cta {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 18px;
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 500;
-    color: var(--dark);
+    color: var(--cream);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin 0.4s ease;
+  }
+  .project-card:hover .project-cta {
+    max-height: 40px;
+    opacity: 1;
+    margin-top: 16px;
   }
   .cta-arrow {
     width: 28px; height: 2px;
@@ -607,26 +690,10 @@
   }
   .project-card:hover .cta-arrow { width: 44px; }
 
-  .project-card.placeholder {
-    border: 2.5px dashed rgba(44,26,14,0.18);
-    background: transparent;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-  }
-  .placeholder-inner { text-align: center; padding: 40px; }
-  .placeholder-inner span {
-    font-family: 'Chango', system-ui;
-    font-size: 40px;
-    opacity: 0.2;
-    display: block;
-    margin-bottom: 10px;
-  }
-  .placeholder-inner p {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sand);
+  /* touch devices can't hover — always show the detail there */
+  @media (hover: none) {
+    .project-desc { max-height: 240px; opacity: 1; margin-top: 10px; }
+    .project-cta  { max-height: 40px; opacity: 1; margin-top: 16px; }
   }
 
   /* ── SKILLS ── */
@@ -792,16 +859,16 @@
 </head>
 <body>
 
+<div class="scroll-progress"></div>
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
 <nav>
   <a href="#" class="nav-logo">Alexa Cavazos</a>
   <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -868,143 +935,13 @@
   </div>
 </div>
 
-<!-- ═══ ABOUT ═══ -->
-<section class="section" id="about">
-  <p class="section-label reveal">Who I am</p>
-  <h2 class="section-heading reveal">About <span class="accent">Me</span></h2>
-  <div class="about-grid reveal">
-    <div class="about-text">
-      <p>I'm a <strong>Mechanical Engineering student at Stanford</strong> with a <strong>Computer Science minor</strong>. But honestly, I've been an engineer for as long as I can remember.</p>
-      <p>As a kid, I was obsessed with <em>"How It's Made"</em> and would fight my siblings for the remote just to watch factory footage. I collected Apple packaging boxes because I was fascinated by how deliberate every detail was: the material that felt perfect to touch, the seams that were clean and nearly invisible, and most of all, the way the lid would glide onto the box with that satisfying suction. <em>Someone had deliberately engineered that friction and every single detail on that box.</em></p>
-      <p>I still notice these things. I rant to everyone I know about my coffee bottle: a slide lid that's completely spill-proof, an aesthetic I actually like, and a ceramic interior so the coffee doesn't taste metallic. It's clear it is such a tought-out product and <em>I can't help but appreciate it.</em></p>
-      <p>This is just how my brain works. I instinctively analyze how things were made, designed, manufactured, and how they operate. I question whether I could improve a certain detail in a certain way. No one taught me to do this. <em>It comes naturally.</em> The difference now is that I'm learning how to actually apply it.</p>
-      <p>I work at Stanford's <strong>Hollberg Lab</strong>, where I design and build hardware for precision instrumentation. I prototype, troubleshoot, and iterate until things work the way they should. I've also worked in data engineering at <strong>CEMEX</strong>, product management at <strong>Fundación CR</strong>, and construction leadership at <strong>TECHO</strong>.</p>
-      <p>I'm curious, I pay attention, and I care about <em>getting things right</em>.</p>
-      <p><strong>P.S.</strong> Outside of engineering, I bake, taught myself to crochet from YouTube, upcycle clothes, and have strong opinions about espresso beans.</p>
-    </div>
-    <div class="about-right">
-      <img src="images_index/headshot.JPG" alt="Alexa Cavazos" class="about-headshot">
-      <div class="about-stats">
-        <div class="stat-box">
-        <div class="stat-num">3.96</div>
-        <div class="stat-label">GPA · Stanford ME</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">85%</div>
-        <div class="stat-label">Cost reduction on lab hardware</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Prototypes before final</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">Details</div>
-        <div class="stat-label">Always the point</div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ EXPERIENCE ═══ -->
-<section class="section" id="experience">
-  <p class="section-label reveal">Where I've worked</p>
-  <h2 class="section-heading reveal">Experience</h2>
-  <div class="exp-timeline reveal">
-
-    <div class="exp-item">
-      <div class="exp-date">2025 – Present</div>
-      <div class="exp-content">
-        <div class="exp-org">Stanford Hollberg Lab</div>
-        <div class="exp-role">Hardware Design Engineer</div>
-        <p class="exp-desc">I design and fabricate custom hardware for a precision methane laser spectroscopy system. I build 3D-printed adapters to motorize manual stages, iterate on windshield wiper mechanisms to protect optical components, and prepare lab instruments for field deployment. This is where tolerance analysis stops being a homework problem and starts mattering.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">CAD</span>
-          <span class="exp-tag">3D Printing</span>
-          <span class="exp-tag">Prototyping</span>
-          <span class="exp-tag">Precision Instrumentation</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2024</div>
-      <div class="exp-content">
-        <div class="exp-org">CEMEX</div>
-        <div class="exp-role">Data Engineering Intern</div>
-        <p class="exp-desc">Worked on data engineering pipelines for one of the world's largest building materials companies. Built and maintained data infrastructure that supported operational decisions across the organization.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Data Engineering</span>
-          <span class="exp-tag">Python</span>
-          <span class="exp-tag">SQL</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2023</div>
-      <div class="exp-content">
-        <div class="exp-org">Fundación CR</div>
-        <div class="exp-role">Product Manager</div>
-        <p class="exp-desc">Led product management efforts at a foundation focused on social impact. Coordinated between stakeholders, defined product requirements, and drove initiatives from concept to delivery.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Product Management</span>
-          <span class="exp-tag">Strategy</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2022 – 2023</div>
-      <div class="exp-content">
-        <div class="exp-org">TECHO</div>
-        <div class="exp-role">Construction Leader</div>
-        <p class="exp-desc">Directed large-scale construction projects building transitional housing for communities in need. Managed teams, coordinated logistics, and ensured builds were completed safely and on schedule.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Construction</span>
-          <span class="exp-tag">Leadership</span>
-          <span class="exp-tag">Project Management</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2025</div>
-      <div class="exp-content">
-        <div class="exp-org">Stanford Designathon</div>
-        <div class="exp-role">Logistics Director</div>
-        <p class="exp-desc">Led logistics for Stanford's first Designathon, coordinating venues, sponsors, workshops, and event-day operations for a large-scale design competition.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Event Planning</span>
-          <span class="exp-tag">Design</span>
-          <span class="exp-tag">Leadership</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2024 – Present</div>
-      <div class="exp-content">
-        <div class="exp-org">Stanford Women in Design</div>
-        <div class="exp-role">Community Engagement Lead</div>
-        <p class="exp-desc">Building community around design at Stanford by organizing events, workshops, and conversations that connect students across disciplines who care about how things are made and who they're made for.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Community</span>
-          <span class="exp-tag">Design</span>
-          <span class="exp-tag">Outreach</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 <!-- ═══ PROJECTS ═══ -->
 <section class="section" id="projects">
   <p class="section-label reveal">Selected work</p>
   <h2 class="section-heading reveal">Projects</h2>
-  <div class="projects-grid reveal">
-    <a href="espresso-lever.html" class="project-card featured">
+  <div class="projects-grid">
+    <a href="espresso-lever.html" class="project-card featured reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images_espresso/hero_side.jpg" alt="The Espresso Lever" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1020,7 +957,8 @@
         <div class="project-cta">View project <div class="cta-arrow"></div></div>
       </div>
     </a>
-    <a href="parabolic-putter-final.html" class="project-card small">
+    <a href="parabolic-putter-final.html" class="project-card small reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images_pingpong/hero_isometric.png" alt="Parabolic Putter" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1035,7 +973,8 @@
         <div class="project-cta">View project <div class="cta-arrow"></div></div>
       </div>
     </a>
-    <a href="dog-prosthetic-blade.html" class="project-card medium">
+    <a href="dog-prosthetic-blade.html" class="project-card medium reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images_blade/filleted_prosthetic_vonmises_FEA_1.png" alt="Dog Prosthetic Running Blade" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1050,7 +989,8 @@
         <div class="project-cta">View project <div class="cta-arrow"></div></div>
       </div>
     </a>
-    <a href="athlete-assist.html" class="project-card medium">
+    <a href="athlete-assist.html" class="project-card medium reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images2/hero_front.png" alt="Athlete Lift" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1064,7 +1004,8 @@
         <div class="project-cta">View project <div class="cta-arrow"></div></div>
       </div>
     </a>
-    <a href="clock-container-portfolio.html" class="project-card medium">
+    <a href="clock-container-portfolio.html" class="project-card medium reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images/clockface.jpg" alt="Clock Container" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1079,7 +1020,8 @@
         <div class="project-cta">View project <div class="cta-arrow"></div></div>
       </div>
     </a>
-    <a href="pub-render.html" class="project-card medium">
+    <a href="pub-render.html" class="project-card medium reveal">
+      <div class="spotlight"></div>
       <div class="project-thumb">
         <img src="images_pub/anishan_alexacw.png" alt="MacLaren's Pub CS148 Render" style="width:100%;height:100%;object-fit:cover">
       </div>
@@ -1097,38 +1039,116 @@
   </div>
 </section>
 
-<!-- ═══ SKILLS ═══ -->
-<section class="section" id="skills">
-  <p class="section-label reveal">What I work with</p>
-  <h2 class="section-heading reveal">Skills &amp; <span class="accent">Tools</span></h2>
-  <div class="skills-layout reveal">
-    <div class="skills-col engineering">
-      <h3>Engineering</h3>
-      <div class="skill-item"><span class="skill-name">CAD (Fusion 360 / SolidWorks)</span></div>
-      <div class="skill-item"><span class="skill-name">Laser Cutting &amp; DFM</span></div>
-      <div class="skill-item"><span class="skill-name">Tolerance Analysis</span></div>
-      <div class="skill-item"><span class="skill-name">Prototyping &amp; Iteration</span></div>
-      <div class="skill-item"><span class="skill-name">3D Printing (Bambu Lab)</span></div>
-      <div class="skill-item"><span class="skill-name">Mechanical Design</span></div>
-      <div class="skill-item"><span class="skill-name">GD&amp;T</span></div>
-      <div class="skill-item"><span class="skill-name">Python / MATLAB</span></div>
-      <div class="skills-badges">
-        <span class="badge">Fusion 360</span><span class="badge">SolidWorks</span><span class="badge">Laser Cutter</span><span class="badge">3D Printing</span><span class="badge">MATLAB</span><span class="badge">Python</span><span class="badge">GD&amp;T</span>
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <p class="section-label reveal">Who I am</p>
+  <h2 class="section-heading reveal">About <span class="accent">Me</span></h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm a <strong>Mechanical Engineering student at Stanford</strong> with a <strong>Computer Science minor</strong>. But honestly, I've been an engineer for as long as I can remember.</p>
+      <p>As a kid, I was obsessed with <em>"How It's Made"</em> and would fight my siblings for the remote just to watch factory footage. I collected Apple packaging boxes because I was fascinated by how deliberate every detail was: the material that felt perfect to touch, the seams that were clean and nearly invisible, and most of all, the way the lid would glide onto the box with that satisfying suction. <em>Someone had deliberately engineered that friction and every single detail on that box.</em></p>
+      <p>I still notice these things. I rant to everyone I know about my coffee bottle: a slide lid that's completely spill-proof, an aesthetic I actually like, and a ceramic interior so the coffee doesn't taste metallic. It's clear it is such a thought-out product and <em>I can't help but appreciate it.</em></p>
+      <p>This is just how my brain works. I instinctively analyze how things were made, designed, manufactured, and how they operate. I question whether I could improve a certain detail in a certain way. No one taught me to do this. <em>It comes naturally.</em> The difference now is that I'm learning how to actually apply it.</p>
+      <p>I work at Stanford's <strong>Hollberg Lab</strong>, where I design and build hardware for precision instrumentation. I prototype, troubleshoot, and iterate until things work the way they should. I've also worked in data engineering at <strong>CEMEX</strong>, product management at <strong>Fundación CR</strong>, and construction leadership at <strong>TECHO</strong>.</p>
+      <p>I'm curious, I pay attention, and I care about <em>getting things right</em>.</p>
+      <p><strong>P.S.</strong> Outside of engineering, I bake, taught myself to crochet from YouTube, upcycle clothes, and have strong opinions about espresso beans.</p>
+    </div>
+    <div class="about-right">
+      <img src="images_index/headshot.JPG" alt="Alexa Cavazos" class="about-headshot">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section" id="experience">
+  <p class="section-label reveal">Where I've worked</p>
+  <h2 class="section-heading reveal">Experience</h2>
+  <div class="exp-timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2025 – Present</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Hollberg Lab</div>
+        <div class="exp-role">Hardware Design Engineer</div>
+        <p class="exp-desc">I design and fabricate custom hardware for a precision methane laser spectroscopy system. I build 3D-printed adapters to motorize manual stages, iterate on windshield wiper mechanisms to protect optical components, and prepare lab instruments for field deployment. This is where tolerance analysis stops being a homework problem and starts mattering.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">CAD</span>
+          <span class="exp-tag">3D Printing</span>
+          <span class="exp-tag">Prototyping</span>
+          <span class="exp-tag">Precision Instrumentation</span>
+        </div>
       </div>
     </div>
-    <div class="skills-col soft">
-      <h3>Soft Skills</h3>
-      <div class="skill-item"><span class="skill-name">Attention to detail</span></div>
-      <div class="skill-item"><span class="skill-name">Problem-solving</span></div>
-      <div class="skill-item"><span class="skill-name">Iterative thinking</span></div>
-      <div class="skill-item"><span class="skill-name">Visual communication</span></div>
-      <div class="skill-item"><span class="skill-name">Cross-disciplinary curiosity</span></div>
-      <div class="skill-item"><span class="skill-name">Written communication</span></div>
-      <div class="skill-item"><span class="skill-name">Project ownership</span></div>
-      <div class="skills-badges">
-        <span class="badge">Adobe Suite</span><span class="badge">Figma</span><span class="badge">Notion</span><span class="badge">Framer</span><span class="badge">Photography</span>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2024</div>
+      <div class="exp-content">
+        <div class="exp-org">CEMEX</div>
+        <div class="exp-role">Data Engineering Intern</div>
+        <p class="exp-desc">Worked on data engineering pipelines for one of the world's largest building materials companies. Built and maintained data infrastructure that supported operational decisions across the organization.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Data Engineering</span>
+          <span class="exp-tag">Python</span>
+          <span class="exp-tag">SQL</span>
+        </div>
       </div>
     </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2023</div>
+      <div class="exp-content">
+        <div class="exp-org">Fundación CR</div>
+        <div class="exp-role">Product Manager</div>
+        <p class="exp-desc">Led product management efforts at a foundation focused on social impact. Coordinated between stakeholders, defined product requirements, and drove initiatives from concept to delivery.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Product Management</span>
+          <span class="exp-tag">Strategy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2022 – 2023</div>
+      <div class="exp-content">
+        <div class="exp-org">TECHO</div>
+        <div class="exp-role">Construction Leader</div>
+        <p class="exp-desc">Directed large-scale construction projects building transitional housing for communities in need. Managed teams, coordinated logistics, and ensured builds were completed safely and on schedule.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Construction</span>
+          <span class="exp-tag">Leadership</span>
+          <span class="exp-tag">Project Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2025</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Designathon</div>
+        <div class="exp-role">Logistics Director</div>
+        <p class="exp-desc">Led logistics for Stanford's first Designathon, coordinating venues, sponsors, workshops, and event-day operations for a large-scale design competition.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Event Planning</span>
+          <span class="exp-tag">Design</span>
+          <span class="exp-tag">Leadership</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2024 – Present</div>
+      <div class="exp-content">
+        <div class="exp-org">Stanford Women in Design</div>
+        <div class="exp-role">Community Engagement Lead</div>
+        <p class="exp-desc">Building community around design at Stanford by organizing events, workshops, and conversations that connect students across disciplines who care about how things are made and who they're made for.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Community</span>
+          <span class="exp-tag">Design</span>
+          <span class="exp-tag">Outreach</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1207,6 +1227,56 @@
       ring.classList.remove('hover');
     });
   });
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Scroll progress bar ── */
+  const progress = document.querySelector('.scroll-progress');
+  function updateProgress() {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (scrolled * 100) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  /* ── Active nav link tracking ── */
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = [...navLinks]
+    .map(l => document.querySelector(l.getAttribute('href')))
+    .filter(Boolean);
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = '#' + entry.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => navObs.observe(s));
+
+  /* ── Hero blob parallax (follows the cursor) ── */
+  const blob1 = document.querySelector('.blob-1');
+  const blob2 = document.querySelector('.blob-2');
+  if (!reduceMotion && blob1 && blob2) {
+    document.addEventListener('mousemove', e => {
+      const cx = (e.clientX / window.innerWidth - 0.5);
+      const cy = (e.clientY / window.innerHeight - 0.5);
+      blob1.style.transform = `translate(${cx * 40}px, ${cy * 40}px)`;
+      blob2.style.transform = `translate(${cx * -28}px, ${cy * -28}px)`;
+    });
+  }
+
+  /* ── Project-card cursor spotlight ── */
+  if (!reduceMotion) {
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
 </script>
 </body>
 </html>
